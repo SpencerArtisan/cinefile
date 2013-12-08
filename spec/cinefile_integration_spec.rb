@@ -13,6 +13,5 @@ describe 'Cinefile' do
 
   it 'should be able to get a list of films' do
     visit '/films'
-    puts page.body
   end
 end

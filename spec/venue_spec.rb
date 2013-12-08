@@ -9,9 +9,16 @@ describe Venue do
   end
 
   it 'should find the films showing' do
-    film = double
+    film = Film.new 'a film', 1979
     venue = Venue.new 1
     allow(DataSource).to receive(:get_films).with(1).and_return [film]
     expect(venue.films).to eq [film]
+  end
+
+  it 'should not retrieve modern films' do
+    modern_film = Film.new 'a film', 1980
+    venue = Venue.new 1
+    allow(DataSource).to receive(:get_films).with(1).and_return [modern_film]
+    expect(venue.films).to eq []
   end
 end
