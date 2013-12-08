@@ -1,3 +1,5 @@
+require 'data_source'
+
 Venue = Struct.new(:id) do
   BFI_SOUTHBANK = 3471
 
