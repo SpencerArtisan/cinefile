@@ -5,10 +5,8 @@ require 'film'
 require 'find_any_film'
 
 class DataSource
-  def self.get_films venue_id
-    day = 1
-
-    response = FindAnyFilm.get_films venue_id
+  def self.get_films venue_id, day
+    response = FindAnyFilm.get_films venue_id, day
 
     # extract the HTML from the JSON response
     doc = JSON.parse(response)

@@ -1,9 +1,9 @@
 require 'venue'
 
 Film = Struct.new(:title, :year) do
-  def self.all
+  def self.all(days)
     films = []
-    Venue.all.each {|venue| films.concat venue.films }
+    Venue.all.each {|venue| films.concat venue.get_films(days) }
 
     def films.to_json
       {films: map {|film| film.to_json}}.to_json
