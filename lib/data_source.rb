@@ -36,11 +36,13 @@ class DataSource
       begin
         title = a.children.first.content
         title = title.gsub!(/\s+/, " ").strip!
+        year = title.scan(/\((\d{4})\)/)[0][0].to_i
       rescue NoMethodError
         title = ""
+        year = nil
       end
 
-      data << Film.new(title)
+      data << Film.new(title, year)
     }
 
     # extract the times the film is showing

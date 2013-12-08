@@ -9,5 +9,6 @@ describe DataSource do
     films = DataSource.get_films(1)
     expect(films.size).to eq 6
     expect(films[0].title).to eq 'Gone With The Wind (1939) (PG)'
+    expect(films[0].year).to eq 1939
   end
 end

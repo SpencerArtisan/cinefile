@@ -4,7 +4,7 @@ class Venue; end
   
 describe Film do
   let (:venue) { double }
-  let (:film) { Film.new 'a film' }
+  let (:film) { Film.new 'a film', 2001 }
 
   before do
     allow(venue).to receive(:films).and_return [film]
@@ -21,6 +21,6 @@ describe Film do
   end
 
   it 'should convert a single film to json' do
-    expect(film.to_json).to eq('{"title":"a film"}')
+    expect(film.to_json).to eq('{"title":"a film","year":2001}')
   end
 end
