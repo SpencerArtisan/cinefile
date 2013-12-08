@@ -1,10 +1,10 @@
 require 'data_source'
 
 Venue = Struct.new(:id) do
-  BFI_SOUTHBANK = 3471
+  VENUES = [3471]
 
   def self.all
-    [Venue.new(BFI_SOUTHBANK)]
+    VENUES.map {|id| Venue.new id}
   end
 
   def films
