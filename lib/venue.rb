@@ -4,4 +4,8 @@ Venue = Struct.new(:id) do
   def self.all
     [Venue.new(BFI_SOUTHBANK)]
   end
+
+  def films
+    DataSource.get_films(id)
+  end
 end
