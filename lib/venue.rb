@@ -6,6 +6,6 @@ Venue = Struct.new(:id) do
   end
 
   def films
-    DataSource.get_films(id)
+    DataSource.get_films id
   end
 end

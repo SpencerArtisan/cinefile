@@ -2,11 +2,18 @@ GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.2.5)
+    json (1.8.0)
+    mime-types (1.25)
+    mini_portile (0.5.2)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -25,6 +32,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  json (= 1.8.0)
+  nokogiri (= 1.6.0)
   rack-test
+  rest-client (= 1.6.7)
   rspec
   sinatra
