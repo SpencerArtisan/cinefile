@@ -5,7 +5,7 @@ class DataSource; end
 describe Venue do
   it 'should retrieve the BFI southbank venue' do
     venues = Venue.all
-    expect(venues[0].id).to eq 3471
+    expect(venues[0].id).to eq 1522
   end
 
   it 'should find the films showing' do
