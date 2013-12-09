@@ -27,6 +27,10 @@ describe DataSource do
     it 'should get the film cinema' do
       expect(@films[0].cinema).to equal cinema
     end
+
+    it 'should get the film showing date' do
+      expect(@films[0].when).to eq Date.today
+    end
   end
 
   context 'Reading the cinemas' do

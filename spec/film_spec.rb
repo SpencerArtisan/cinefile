@@ -1,10 +1,11 @@
 require 'film'
+require 'timecop'
 
 class Venue; end
   
 describe Film do
   let (:venue) { double }
-  let (:film) { Film.new 'a film', 1979, venue }
+  let (:film) { Film.new 'a film', 1979, venue, Date.new(2001, 12, 25) }
 
   before do
     allow(venue).to receive(:name).and_return 'A cinema'
@@ -22,6 +23,6 @@ describe Film do
   end
 
   it 'should convert a single film to json' do
-    expect(film.to_json).to eq('{"title":"a film","year":1979,"cinema":"A cinema"}')
+    expect(film.to_json).to eq('{"title":"a film","year":1979,"cinema":"A cinema","when":"2001-12-25"}')
   end
 end
