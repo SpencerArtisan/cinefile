@@ -62,4 +62,35 @@ class DataSource
 
     data
   end
+
+  def self.find_cinemas post_code
+    # open it in nokogiri
+    doc = Nokogiri::HTML(FindAnyFilm.find_cinemas(post_code))
+
+    # parse the main 'cinemas' block
+    cinemas = doc.xpath("/html/body//div[@id='content']//div[@class='cinema']/div/div")
+
+    # hold the cinema data
+    data = []
+
+    # nokogiri thinks this is much deeper
+    cinemas.xpath("//h2/a").each { |link|
+      # title is the link text, then only keep the text
+      title = link.children.first.content
+      title.gsub!(/\s+/, " ").strip!
+      title = title.split(',')[0]
+
+      # extract the actual link
+      link = link.attribute("href").content
+      # venue id is the first parameter
+      venue_id = link.split(/[?&]/)[1]
+      # then break the parameter open
+      venue_id = venue_id.split(/[=]/)[1]
+
+      data << Venue.new(venue_id, title)
+      break if data.size == 50
+    }
+
+    data
+  end
 end

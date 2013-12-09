@@ -4,8 +4,10 @@ class DataSource; end
 
 describe Venue do
   it 'should retrieve the BFI southbank venue' do
+    venue = Venue.new 1
+    allow(DataSource).to receive(:find_cinemas).with('WC1N').and_return [venue]
     venues = Venue.all
-    expect(venues[0].id).to eq 1522
+    expect(venues[0]).to equal(venue)
   end
 
   it 'should find the films showing' do

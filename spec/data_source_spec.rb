@@ -22,4 +22,24 @@ describe DataSource do
       expect(@films[0].year).to eq 1939
     end
   end
+
+  context 'Reading the cinemas' do
+    before do
+      cinemas = File.read 'cinemas_sample.html'
+      allow(FindAnyFilm).to receive(:find_cinemas).with('a postcode').and_return cinemas
+      @cinemas = DataSource.find_cinemas('a postcode')
+    end
+
+    it 'should get all the cinemas' do
+      expect(@cinemas.size).to eq 50
+    end
+
+    it 'should get the venue id' do
+      expect(@cinemas[0].id).to eq '1574'
+    end
+
+    it 'should get the venue name' do
+      expect(@cinemas[0].name).to eq 'Renoir'
+    end
+  end
 end

@@ -6,4 +6,8 @@ class FindAnyFilm
     url = "http://www.findanyfilm.com/find-a-cinema-3?day=%s&venue_id=%s&action=Screenings&townpostcode=" % [day, venue_id]
     RestClient.get url
   end
+
+  def self.find_cinemas post_code
+    open('http://www.findanyfilm.com/find-a-cinema-3?townpostcode=' + post_code)
+  end
 end
