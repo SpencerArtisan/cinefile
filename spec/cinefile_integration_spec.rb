@@ -22,7 +22,7 @@ describe 'Cinefile' do
     it 'should show the film names' do
       visit '/'
       puts page.body
-      #expect(page).to have_content 'Gone With The Wind'
+      expect(page).to have_content 'Gone With The Wind'
     end
   end
 end

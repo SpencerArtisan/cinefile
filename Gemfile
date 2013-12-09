@@ -9,4 +9,5 @@ gem 'json', '1.8.0'
 gem 'rest-client', '1.6.7'
 gem 'capybara'
 gem 'timecop'
+gem 'sprockets'
 
