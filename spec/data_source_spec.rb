@@ -4,10 +4,12 @@ class FindAnyFilm; end
 
 describe DataSource do
   context 'Reading the films' do
+    let (:cinema) { Venue.new 1, 'a cinema' }
+
     before do
       find_any_film_sample = File.read 'find_any_film_sample.json'
-      allow(FindAnyFilm).to receive(:get_films).with(1, 1).and_return find_any_film_sample
-      @films = DataSource.get_films(1, 1)
+      allow(FindAnyFilm).to receive(:get_films).with(cinema, 1).and_return find_any_film_sample
+      @films = DataSource.get_films(cinema, 1)
     end
 
     it 'should get all the films' do
@@ -20,6 +22,10 @@ describe DataSource do
 
     it 'should get the film year' do
       expect(@films[0].year).to eq 1939
+    end
+
+    it 'should get the film cinema' do
+      expect(@films[0].cinema).to equal cinema
     end
   end
 
