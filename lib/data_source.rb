@@ -40,7 +40,7 @@ class DataSource
         year = nil
       end
 
-      data << Film.new(title, year, cinema, Date.today)
+      data << Film.new(title, year, cinema, Date.today + day - 1)
     }
 
     # extract the times the film is showing
