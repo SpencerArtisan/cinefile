@@ -4,7 +4,7 @@ app = angular.module("app", ["ngRoute"])
 
 app.config ["$routeProvider", (routeProvider) ->
   routeProvider.when("/",
-    templateUrl: "assets/films.html"
+    templateUrl: "views/films.html"
   )
 ]
 
