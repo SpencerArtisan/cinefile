@@ -25,9 +25,8 @@ describe 'Cinefile' do
   context 'showing the home page', js: true do
     it 'should show the film names' do
       visit '/'
-      sleep 3
       puts page.body
-      expect(page).to have_content 'here'
+      expect(page).to have_content 'Gone With The Wind'
     end
   end
 end

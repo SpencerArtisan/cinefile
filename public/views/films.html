@@ -1,1 +1,7 @@
-FIlms go here
+<div ng-init="loadFilms()">
+  <ul>
+    <li ng-repeat="film in films">
+      <h4>{{film.title}}</h4>
+    </li>
+  </ul>
+</div>
