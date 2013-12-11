@@ -22,6 +22,7 @@ class CachedDataSource
 
   def cached_cinemas post_code
     cinemas = REDIS.get cinema_key(post_code)
+    puts "Cached cinemas: #{cinemas}"
     Marshal::load(cinemas) if cinemas
   end
 
@@ -36,6 +37,7 @@ class CachedDataSource
 
   def cached_films cinema, day
     films = REDIS.get film_key(cinema, day)
+    puts "Cached films: #{films}"
     Marshal::load(films) if films
   end
 

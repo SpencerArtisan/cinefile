@@ -57,7 +57,7 @@ describe DataSource do
     end
 
     it 'should get all the cinemas' do
-      expect(@cinemas.size).to eq 25
+      expect(@cinemas.size).to eq 50
     end
 
     it 'should get the venue id' do

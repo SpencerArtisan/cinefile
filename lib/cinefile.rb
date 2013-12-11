@@ -12,7 +12,7 @@ end
 
 get '/films' do
   content_type :json
-  films = Film.all datasource, 1
+  films = Film.all datasource, 7
   films.to_json
 end
 

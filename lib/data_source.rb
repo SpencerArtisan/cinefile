@@ -88,7 +88,7 @@ class DataSource
       venue_id = venue_id.split(/[=]/)[1]
 
       data << Venue.new(venue_id, title)
-      break if data.size == 25
+      break if data.size == 50
     }
 
     data
