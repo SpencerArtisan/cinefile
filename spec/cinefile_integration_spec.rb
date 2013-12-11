@@ -34,7 +34,7 @@ describe 'Cinefile' do
     end
 
     it 'should show the film cinemas' do
-      expect(page).to have_content 'BFI Southbank'
+      expect(page).to have_content 'Renoir'
     end
 
     #it 'should show the film dates' do
