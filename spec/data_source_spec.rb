@@ -6,7 +6,7 @@ describe DataSource do
   let (:datasource) { DataSource.new }
 
   context 'Reading the films for today' do
-    let (:cinema) { Venue.new 1, 'a cinema' }
+    let (:cinema) { Cinema.new 1, 'a cinema' }
 
     before do
       find_any_film_sample = File.read 'find_any_film_sample.json'
@@ -36,7 +36,7 @@ describe DataSource do
   end
 
   context 'Reading the films for tomorrow' do
-    let (:cinema) { Venue.new 1, 'a cinema' }
+    let (:cinema) { Cinema.new 1, 'a cinema' }
 
     before do
       find_any_film_sample = File.read 'find_any_film_sample.json'
@@ -60,11 +60,11 @@ describe DataSource do
       expect(@cinemas.size).to eq 172
     end
 
-    it 'should get the venue id' do
+    it 'should get the cinema id' do
       expect(@cinemas[0].id).to eq '1574'
     end
 
-    it 'should get the venue name' do
+    it 'should get the cinema name' do
       expect(@cinemas[0].name).to eq 'Renoir'
     end
   end

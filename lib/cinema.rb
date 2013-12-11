@@ -1,6 +1,6 @@
 require 'data_source'
 
-Venue = Struct.new(:id, :name) do
+Cinema = Struct.new(:id, :name) do
   def self.all datasource
     datasource.find_cinemas('WC1N')
   end

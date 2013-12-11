@@ -3,16 +3,16 @@ require 'timecop'
 
 describe Film do
   let (:datasource) { double }
-  let (:venue) { double }
-  let (:film) { Film.new 'a film', 1979, venue, Date.new(2001, 12, 25) }
+  let (:cinema) { double }
+  let (:film) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 25) }
 
   before do
-    allow(venue).to receive(:name).and_return 'A cinema'
-    allow(venue).to receive(:get_films).with(datasource, 1).and_return [film]
-    allow(Venue).to receive(:all).and_return [venue]
+    allow(cinema).to receive(:name).and_return 'A cinema'
+    allow(cinema).to receive(:get_films).with(datasource, 1).and_return [film]
+    allow(Cinema).to receive(:all).and_return [cinema]
   end
 
-  it 'should retrieve films from all venues' do
+  it 'should retrieve films from all cinemas' do
     expect(Film.all(datasource, 1)).to eq [film]
   end
 

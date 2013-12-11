@@ -1,6 +1,6 @@
 require 'redis'
 require 'uri'
-require 'venue'
+require 'cinema'
 
 puts "Using redis at '#{ENV["REDISTOGO_URL"]}'"
 uri = URI.parse(ENV["REDISTOGO_URL"])

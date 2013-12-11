@@ -42,8 +42,8 @@ class DataSource
     title = node.children.first.content
     title = title.gsub!(/\s+/, " ").strip!.split(',')[0]
     node = node.attribute("href").content
-    venue_id = node.split(/[?&]/)[1]
-    venue_id = venue_id.split(/[=]/)[1]
-    Venue.new(venue_id, title)
+    cinema_id = node.split(/[?&]/)[1]
+    cinema_id = cinema_id.split(/[=]/)[1]
+    Cinema.new(cinema_id, title)
   end
 end
