@@ -35,10 +35,6 @@ describe DataSource do
     it 'should get the film showing date' do
       expect(@films[0].when).to eq Date.today
     end
-
-    it 'should get the film showing date formatted' do
-      expect(@films[0].when_formatted).to eq 'Wed 25 Dec'
-    end
   end
 
   context 'Reading the films for tomorrow' do

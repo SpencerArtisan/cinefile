@@ -13,14 +13,14 @@ describe Cinema do
   end
 
   it 'should find the films showing' do
-    film = Film.new 'a film', 1979
+    film = Film.new 'a film', 1979, 'a cinema', Date.today
     allow(datasource).to receive(:get_films).with(cinema, 1).and_return [film]
     expect(cinema.get_films(datasource, 1)).to eq [film]
   end
 
   it 'should retrieve films for multiple dates' do
-    film = Film.new 'a film', 1979
-    another_film = Film.new 'another film', 1978
+    film = Film.new 'a film', 1979, 'a cinema', Date.today
+    another_film = Film.new 'another film', 1978, 'a cinema', Date.today
     allow(datasource).to receive(:get_films).with(cinema, 1).and_return [film]
     allow(datasource).to receive(:get_films).with(cinema, 2).and_return [another_film]
     expect(cinema.get_films(datasource, 2)).to eq [film, another_film]

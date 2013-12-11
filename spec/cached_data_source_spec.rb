@@ -60,7 +60,7 @@ describe CachedDataSource do
       end
 
       it 'should retrieve the data from the cache' do
-        expect(cache.get_films(cinema, 1)).to eq [film]
+        expect(cache.get_films(cinema, 1)[0].to_json).to eq film.to_json
       end
 
       it 'should retrieve from the data source if the day differs' do

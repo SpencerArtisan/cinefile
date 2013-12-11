@@ -1,6 +1,20 @@
 require 'cinema'
 
-Film = Struct.new(:title, :year, :cinema, :when) do
+class Film
+  attr_accessor :title, :year, :cinema, :when
+
+  def initialize title, year, cinema, when_showing
+    self.title = title
+    self.year = year
+    self.cinema = cinema
+    self.when = when_showing
+    add_showing cinema, when_showing
+  end
+
+  def add_showing cinema, when_showing
+    showings << OpenStruct.new(cinema: cinema, when: when_showing)
+  end
+
   def self.all(datasource, days)
     films = []
     Cinema.all(datasource).each {|cinema| films.concat cinema.get_films(datasource, days) }
@@ -27,11 +41,11 @@ Film = Struct.new(:title, :year, :cinema, :when) do
   end
 
   def merge another_film
-    self
+    add_showing another_film.cinema, another_film.when
   end
 
-  def when_formatted
-    self.when.strftime "%a %-d %b"
+  def showings
+    @showings ||= []
   end
 
   def to_hash
