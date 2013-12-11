@@ -1,12 +1,21 @@
 <div ng-init="loadFilms()" ng-controller="FilmsController">
-  <ul>
-    <li ng-repeat="film in films">
-      <h4>{{film.title}}</h4>
-      <ul>
-        <li ng-repeat="showing in film.showings">
-          {{when_formatted(showing)}} - {{showing.cinema}}
-        </li>
+  <div class="topcoat-navigation-bar">
+      <div class="topcoat-navigation-bar__item center full">
+          <h1 class="topcoat-navigation-bar__title">Classic Movies</h1>
+      </div>
+  </div>
+  <div class="topcoat-list__container scroller" style="top:70px;">
+      <ul class="topcoat-list list">
+          <li ng-repeat="film in films" class="topcoat-list__item">
+            <a>
+              <p>{{film.title}}</p>
+              <ul class="list">
+                <li ng-repeat="showing in film.showings">
+                  {{when_formatted(showing)}} - {{showing.cinema}}
+                </li>
+              </ul>
+            </a>
+          </li>
       </ul>
-    </li>
-  </ul>
+  </div>
 </div>
