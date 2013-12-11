@@ -22,8 +22,8 @@
         };
         return resource('/films').get(success, failure);
       };
-      return scope.when_formatted = function(film) {
-        return moment(film.when).format('ddd Do MMM');
+      return scope.when_formatted = function(showing) {
+        return moment(showing.when).format('ddd Do MMM');
       };
     }
   ]);
