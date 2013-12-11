@@ -12,21 +12,20 @@ class CachedDataSource
   end
 
   def find_cinemas post_code
-    cinemas = cached_cinemas
-    puts "REDIS CINEMAS: #{cinemas}, #{cinemas.class}"
+    cinemas = cached_cinemas post_code
     if cinemas.nil?
       cinemas = @data_source.find_cinemas post_code
-      REDIS.set 'cinemas', Marshal::dump(cinemas)
+      REDIS.set post_code, Marshal::dump(cinemas)
     end
     cinemas
   end
 
-  def cached_cinemas
-    cinemas = REDIS.get 'cinemas'
+  def cached_cinemas post_code
+    cinemas = REDIS.get post_code
     Marshal::load(cinemas) if cinemas
   end
 
   def clear
-    REDIS.del 'cinemas'
+    REDIS.del REDIS.keys
   end
 end
