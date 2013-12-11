@@ -25,7 +25,25 @@ class CachedDataSource
     Marshal::load(cinemas) if cinemas
   end
 
+  def get_films cinema, day
+    films = cached_films cinema, day
+    if films.nil?
+      films = @data_source.get_films cinema, day
+      REDIS.set film_key(cinema, day), Marshal::dump(films)
+    end
+    films
+  end
+
+  def cached_films cinema, day
+    films = REDIS.get film_key(cinema, day)
+    Marshal::load(films) if films
+  end
+
+  def film_key cinema, day
+    "#{cinema.name}-#{day}"
+  end
+
   def clear
-    REDIS.del REDIS.keys
+    REDIS.del REDIS.keys unless REDIS.keys.empty?
   end
 end
