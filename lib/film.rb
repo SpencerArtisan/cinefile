@@ -49,7 +49,8 @@ class Film
   end
 
   def to_hash
-    {title: title, year: year, cinema: cinema.name, when: self.when}
+    showings_hash = showings.map {|showing| {cinema: showing.cinema.name, when: showing.when}}
+    {title: title, year: year, showings: showings_hash}
   end
 
   def to_json
