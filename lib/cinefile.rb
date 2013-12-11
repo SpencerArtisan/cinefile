@@ -1,12 +1,13 @@
 require 'sinatra'
 require 'film'
 require 'cached_data_source'
+require 'filter'
 
 set :root, File.join(File.dirname(__FILE__), '..')
 
 helpers do
   def datasource
-    CachedDataSource.new DataSource.new
+    CachedDataSource.new(Filter.new(DataSource.new))
   end
 end
 
