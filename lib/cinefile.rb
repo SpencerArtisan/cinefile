@@ -16,6 +16,10 @@ get '/films' do
   films.to_json
 end
 
+get '/films/clear_cache' do
+  datasource.clear
+end
+
 get '/' do
   erb :index
 end
