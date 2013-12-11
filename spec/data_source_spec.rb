@@ -3,13 +3,15 @@ require 'data_source'
 class FindAnyFilm; end
 
 describe DataSource do
+  let (:datasource) { DataSource.new }
+
   context 'Reading the films for today' do
     let (:cinema) { Venue.new 1, 'a cinema' }
 
     before do
       find_any_film_sample = File.read 'find_any_film_sample.json'
       allow(FindAnyFilm).to receive(:get_films).with(cinema, 1).and_return find_any_film_sample
-      @films = DataSource.get_films(cinema, 1)
+      @films = datasource.get_films(cinema, 1)
     end
 
     it 'should get all the films' do
@@ -39,7 +41,7 @@ describe DataSource do
     before do
       find_any_film_sample = File.read 'find_any_film_sample.json'
       allow(FindAnyFilm).to receive(:get_films).with(cinema, 2).and_return find_any_film_sample
-      @films = DataSource.get_films(cinema, 2)
+      @films = datasource.get_films(cinema, 2)
     end
 
     it 'should get the film showing date' do
@@ -51,7 +53,7 @@ describe DataSource do
     before do
       cinemas = File.read 'cinemas_sample.html'
       allow(FindAnyFilm).to receive(:find_cinemas).with('a postcode').and_return cinemas
-      @cinemas = DataSource.find_cinemas('a postcode')
+      @cinemas = datasource.find_cinemas('a postcode')
     end
 
     it 'should get all the cinemas' do

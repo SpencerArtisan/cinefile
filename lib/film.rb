@@ -1,9 +1,9 @@
 require 'venue'
 
 Film = Struct.new(:title, :year, :cinema, :when) do
-  def self.all(days)
+  def self.all(datasource, days)
     films = []
-    Venue.all.each {|venue| films.concat venue.get_films(days) }
+    Venue.all(datasource).each {|venue| films.concat venue.get_films(datasource, days) }
 
     def films.to_json
       {films: map {|film| film.to_hash}}.to_json

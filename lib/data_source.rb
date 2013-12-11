@@ -5,7 +5,7 @@ require 'film'
 require 'find_any_film'
 
 class DataSource
-  def self.get_films cinema, day
+  def get_films cinema, day
     response = FindAnyFilm.get_films cinema, day
 
     # extract the HTML from the JSON response
@@ -63,7 +63,7 @@ class DataSource
     data
   end
 
-  def self.find_cinemas post_code
+  def find_cinemas post_code
     # open it in nokogiri
     doc = Nokogiri::HTML(FindAnyFilm.find_cinemas(post_code))
 
