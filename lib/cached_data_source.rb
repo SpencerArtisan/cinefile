@@ -1,4 +1,3 @@
-require 'environment'
 require 'redis'
 require 'uri'
 require 'venue'

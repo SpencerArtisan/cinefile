@@ -1,3 +1,4 @@
+require 'test_environment'
 require 'cached_data_source'
 
 describe CachedDataSource do
