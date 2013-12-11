@@ -18,12 +18,6 @@ describe Venue do
     expect(venue.get_films(datasource, 1)).to eq [film]
   end
 
-  it 'should not retrieve modern films' do
-    modern_film = Film.new 'a film', 1980
-    allow(datasource).to receive(:get_films).with(venue, 1).and_return [modern_film]
-    expect(venue.get_films(datasource, 1)).to eq []
-  end
-
   it 'should retrieve films for multiple dates' do
     film = Film.new 'a film', 1979
     another_film = Film.new 'another film', 1978

@@ -29,7 +29,7 @@ class DataSource
   end
 
   def find_cinemas post_code
-    cinema_nodes(post_code)[0..49].map { |node| extract_cinema(node) }
+    cinema_nodes(post_code).map { |node| extract_cinema(node) }
   end
 
   def cinema_nodes post_code
