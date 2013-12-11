@@ -15,7 +15,7 @@ describe Film do
     end
 
     it 'should retrieve films from all cinemas' do
-      expect(Film.all(datasource, 1)).to eq [film]
+      expect(Film.all(datasource, 1)[0].to_json).to eq film.to_json
     end
 
     it 'should have a showing' do

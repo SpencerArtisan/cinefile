@@ -19,6 +19,7 @@ describe 'Cinefile' do
   end
 
   it 'should be able to get a list of films' do
+    visit '/films/clear_cache'
     visit '/films'
     expect(page).to have_content 'Gone With The Wind'
   end

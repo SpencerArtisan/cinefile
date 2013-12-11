@@ -27,18 +27,20 @@ class Film
 
   def self.merge_matching_films films
     merged_films = {}
+    puts "Starting Merging #{films.length} films"
     films.each do |film|
       existing_showing = merged_films[film.title]
       if existing_showing
         existing_showing.merge film
       else
-        merged_films[film.title] = film
+        merged_films[film.title] = film.clone
       end
     end
     merged_films.values
   end
 
   def merge another_film
+    puts "Merging #{another_film.showings.length} showings for film #{title}.  Now has #{showings.length} showings"
     showings.concat another_film.showings
   end
 

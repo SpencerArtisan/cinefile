@@ -2,8 +2,12 @@
   <ul>
     <li ng-repeat="film in films">
       <h4>{{film.title}}</h4>
-      <div>{{film.cinema}}</div>
-      <div>{{when_formatted(film)}}</div>
+      <ul>
+        <li ng-repeat="showing in film.showings">
+          <div>{{showing.cinema}}</div>
+          <!--<div>{{when_formatted()}}</div>-->
+        </li>
+      </ul>
     </li>
   </ul>
 </div>

@@ -29,6 +29,7 @@ class CachedDataSource
     films = cached_films cinema, day
     if films.nil?
       films = @data_source.get_films cinema, day
+      puts "Retrieved #{films.length} films from findanyfilm.com" if films
       REDIS.set film_key(cinema, day), Marshal::dump(films)
     end
     films
@@ -36,7 +37,9 @@ class CachedDataSource
 
   def cached_films cinema, day
     films = REDIS.get film_key(cinema, day)
-    Marshal::load(films) if films
+    cached_films = Marshal::load(films) if films
+    puts "Retrieved #{cached_films.length} films from cache" if films
+    cached_films
   end
 
   def film_key cinema, day
