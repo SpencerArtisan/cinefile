@@ -18,4 +18,8 @@ controllers.controller "FilmsController", ["$scope", "$resource",
         console.log("films failed with " + response.status)
           
       resource('/films').get(success, failure)
+
+    scope.when_formatted = (film) ->
+      moment(film.when).format('ddd Do MMM')
+
 ]

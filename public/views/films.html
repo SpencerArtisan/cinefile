@@ -1,7 +1,9 @@
-<div ng-init="loadFilms()">
+<div ng-init="loadFilms()" ng-controller="FilmsController">
   <ul>
     <li ng-repeat="film in films">
       <h4>{{film.title}}</h4>
+      <div>{{film.cinema}}</div>
+      <div>{{when_formatted(film)}}</div>
     </li>
   </ul>
 </div>

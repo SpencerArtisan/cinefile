@@ -1,4 +1,5 @@
 require 'data_source'
+require 'timecop'
 
 class FindAnyFilm; end
 
@@ -9,6 +10,7 @@ describe DataSource do
     let (:cinema) { Cinema.new 1, 'a cinema' }
 
     before do
+      Timecop.freeze 2013, 12, 25
       find_any_film_sample = File.read 'find_any_film_sample.json'
       allow(FindAnyFilm).to receive(:get_films).with(cinema, 1).and_return find_any_film_sample
       @films = datasource.get_films(cinema, 1)
@@ -32,6 +34,10 @@ describe DataSource do
 
     it 'should get the film showing date' do
       expect(@films[0].when).to eq Date.today
+    end
+
+    it 'should get the film showing date formatted' do
+      expect(@films[0].when_formatted).to eq 'Wed 25 Dec'
     end
   end
 

@@ -10,7 +10,7 @@
 
   controllers.controller("FilmsController", [
     "$scope", "$resource", function(scope, resource) {
-      return scope.loadFilms = function() {
+      scope.loadFilms = function() {
         var failure, success;
         scope.films = [];
         success = function(response) {
@@ -21,6 +21,9 @@
           return console.log("films failed with " + response.status);
         };
         return resource('/films').get(success, failure);
+      };
+      return scope.when_formatted = function(film) {
+        return moment(film.when).format('ddd Do MMM');
       };
     }
   ]);

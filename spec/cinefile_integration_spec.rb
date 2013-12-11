@@ -1,5 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 
+require 'test_environment'
 require 'cinefile'
 require 'capybara'
 require 'capybara/rspec'
@@ -23,10 +24,22 @@ describe 'Cinefile' do
   end
 
   context 'showing the home page', js: true do
-    it 'should show the film names' do
+    before do
+      visit '/films/clear_cache'
       visit '/'
-      puts page.body
+    end
+
+    it 'should show the film names' do
       expect(page).to have_content 'Gone With The Wind'
     end
+
+    it 'should show the film cinemas' do
+      expect(page).to have_content 'BFI Southbank'
+    end
+
+    #it 'should show the film dates' do
+      #puts page.body
+      #expect(page).to have_content Date.today.strftime("%a %-d %b")
+    #end
   end
 end

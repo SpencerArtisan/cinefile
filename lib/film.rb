@@ -12,6 +12,10 @@ Film = Struct.new(:title, :year, :cinema, :when) do
     films
   end
 
+  def when_formatted
+    self.when.strftime "%a %-d %b"
+  end
+
   def to_hash
     {title: title, year: year, cinema: cinema.name, when: self.when}
   end
