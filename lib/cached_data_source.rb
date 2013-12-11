@@ -2,6 +2,7 @@ require 'redis'
 require 'uri'
 require 'venue'
 
+puts "Using redis at '#{ENV["REDISTOGO_URL"]}'"
 uri = URI.parse(ENV["REDISTOGO_URL"])
 REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
 
@@ -14,13 +15,13 @@ class CachedDataSource
     cinemas = cached_cinemas post_code
     if cinemas.nil?
       cinemas = @data_source.find_cinemas post_code
-      REDIS.set post_code, Marshal::dump(cinemas)
+      REDIS.set cinema_key(post_code), Marshal::dump(cinemas)
     end
     cinemas
   end
 
   def cached_cinemas post_code
-    cinemas = REDIS.get post_code
+    cinemas = REDIS.get cinema_key(post_code)
     Marshal::load(cinemas) if cinemas
   end
 
@@ -39,7 +40,11 @@ class CachedDataSource
   end
 
   def film_key cinema, day
-    "#{cinema.name}-#{day}"
+    "key-#{cinema.name}-#{day}"
+  end
+
+  def cinema_key post_code
+    "key-#{post_code}"
   end
 
   def clear

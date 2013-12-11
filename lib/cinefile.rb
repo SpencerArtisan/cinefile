@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'film'
+require 'cached_data_source'
 
 set :root, File.join(File.dirname(__FILE__), '..')
 
