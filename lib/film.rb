@@ -1,13 +1,11 @@
 require 'cinema'
 
 class Film
-  attr_accessor :title, :year, :cinema, :when
+  attr_accessor :title, :year
 
   def initialize title, year, cinema, when_showing
     self.title = title
     self.year = year
-    self.cinema = cinema
-    self.when = when_showing
     add_showing cinema, when_showing
   end
 
@@ -41,7 +39,7 @@ class Film
   end
 
   def merge another_film
-    add_showing another_film.cinema, another_film.when
+    showings.concat another_film.showings
   end
 
   def showings
