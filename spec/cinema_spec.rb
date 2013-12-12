@@ -26,7 +26,7 @@ describe Cinema do
     expect(cinema.get_films(datasource, 2)).to eq [film, another_film]
   end
 
-  it 'should convert to and from json' do
+  it 'should convert to and from a string' do
     expect(Marshal::load(Marshal::dump(cinema))).to eq cinema
   end
 end
