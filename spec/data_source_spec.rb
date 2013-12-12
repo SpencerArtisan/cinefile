@@ -35,6 +35,10 @@ describe DataSource do
     it 'should get the film showing date' do
       expect(@films[0].showings[0].day_on).to eq Date.today
     end
+
+    it 'should get all the showings' do
+      expect(@films[0]).to have(1).showings
+    end
   end
 
   context 'Reading the films for tomorrow' do
