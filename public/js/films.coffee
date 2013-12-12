@@ -20,6 +20,6 @@ controllers.controller "FilmsController", ["$scope", "$resource",
       resource('/films').get(success, failure)
 
     scope.when_formatted = (showing) ->
-      moment(showing.when).format('ddd Do MMM')
+      moment(showing.day_on).format('ddd Do MMM')
 
 ]

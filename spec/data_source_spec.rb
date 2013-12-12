@@ -33,7 +33,7 @@ describe DataSource do
     end
 
     it 'should get the film showing date' do
-      expect(@films[0].showings[0].when).to eq Date.today
+      expect(@films[0].showings[0].day_on).to eq Date.today
     end
   end
 
@@ -47,7 +47,7 @@ describe DataSource do
     end
 
     it 'should get the film showing date' do
-      expect(@films[0].showings[0].when).to eq(Date.today + 1)
+      expect(@films[0].showings[0].day_on).to eq(Date.today + 1)
     end
   end
 

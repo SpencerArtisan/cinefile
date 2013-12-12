@@ -3,14 +3,14 @@ require 'cinema'
 class Film
   attr_accessor :title, :year
 
-  def initialize title, year, cinema, when_showing
+  def initialize title, year, cinema, day_on
     self.title = title
     self.year = year
-    add_showing cinema, when_showing
+    add_showing cinema, day_on
   end
 
-  def add_showing cinema, when_showing
-    showings << OpenStruct.new(cinema: cinema, when: when_showing)
+  def add_showing cinema, day_on
+    showings << OpenStruct.new(cinema: cinema, day_on: day_on)
   end
 
   def self.all(datasource, days)
@@ -49,7 +49,7 @@ class Film
   end
 
   def to_hash
-    showings_hash = showings.map {|showing| {cinema: showing.cinema.name, when: showing.when}}
+    showings_hash = showings.map {|showing| {cinema: showing.cinema.name, day_on: showing.day_on}}
     {title: title, year: year, showings: showings_hash}
   end
 

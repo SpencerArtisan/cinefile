@@ -4,6 +4,7 @@ require 'cached_data_source'
 require 'filter'
 
 set :root, File.join(File.dirname(__FILE__), '..')
+set :lookahead, 14
 
 helpers do
   def datasource
@@ -13,7 +14,7 @@ end
 
 get '/films' do
   content_type :json
-  films = Film.all datasource, 7
+  films = Film.all datasource, settings.lookahead
   films.to_json
 end
 

@@ -2,26 +2,25 @@ require 'redis'
 require 'uri'
 require 'cinema'
 
-puts "Using redis at '#{ENV["REDISTOGO_URL"]}'"
-uri = URI.parse(ENV["REDISTOGO_URL"])
-REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
-
 class CachedDataSource
   def initialize data_source
     @data_source = data_source
+    puts "Using redis at '#{ENV["REDISTOGO_URL"]}'"
+    uri = URI.parse(ENV["REDISTOGO_URL"])
+    @redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
   end
 
   def find_cinemas post_code
     cinemas = cached_cinemas post_code
     if cinemas.nil?
       cinemas = @data_source.find_cinemas post_code
-      REDIS.set cinema_key(post_code), Marshal::dump(cinemas)
+      @redis.set cinema_key(post_code), Marshal::dump(cinemas)
     end
     cinemas
   end
 
   def cached_cinemas post_code
-    cinemas = REDIS.get cinema_key(post_code)
+    cinemas = @redis.get cinema_key(post_code)
     Marshal::load(cinemas) if cinemas
   end
 
@@ -30,13 +29,13 @@ class CachedDataSource
     if films.nil?
       films = @data_source.get_films cinema, day
       puts "Retrieved #{films.length} films for #{cinema.name} on day #{day}" if films
-      REDIS.set film_key(cinema, day), Marshal::dump(films)
+      @redis.set film_key(cinema, day), Marshal::dump(films)
     end
     films
   end
 
   def cached_films cinema, day
-    films = REDIS.get film_key(cinema, day)
+    films = @redis.get film_key(cinema, day)
     cached_films = Marshal::load(films) if films
     puts "Retrieved #{cached_films.length} films for #{cinema.name} on day #{day}" if films
     cached_films
@@ -51,6 +50,6 @@ class CachedDataSource
   end
 
   def clear
-    REDIS.del REDIS.keys unless REDIS.keys.empty?
+    @redis.del @redis.keys unless @redis.keys.empty?
   end
 end

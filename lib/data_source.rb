@@ -6,7 +6,8 @@ require 'find_any_film'
 
 class DataSource
   def get_films cinema, day
-    film_nodes(cinema, day).map { |node| extract_film(node, cinema, day) }
+    films = film_nodes(cinema, day).map { |node| extract_film(node, cinema, day) }
+    films.compact
   end
 
   def film_nodes cinema, day
@@ -22,10 +23,16 @@ class DataSource
   end
 
   def extract_film node, cinema, day
-    title = node.children.first.content
-    title = title.gsub!(/\s+/, " ").strip!
-    year = title.scan(/\((\d{4})\)/)[0][0].to_i
-    Film.new(title, year, cinema, Date.today + day - 1)
+    begin
+      title = node.children.first.content
+      puts "Film title is #{title}"
+      title = title.gsub!(/\s+/, " ").strip!
+      year = title.scan(/\((\d{4})\)/)[0][0].to_i
+      Film.new(title, year, cinema, Date.today + day - 1)
+    rescue Exception
+      puts "Couldn't handle film node #{node.inspect}"
+      nil
+    end
   end
 
   def find_cinemas post_code
