@@ -4,7 +4,7 @@ describe Filter do
   let (:datasource) { double }
   let (:film) { double }
   let (:cinema) { double }
-  let (:filter) { Filter.new datasource }
+  let (:filter) { Filter.new datasource, 2 }
 
   context '#get_films' do
     before do
@@ -23,7 +23,7 @@ describe Filter do
   end
 
   context '#find_cinemas' do
-    context 'when there are fewer than 50 cinemas' do
+    context 'when there are fewer than the max cinemas' do
       before do
         allow(datasource).to receive(:find_cinemas).and_return [cinema]
       end
@@ -33,23 +33,23 @@ describe Filter do
       end
     end
 
-    context 'when there are exactly 50 cinemas' do
+    context 'when there are exactly the max cinemas' do
       before do
-        allow(datasource).to receive(:find_cinemas).and_return [cinema] * 50
+        allow(datasource).to receive(:find_cinemas).and_return [cinema, cinema]
       end
 
       it 'should return all the cinemas' do
-        expect(filter.find_cinemas('a postcode')).to eq [cinema] * 50
+        expect(filter.find_cinemas('a postcode')).to eq [cinema, cinema]
       end
     end
 
-    context 'when there are more than 50 cinemas' do
+    context 'when there are more than the max cinemas' do
       before do
-        allow(datasource).to receive(:find_cinemas).and_return [cinema] * 51
+        allow(datasource).to receive(:find_cinemas).and_return [cinema, cinema, cinema]
       end
 
       it 'should return all the cinemas' do
-        expect(filter.find_cinemas('a postcode')).to eq [cinema] * 50
+        expect(filter.find_cinemas('a postcode')).to eq [cinema, cinema]
       end
     end
   end

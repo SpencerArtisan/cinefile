@@ -6,10 +6,11 @@ require 'filter'
 set :root, File.join(File.dirname(__FILE__), '..')
 set :lookahead, 14
 set :postcode, 'WC1N'
+set :max_cinemas, 50
 
 helpers do
   def datasource
-    CachedDataSource.new(Filter.new(DataSource.new))
+    CachedDataSource.new(Filter.new(DataSource.new, settings.max_cinemas))
   end
 end
 
