@@ -1,9 +1,8 @@
 require 'data_source'
-require 'environment'
 
 Cinema = Struct.new(:id, :name) do
-  def self.all datasource
-    datasource.find_cinemas CINEMA_SEARCH_POSTCODE
+  def self.all datasource, postcode
+    datasource.find_cinemas postcode
   end
 
   def get_films datasource, days

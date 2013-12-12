@@ -15,15 +15,15 @@ describe Film do
     end
 
     it 'should retrieve films from all cinemas' do
-      expect(Film.all(datasource, 1)[0].to_json).to eq film.to_json
+      expect(Film.all(datasource, 1, 'a postcode')[0].to_json).to eq film.to_json
     end
 
     it 'should have a showing' do
-      expect(Film.all(datasource, 1)[0]).to have(1).showings
+      expect(Film.all(datasource, 1, 'a postcode')[0]).to have(1).showings
     end
 
     it 'should convert film lists to json' do
-      expect(Film.all(datasource, 1).to_json).to eq '{"films":[{"title":"a film","year":1979,"showings":[{"cinema":"A cinema","day_on":"2001-12-25"}]}]}'
+      expect(Film.all(datasource, 1, 'a postcode').to_json).to eq '{"films":[{"title":"a film","year":1979,"showings":[{"cinema":"A cinema","day_on":"2001-12-25"}]}]}'
     end
 
     it 'should convert a single film to json' do
@@ -42,11 +42,11 @@ describe Film do
     end
 
     it 'should group showings on different dates' do
-      expect(Film.all(datasource, 1)).to have(1).item
+      expect(Film.all(datasource, 1, 'a postcode')).to have(1).item
     end
 
     it 'should combine showings for the same film' do
-      film = Film.all(datasource, 1)[0]
+      film = Film.all(datasource, 1, 'a postcode')[0]
       expect(film).to have(2).showings
     end
   end

@@ -26,7 +26,6 @@ describe 'Cinefile' do
 
   context 'showing the home page', js: true do
     before do
-      visit '/films/clear_cache'
       visit '/'
     end
 

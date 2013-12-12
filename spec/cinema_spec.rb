@@ -7,8 +7,8 @@ describe Cinema do
   let(:datasource) { double }
 
   it 'should retrieve the BFI southbank cinema' do
-    allow(datasource).to receive(:find_cinemas).with('WC1N').and_return [cinema]
-    cinemas = Cinema.all(datasource)
+    allow(datasource).to receive(:find_cinemas).with('a postcode').and_return [cinema]
+    cinemas = Cinema.all datasource, 'a postcode'
     expect(cinemas[0]).to equal(cinema)
   end
 

@@ -13,9 +13,9 @@ class Film
     showings << OpenStruct.new(cinema: cinema, day_on: day_on)
   end
 
-  def self.all(datasource, days)
+  def self.all datasource, days, postcode
     films = []
-    Cinema.all(datasource).each {|cinema| films.concat cinema.get_films(datasource, days) }
+    Cinema.all(datasource, postcode).each {|cinema| films.concat cinema.get_films(datasource, days) }
     films = merge_matching_films(films)
 
     def films.to_json

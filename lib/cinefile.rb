@@ -5,6 +5,7 @@ require 'filter'
 
 set :root, File.join(File.dirname(__FILE__), '..')
 set :lookahead, 14
+set :postcode, 'WC1N'
 
 helpers do
   def datasource
@@ -14,7 +15,7 @@ end
 
 get '/films' do
   content_type :json
-  films = Film.all datasource, settings.lookahead
+  films = Film.all datasource, settings.lookahead, settings.postcode
   films.to_json
 end
 
