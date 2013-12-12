@@ -10,17 +10,17 @@ class CachedDataSource
     @redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
   end
 
-  def find_cinemas post_code
-    cinemas = cached_cinemas post_code
+  def find_cinemas postcode
+    cinemas = cached_cinemas postcode
     if cinemas.nil?
-      cinemas = @data_source.find_cinemas post_code
-      @redis.set cinema_key(post_code), Marshal::dump(cinemas)
+      cinemas = @data_source.find_cinemas postcode
+      @redis.set cinema_key(postcode), Marshal::dump(cinemas)
     end
     cinemas
   end
 
-  def cached_cinemas post_code
-    cinemas = @redis.get cinema_key(post_code)
+  def cached_cinemas postcode
+    cinemas = @redis.get cinema_key(postcode)
     Marshal::load(cinemas) if cinemas
   end
 
@@ -45,8 +45,8 @@ class CachedDataSource
     "key-#{cinema.name}-#{day}"
   end
 
-  def cinema_key post_code
-    "key-#{post_code}"
+  def cinema_key postcode
+    "key-#{postcode}"
   end
 
   def clear

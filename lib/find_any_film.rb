@@ -7,7 +7,7 @@ class FindAnyFilm
     RestClient.get url
   end
 
-  def self.find_cinemas post_code
-    open('http://www.findanyfilm.com/find-a-cinema-3?townpostcode=' + post_code)
+  def self.find_cinemas postcode
+    open('http://www.findanyfilm.com/find-a-cinema-3?townpostcode=' + postcode)
   end
 end

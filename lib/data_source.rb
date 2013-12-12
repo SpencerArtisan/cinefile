@@ -34,12 +34,12 @@ class DataSource
     end
   end
 
-  def find_cinemas post_code
-    cinema_nodes(post_code).map { |node| extract_cinema(node) }
+  def find_cinemas postcode
+    cinema_nodes(postcode).map { |node| extract_cinema(node) }
   end
 
-  def cinema_nodes post_code
-    doc = Nokogiri::HTML(FindAnyFilm.find_cinemas(post_code))
+  def cinema_nodes postcode
+    doc = Nokogiri::HTML(FindAnyFilm.find_cinemas(postcode))
     cinemas = doc.xpath("/html/body//div[@id='content']//div[@class='cinema']/div/div")
     cinemas.xpath("//h2/a")
   end
