@@ -32,8 +32,8 @@ describe Film do
   end
 
   context 'multiple films' do
-    let (:film1) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 25) }
-    let (:film2) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 26) }
+    let (:film1) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 26) }
+    let (:film2) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 25) }
 
     before do
       allow(Cinema).to receive(:all).and_return [cinema]
@@ -48,6 +48,12 @@ describe Film do
     it 'should combine showings for the same film' do
       film = Film.all(datasource, 1, 'a postcode')[0]
       expect(film).to have(2).showings
+    end
+
+    it 'should order showings by date' do
+      film = Film.all(datasource, 1, 'a postcode')[0]
+      expect(film.showings[0].day_on).to eq Date.new(2001, 12, 25)
+      expect(film.showings[1].day_on).to eq Date.new(2001, 12, 26)
     end
   end
 end
