@@ -25,7 +25,6 @@ class DataSource
   def extract_film node, cinema, day
     begin
       title = node.children.first.content
-      puts "Film title is #{title}"
       title = title.gsub!(/\s+/, " ").strip!
       year = title.scan(/\((\d{4})\)/)[0][0].to_i
       Film.new(title, year, cinema, Date.today + day - 1)
