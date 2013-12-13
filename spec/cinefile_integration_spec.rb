@@ -37,6 +37,11 @@ describe 'Cinefile' do
       expect(page).to have_content 'Renoir'
     end
 
+    it 'should show the film times' do
+      expect(page).to have_content '13:30 18:20'
+    end
+
+
     #it 'should show the film dates' do
       #puts page.body
       #expect(page).to have_content Date.today.strftime("%a %-d %b")

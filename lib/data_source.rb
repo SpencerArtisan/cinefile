@@ -25,7 +25,7 @@ class DataSource
     begin
       title, year = extract_title_and_year node
       times = extract_times node
-      Film.new(title, year, cinema, Date.today + day - 1)
+      Film.new(title, year, cinema, Date.today + day - 1, times)
     rescue Exception
       puts "Couldn't handle film node #{node.inspect}"
       nil
@@ -44,16 +44,10 @@ class DataSource
     times = ""
     node = node.xpath(".//td[@class='times']")
     node.each_with_index do |td, i|                                                                        
-      # it's also the value of a link
       td.children.each do |e|  
         time = e.content
-        # clean it up
         time.gsub!(/\s+/, " ").strip!
-
-        # annoyingly, it has empty tags around it
-        if not time.empty?
-          times = "#{times}#{time} "
-        end  
+        times = "#{times}#{time} " unless time.empty?
       end
     end
     times

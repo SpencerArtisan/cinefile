@@ -6,7 +6,7 @@ describe Film do
   let (:cinema) { double }
 
   context 'single films' do
-    let (:film) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 25) }
+    let (:film) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 25), 'some times' }
 
     before do
       allow(Cinema).to receive(:all).and_return [cinema]
@@ -23,17 +23,17 @@ describe Film do
     end
 
     it 'should convert film lists to json' do
-      expect(Film.all(datasource, 1, 'a postcode').to_json).to eq '{"films":[{"title":"a film","year":1979,"showings":[{"cinema":"A cinema","day_on":"2001-12-25"}]}]}'
+      expect(Film.all(datasource, 1, 'a postcode').to_json).to eq '{"films":[{"title":"a film","year":1979,"showings":[{"cinema":"A cinema","day_on":"2001-12-25","times_on":"some times"}]}]}'
     end
 
     it 'should convert a single film to json' do
-      expect(film.to_json).to eq('{"title":"a film","year":1979,"showings":[{"cinema":"A cinema","day_on":"2001-12-25"}]}')
+      expect(film.to_json).to eq('{"title":"a film","year":1979,"showings":[{"cinema":"A cinema","day_on":"2001-12-25","times_on":"some times"}]}')
     end
   end
 
   context 'multiple films' do
-    let (:film1) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 26) }
-    let (:film2) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 25) }
+    let (:film1) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 26), 'some times' }
+    let (:film2) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 25), 'some times' }
 
     before do
       allow(Cinema).to receive(:all).and_return [cinema]

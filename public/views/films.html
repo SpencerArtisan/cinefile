@@ -11,7 +11,7 @@
               <p>{{film.title}}</p>
               <ul class="list">
                 <li ng-repeat="showing in film.showings">
-                  {{when_formatted(showing)}} - {{showing.cinema}}
+                  {{when_formatted(showing)}} {{showing.times_on}} - {{showing.cinema}}
                 </li>
               </ul>
             </a>
