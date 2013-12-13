@@ -1,5 +1,3 @@
-require 'data_source'
-
 Cinema = Struct.new(:id, :name) do
   def self.all datasource, postcode
     datasource.find_cinemas postcode

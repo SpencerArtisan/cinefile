@@ -1,4 +1,5 @@
 require 'cinema'
+require 'ostruct'
 
 class Film
   attr_accessor :title, :year

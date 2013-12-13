@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'film'
 require 'cached_data_source'
+require 'find_any_film_data_source'
 require 'filter'
 
 set :root, File.join(File.dirname(__FILE__), '..')
@@ -10,7 +11,7 @@ set :max_cinemas, 50
 
 helpers do
   def datasource
-    CachedDataSource.new(Filter.new(DataSource.new, settings.max_cinemas))
+    CachedDataSource.new(Filter.new(FindAnyFilmDataSource.new, settings.max_cinemas))
   end
 end
 

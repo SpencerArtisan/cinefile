@@ -4,7 +4,7 @@ require 'json'
 require 'film'
 require 'find_any_film'
 
-class DataSource
+class FindAnyFilmDataSource
   def get_films cinema, day
     films = film_nodes(cinema, day).map { |node| extract_film(node, cinema, day) }
     films.compact

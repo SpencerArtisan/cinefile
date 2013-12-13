@@ -1,5 +1,6 @@
 require 'test_environment'
 require 'cached_data_source'
+require 'film'
 
 describe CachedDataSource do
   let (:cinema) { Cinema.new 1, 'a cinema' }
@@ -39,7 +40,7 @@ describe CachedDataSource do
 
   context "Film cache" do
     let (:cinema) { Cinema.new 1, 'a cinema' }
-    let (:film) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 25) }
+    let (:film) { Film.new 'a film', 1979, cinema, Date.new(2001, 12, 25), 'a time' }
 
     context 'When first called' do
       before do
@@ -64,14 +65,14 @@ describe CachedDataSource do
       end
 
       it 'should retrieve from the data source if the day differs' do
-        another_film = Film.new 'a film', 1979, cinema, Date.new(2001, 12, 25)
+        another_film = Film.new 'a film', 1979, cinema, Date.new(2001, 12, 25), 'a time'
         allow(data_source).to receive(:get_films).with(cinema, 2).and_return [another_film]
         expect(cache.get_films(cinema, 2)).to eq [another_film]
       end
 
       it 'should retrieve from the data source if the cinema differs' do
         another_cinema = Cinema.new 2, 'another cinema'
-        another_film = Film.new 'a film', 1979, another_cinema, Date.new(2001, 12, 25)
+        another_film = Film.new 'a film', 1979, another_cinema, Date.new(2001, 12, 25), 'a time'
         allow(data_source).to receive(:get_films).with(another_cinema, 2).and_return [another_film]
         expect(cache.get_films(another_cinema, 2)).to eq [another_film]
       end

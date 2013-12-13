@@ -1,10 +1,8 @@
-require 'data_source'
+require 'find_any_film_data_source'
 require 'timecop'
 
-class FindAnyFilm; end
-
-describe DataSource do
-  let (:datasource) { DataSource.new }
+describe FindAnyFilmDataSource do
+  let (:datasource) { FindAnyFilmDataSource.new }
 
   context 'Reading the films for today' do
     let (:cinema) { Cinema.new 1, 'a cinema' }
