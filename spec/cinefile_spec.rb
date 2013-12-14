@@ -12,14 +12,14 @@ describe 'Cinefile' do
   end
 
   let (:films) { double }
-  let (:datasource) { double }
+  let (:cache) { double }
 
   before do
-    allow(CachedDataSource).to receive(:new).and_return datasource
+    allow(Cache).to receive(:new).and_return cache
   end
 
   it 'should be able to get a list of films' do
-    allow(Film).to receive(:all).and_return films
+    allow(cache).to receive(:get_films).and_return films
     allow(films).to receive(:to_json).and_return 'some json'
     get '/films'
     expect(last_response).to be_ok
@@ -27,14 +27,14 @@ describe 'Cinefile' do
   end
 
   it 'should be able to clear the cache' do
-    expect(datasource).to receive(:clear)
+    expect(cache).to receive(:clear)
     get '/films/clear_cache'
     expect(last_response).to be_ok
   end
 
   context 'showing the home page' do
     before do
-      allow(Film).to receive(:all).and_return films
+      allow(cache).to receive(:get_films).and_return films
       allow(films).to receive(:to_json).and_return '{"films":[]}'
       get '/'
     end

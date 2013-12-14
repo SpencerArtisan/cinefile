@@ -16,10 +16,10 @@ describe 'Cinefile' do
     Capybara.javascript_driver = :webkit
     allow(FindAnyFilm).to receive(:get_films).and_return File.read('find_any_film_sample.json')
     allow(FindAnyFilm).to receive(:find_cinemas).and_return File.read('cinemas_sample.html')
+    visit '/films/clear_cache'
   end
 
   it 'should be able to get a list of films' do
-    visit '/films/clear_cache'
     visit '/films'
     expect(page).to have_content 'Gone With The Wind'
   end
@@ -33,6 +33,10 @@ describe 'Cinefile' do
       expect(page).to have_content 'Gone With The Wind'
     end
 
+    it 'should have a link to the film' do
+      expect(page).to have_xpath "//a[@href='http://www.rottentomatoes.com/m/gone_with_the_wind/']"
+    end
+
     it 'should show the film cinemas' do
       expect(page).to have_content 'Renoir'
     end
@@ -40,7 +44,6 @@ describe 'Cinefile' do
     it 'should show the film times' do
       expect(page).to have_content '13:30 18:20'
     end
-
 
     #it 'should show the film dates' do
       #puts page.body

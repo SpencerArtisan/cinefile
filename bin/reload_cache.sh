@@ -2,7 +2,10 @@
 $LOAD_PATH.unshift File.expand_path(File.join(File.dirname(__FILE__), "..", "lib"))
 require 'cinefile'
 
-datasource = CachedDataSource.new(Filter.new(DataSource.new, settings.max_cinemas))
+def datasource
+  CachedDataSource.new(FilmAugmenter.new(Filter.new(FindAnyFilmDataSource.new, settings.max_cinemas), RottenTomatoes.new))
+end
+
 puts 'clearing cache'
 datasource.clear
 
