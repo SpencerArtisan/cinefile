@@ -33,7 +33,7 @@ class Cache
 
   def cached_films= films
     puts "Storing #{films.length} films in cache"
-    @redis.set FILM_KEY, Marshal::dump films
+    @redis.set FILM_KEY, Marshal::dump(films)
   end
 
   def clear
