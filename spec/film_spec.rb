@@ -23,11 +23,12 @@ describe Film do
     end
 
     it 'should convert film lists to json' do
-      expect(Film.all(datasource, 1, 'a postcode').to_json).to eq '{"films":[{"title":"a film","year":1979,"showings":[{"cinema":"A cinema","day_on":"2001-12-25","times_on":"some times"}]}]}'
+      expect(Film.all(datasource, 1, 'a postcode').to_json).to eq '{"films":[{"title":"a film","year":1979,"link":null,"showings":[{"cinema":"A cinema","day_on":"2001-12-25","times_on":"some times"}]}]}'
     end
 
     it 'should convert a single film to json' do
-      expect(film.to_json).to eq('{"title":"a film","year":1979,"showings":[{"cinema":"A cinema","day_on":"2001-12-25","times_on":"some times"}]}')
+      film.link = 'a link'
+      expect(film.to_json).to eq('{"title":"a film","year":1979,"link":"a link","showings":[{"cinema":"A cinema","day_on":"2001-12-25","times_on":"some times"}]}')
     end
   end
 

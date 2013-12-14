@@ -1,8 +1,6 @@
 require 'cinema'
 require 'film'
 
-class DataSource; end
-
 describe Cinema do
   let(:cinema) { Cinema.new 1, 'a cinema' }
   let(:datasource) { double }
