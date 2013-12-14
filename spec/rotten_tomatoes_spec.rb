@@ -24,4 +24,15 @@ describe RottenTomatoes do
       expect(@details.rating).to eq 96
     end
   end
+
+  context 'the film has no critics rating' do
+    before do
+      allow(film).to receive(:title).and_return 'Who Can Kill A Child'
+      @details = rotten_tomatoes.get_details film
+    end
+
+    it 'should use the audience rating' do
+      expect(@details.rating).to eq 75
+    end
+  end
 end
