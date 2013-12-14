@@ -8,6 +8,7 @@ class RottenTomatoes
     url = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=#{KEY}&q=#{CGI::escape(film.title)}&page_limit=1"
     puts "Calling #{url}"
     result = RestClient.get url
+    puts result
 
     json = JSON.parse result
     link = json["movies"][0]["links"]["alternate"] rescue nil

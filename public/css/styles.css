@@ -69,6 +69,12 @@ a {
     color: #888;
 }
 
+.rating {
+  float: right;
+  color: #e44;
+  font-weight: bold;
+}
+
 .list {
     list-style-type: none;
 }
