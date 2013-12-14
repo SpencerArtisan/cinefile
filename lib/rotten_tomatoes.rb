@@ -9,9 +9,9 @@ class RottenTomatoes
     puts "Calling #{url}"
     result = RestClient.get url
 
-    link = nil
     json = JSON.parse result
-    link = json["movies"][0]["links"]["alternate"] if json["movies"].length > 0
-    return OpenStruct.new link: link
+    link = json["movies"][0]["links"]["alternate"] rescue nil
+    rating = json["movies"][0]["ratings"]["critics_score"] rescue nil
+    return OpenStruct.new link: link, rating: rating
   end
 end

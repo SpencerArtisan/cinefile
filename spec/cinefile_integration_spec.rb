@@ -37,6 +37,10 @@ describe 'Cinefile' do
       expect(page).to have_xpath "//a[@href='http://www.rottentomatoes.com/m/gone_with_the_wind/']"
     end
 
+    it 'should show the film rating' do
+      expect(page).to have_content '96%'
+    end
+
     it 'should show the film cinemas' do
       expect(page).to have_content 'Renoir'
     end

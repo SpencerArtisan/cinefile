@@ -21,7 +21,7 @@ describe Cache do
     end
 
     it 'should convert film lists to json' do
-      expect(cache.get_films('a postcode', 7).to_json).to eq '{"films":[{"title":"a film","year":1979,"link":null,"showings":[{"cinema":"a cinema","day_on":"2001-12-25","times_on":"some times"}]}]}'
+      expect(cache.get_films('a postcode', 7).to_json).to eq "{\"films\":[#{film.to_json}]}"
     end
   end
 
@@ -38,7 +38,7 @@ describe Cache do
     end
 
     it 'should convert film lists to json' do
-      expect(cache.get_films('a postcode', 7).to_json).to eq '{"films":[{"title":"a film","year":1979,"link":null,"showings":[{"cinema":"a cinema","day_on":"2001-12-25","times_on":"some times"}]}]}'
+      expect(cache.get_films('a postcode', 7).to_json).to eq "{\"films\":[#{film.to_json}]}"
     end
   end
 end

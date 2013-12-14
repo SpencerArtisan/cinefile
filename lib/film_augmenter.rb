@@ -12,6 +12,7 @@ class FilmAugmenter
     films.each do |film|
       details = @rotten_tomatoes.get_details film
       film.link = details.link
+      film.rating = details.rating
     end
   end
 end

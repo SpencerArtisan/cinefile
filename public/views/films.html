@@ -8,6 +8,7 @@
     <ul class="topcoat-list list">
       <li ng-repeat="film in films" class="topcoat-list__item">
         <p><a href="{{film.link}}">{{film.title}}</a></p>
+        <p>{{film.rating}}%</p>
         <ul class="list">
           <li ng-repeat="showing in film.showings">
             <div>{{when_formatted(showing)}} {{showing.times_on}}</div>
