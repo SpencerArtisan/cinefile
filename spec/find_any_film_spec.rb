@@ -1,8 +1,8 @@
-require 'find_any_film_data_source'
+require 'find_any_film'
 require 'timecop'
 
-describe FindAnyFilmDataSource do
-  let (:datasource) { FindAnyFilmDataSource.new }
+describe FindAnyFilm do
+  let (:datasource) { FindAnyFilm.new }
 
   context 'Reading the films for today' do
     let (:cinema) { Cinema.new 1, 'a cinema' }
@@ -10,7 +10,7 @@ describe FindAnyFilmDataSource do
     before do
       Timecop.freeze 2013, 12, 25
       find_any_film_sample = File.read 'find_any_film_sample.json'
-      allow(FindAnyFilm).to receive(:get_films).with(cinema, 1).and_return find_any_film_sample
+      allow(datasource).to receive(:read_films).with(cinema, 1).and_return find_any_film_sample
       @films = datasource.get_films(cinema, 1)
     end
 
@@ -48,7 +48,7 @@ describe FindAnyFilmDataSource do
 
     before do
       find_any_film_sample = File.read 'find_any_film_sample.json'
-      allow(FindAnyFilm).to receive(:get_films).with(cinema, 2).and_return find_any_film_sample
+      allow(datasource).to receive(:read_films).with(cinema, 2).and_return find_any_film_sample
       @films = datasource.get_films(cinema, 2)
     end
 
@@ -60,7 +60,7 @@ describe FindAnyFilmDataSource do
   context 'Reading the cinemas' do
     before do
       cinemas = File.read 'cinemas_sample.html'
-      allow(FindAnyFilm).to receive(:find_cinemas).with('a postcode').and_return cinemas
+      allow(datasource).to receive(:read_cinemas).with('a postcode').and_return cinemas
       @cinemas = datasource.find_cinemas('a postcode')
     end
 
