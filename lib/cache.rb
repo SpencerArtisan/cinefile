@@ -5,7 +5,7 @@ require 'cinema'
 class Cache
   FILM_KEY = "films"
 
-  def initialize finder
+  def initialize finder = FilmAugmenter.new(FilmGrouper.new(FilmFilter.new(FindAnyFilmDataSource.new, settings.max_cinemas)), RottenTomatoes.new)
     @finder = finder
     puts "Using redis at '#{ENV["REDISTOGO_URL"]}'"
     uri = URI.parse(ENV["REDISTOGO_URL"])

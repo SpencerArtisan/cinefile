@@ -1,10 +1,10 @@
-require 'filter'
+require 'film_filter'
 
-describe Filter do
+describe FilmFilter do
   let (:datasource) { double }
   let (:film) { double }
   let (:cinema) { double }
-  let (:filter) { Filter.new datasource, 2 }
+  let (:filter) { FilmFilter.new datasource, 2 }
 
   context '#get_films' do
     before do

@@ -1,4 +1,4 @@
-class Filter
+class FilmFilter
   def initialize datasource, max_cinemas
     @datasource = datasource
     @max_cinemas = max_cinemas
