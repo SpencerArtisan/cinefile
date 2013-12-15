@@ -34,6 +34,10 @@ describe FindAnyFilmDataSource do
       expect(@films[0].showings[0].day_on).to eq Date.today
     end
 
+    it 'should get the film showing times' do
+      expect(@films[0].showings[0].times_on).to eq '13:30 18:20'
+    end
+
     it 'should get all the showings' do
       expect(@films[0]).to have(1).showings
     end

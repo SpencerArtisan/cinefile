@@ -47,10 +47,10 @@ class FindAnyFilmDataSource
       td.children.each do |e|  
         time = e.content
         time.gsub!(/\s+/, " ").strip!
-        times = "#{times}#{time} " unless time.empty?
+        times = "#{times}#{time} " unless time.empty? || times.include?(time)
       end
     end
-    times
+    times.strip
   end
 
   def find_cinemas postcode
