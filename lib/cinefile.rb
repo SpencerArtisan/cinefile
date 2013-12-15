@@ -1,11 +1,5 @@
 require 'sinatra'
-require 'film'
 require 'cache'
-require 'find_any_film_data_source'
-require 'film_augmenter'
-require 'filter'
-require 'rotten_tomatoes'
-require 'film_grouper'
 
 set :root, File.join(File.dirname(__FILE__), '..')
 set :lookahead, 14
@@ -14,7 +8,7 @@ set :max_cinemas, 30
 
 get '/films' do
   content_type :json
-  films = Cache.new.get_films settings.postcode, settings.lookahead
+  films = Cache.new.get_films settings.postcode, settings.lookahead, settings.max_cinemas
   films.to_json
 end
 

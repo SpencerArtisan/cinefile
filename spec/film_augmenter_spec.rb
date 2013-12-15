@@ -14,19 +14,19 @@ describe FilmAugmenter do
   end
 
   it 'should return the same films' do
-    films = augmenter.get_films 'a postcode', 7
+    films = augmenter.get_films 'a postcode', 7, 42
     expect(films).to eq [film]
   end
 
   it 'should add a link to the film' do
     allow(details).to receive(:link).and_return 'a link'
-    augmenter.get_films 'a postcode', 7
+    augmenter.get_films 'a postcode', 7, 42
     expect(film.link).to eq 'a link'
   end
 
   it 'should add a rating for the film' do
-    allow(details).to receive(:rating).and_return 42
-    augmenter.get_films 'a postcode', 7
-    expect(film.rating).to eq 42
+    allow(details).to receive(:rating).and_return 96
+    augmenter.get_films 'a postcode', 7, 42
+    expect(film.rating).to eq 96
   end
 end

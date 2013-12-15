@@ -1,7 +1,6 @@
 class FilmFilter
-  def initialize datasource, max_cinemas
+  def initialize datasource
     @datasource = datasource
-    @max_cinemas = max_cinemas
   end
 
   def get_films cinema, day
@@ -9,8 +8,8 @@ class FilmFilter
     films.select {|film| film.year < 1980}
   end
 
-  def find_cinemas postcode
+  def find_cinemas postcode, max_cinemas
     cinemas = @datasource.find_cinemas postcode
-    cinemas[0..@max_cinemas-1]
+    cinemas[0..max_cinemas-1]
   end
 end

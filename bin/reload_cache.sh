@@ -6,5 +6,5 @@ puts 'clearing cache'
 Cache.new.clear
 
 puts 'loading cache'
-Cache.new.get_films settings.postcode, settings.lookahead
+Cache.new.get_films settings.postcode, settings.lookahead, settings.max_cinemas
 

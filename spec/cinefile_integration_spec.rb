@@ -14,8 +14,10 @@ describe 'Cinefile' do
   before do
     Capybara.app = Sinatra::Application.new
     Capybara.javascript_driver = :webkit
-    allow(FindAnyFilm).to receive(:get_films).and_return File.read('find_any_film_sample.json')
-    allow(FindAnyFilm).to receive(:find_cinemas).and_return File.read('cinemas_sample.html')
+    allow_any_instance_of(FindAnyFilm).to receive(:read_films).and_return File.read('find_any_film_sample.json')
+    allow_any_instance_of(FindAnyFilm).to receive(:read_cinemas).and_return File.read('cinemas_sample.html')
+    details = OpenStruct.new link: 'a link', rating: 92
+    allow_any_instance_of(RottenTomatoes).to receive(:get_details).and_return details
     visit '/films/clear_cache'
   end
 
@@ -34,11 +36,11 @@ describe 'Cinefile' do
     end
 
     it 'should have a link to the film' do
-      expect(page).to have_xpath "//a[@href='http://www.rottentomatoes.com/m/gone_with_the_wind/']"
+      expect(page).to have_xpath "//a[@href='a link']"
     end
 
     it 'should show the film rating' do
-      expect(page).to have_content '96%'
+      expect(page).to have_content '92%'
     end
 
     it 'should show the film cinemas' do

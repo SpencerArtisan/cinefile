@@ -4,7 +4,7 @@ describe FilmFilter do
   let (:datasource) { double }
   let (:film) { double }
   let (:cinema) { double }
-  let (:filter) { FilmFilter.new datasource, 2 }
+  let (:filter) { FilmFilter.new datasource }
 
   context '#get_films' do
     before do
@@ -29,7 +29,7 @@ describe FilmFilter do
       end
 
       it 'should return all the cinemas' do
-        expect(filter.find_cinemas('a postcode')).to eq [cinema]
+        expect(filter.find_cinemas('a postcode', 2)).to eq [cinema]
       end
     end
 
@@ -39,7 +39,7 @@ describe FilmFilter do
       end
 
       it 'should return all the cinemas' do
-        expect(filter.find_cinemas('a postcode')).to eq [cinema, cinema]
+        expect(filter.find_cinemas('a postcode', 2)).to eq [cinema, cinema]
       end
     end
 
@@ -49,7 +49,7 @@ describe FilmFilter do
       end
 
       it 'should return all the cinemas' do
-        expect(filter.find_cinemas('a postcode')).to eq [cinema, cinema]
+        expect(filter.find_cinemas('a postcode', 2)).to eq [cinema, cinema]
       end
     end
   end

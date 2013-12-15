@@ -1,21 +1,26 @@
 require 'redis'
 require 'uri'
 require 'cinema'
+require 'film_grouper'
+require 'find_any_film'
+require 'film_augmenter'
+require 'film_filter'
+require 'rotten_tomatoes'
 
 class Cache
   FILM_KEY = "films"
 
-  def initialize finder = FilmAugmenter.new(FilmGrouper.new(FilmFilter.new(FindAnyFilmDataSource.new, settings.max_cinemas)), RottenTomatoes.new)
+  def initialize finder = FilmAugmenter.new(FilmGrouper.new(FilmFilter.new(FindAnyFilm.new)), RottenTomatoes.new)
     @finder = finder
     puts "Using redis at '#{ENV["REDISTOGO_URL"]}'"
     uri = URI.parse(ENV["REDISTOGO_URL"])
     @redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
   end
 
-  def get_films postcode, days
+  def get_films postcode, days, max_cinemas
     films = cached_films
     if films.nil?
-      films = @finder.get_films postcode, days
+      films = @finder.get_films postcode, days, max_cinemas
       self.cached_films = films
     end
     def films.to_json

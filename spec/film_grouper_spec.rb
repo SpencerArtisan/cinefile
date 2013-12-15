@@ -11,10 +11,10 @@ describe FilmGrouper do
     let (:film2) { Film.new 'another film', 1979, cinema2, Date.new(2001, 12, 25), 'some times' }
 
     before do
-      allow(datasource).to receive(:find_cinemas).with('a postcode').and_return [cinema1, cinema2] 
+      allow(datasource).to receive(:find_cinemas).with('a postcode', 42).and_return [cinema1, cinema2] 
       allow(datasource).to receive(:get_films).with(cinema1, 1).and_return [film1]
       allow(datasource).to receive(:get_films).with(cinema2, 1).and_return [film2]
-      @films = grouper.get_films 'a postcode', 1
+      @films = grouper.get_films 'a postcode', 1, 42
     end
 
     it 'should retrieve films from all cinemas' do
@@ -28,9 +28,9 @@ describe FilmGrouper do
     let (:film2) { Film.new 'a film', 1979, cinema1, Date.new(2001, 12, 25), 'some times' }
 
     before do
-      allow(datasource).to receive(:find_cinemas).with('a postcode').and_return [cinema1] 
+      allow(datasource).to receive(:find_cinemas).with('a postcode', 42).and_return [cinema1] 
       allow(datasource).to receive(:get_films).with(cinema1, 1).and_return [film1, film2]
-      @films = grouper.get_films 'a postcode', 1
+      @films = grouper.get_films 'a postcode', 1, 42
     end
 
     it 'should be grouped into one film' do
