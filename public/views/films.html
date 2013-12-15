@@ -7,10 +7,11 @@
   <div class="topcoat-list__container scroller" style="top:70px;">
     <ul class="topcoat-list list">
       <li ng-repeat="film in films" class="topcoat-list__item">
-        <p>
-          <a href="{{film.link}}">{{film.title}}</a>
+        <div class="film">
+          <p class="title" ng-if="film.link == nil">{{film.title}}</p>
+          <a class="title" ng-if="film.link != nil" href="{{film.link}}">{{film.title}}</a>
           <span ng-if="film.rating != nil" class="rating">{{film.rating}}%</span>
-        </p>
+        </div>
         <ul class="list">
           <li ng-repeat="showing in film.showings">
             <div>{{when_formatted(showing)}} {{showing.times_on}}</div>
