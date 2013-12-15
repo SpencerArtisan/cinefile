@@ -9,7 +9,7 @@
       <li ng-repeat="film in films" class="topcoat-list__item">
         <p>
           <a href="{{film.link}}">{{film.title}}</a>
-          <span class="rating">{{film.rating}}%</span>
+          <span ng-if="film.rating != nil" class="rating">{{film.rating}}%</span>
         </p>
         <ul class="list">
           <li ng-repeat="showing in film.showings">
