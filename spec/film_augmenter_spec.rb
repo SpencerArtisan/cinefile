@@ -70,4 +70,46 @@ describe FilmAugmenter do
       end
     end
   end
+
+  context 'When rotten tomatoes matches with multiple movies' do
+    let (:wrong_movie) { double(year: 2013).as_null_object }
+    let (:right_movie) { double(year: film.year).as_null_object }
+
+    before do
+      allow(RottenMovie).to receive(:find).and_return [wrong_movie, right_movie]
+    end
+
+    it 'should return the same films as the datasource' do
+      films = augmenter.get_films 'a postcode', 7, 42
+      expect(films).to eq [film]
+    end
+
+    it 'should add a link to the correct film' do
+      allow(right_movie).to receive(:links).and_return double(alternate: 'a link')
+      augmenter.get_films 'a postcode', 7, 42
+      expect(film.link).to eq 'a link'
+    end
+
+    context 'A critics rating is available' do
+      before do
+        allow(right_movie).to receive(:ratings).and_return double(critics_score: 96)
+      end
+
+      it 'should use the critics rating from the correct film' do
+        augmenter.get_films 'a postcode', 7, 42
+        expect(film.rating).to eq 96
+      end
+    end
+
+    context 'A critics rating is not available' do
+      before do
+        allow(right_movie).to receive(:ratings).and_return double(critics_score: nil, audience_score: 96)
+      end
+
+      it 'should use the audience rating from the correct film' do
+        augmenter.get_films 'a postcode', 7, 42
+        expect(film.rating).to eq 96
+      end
+    end
+  end
 end

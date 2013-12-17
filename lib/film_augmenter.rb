@@ -15,12 +15,18 @@ class FilmAugmenter
     films.each do |film|
       matches = RottenMovie.find(title: film.title)
       if matches.is_a? Array
-        augment(film, matches[0]) 
+        augment(film, best_match(film, matches)) 
       elsif !matches.nil?
         augment(film, matches) 
       end
     end
     films
+  end
+  
+  def best_match film, matches
+    closest_match = matches[0]
+    matches.each {|match| closest_match = match if (match.year - film.year).abs < (closest_match.year - film.year).abs}
+    closest_match
   end
 
   def augment film, rotten_movie
