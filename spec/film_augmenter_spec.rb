@@ -11,6 +11,17 @@ describe FilmAugmenter do
     allow(data_source).to receive(:get_films).and_return [film] 
   end
 
+  context 'When rotten tomatoes throws an error' do
+    before do
+      allow(RottenMovie).to receive(:find).and_raise Exception.new
+    end
+
+    it 'should continue' do
+      films = augmenter.get_films 'a postcode', 7, 42
+      expect(films).to eq [film]
+    end
+  end
+
   context 'When rotten tomatoes matches with no movies' do
     before do
       allow(RottenMovie).to receive(:find).and_return nil

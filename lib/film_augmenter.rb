@@ -12,28 +12,36 @@ class FilmAugmenter
   def get_films postcode, days, max_cinemas
     films = @data_source.get_films postcode, days, max_cinemas
     films.each do |film|
-      puts "AUGMENTING #{film.title}"
-      matches = RottenMovie.find title: film.title
-      if matches.is_a? Array
-        if matches.length > 0
-          augment(film, best_match(film, matches)) 
-        end
-      elsif !matches.nil?
-        augment(film, matches) 
+      begin
+        augment film
+      rescue Exception => e
+        puts "Exception whilst augmenting #{film.title}: #{e.inspect}"
       end
     end
     films
   end
-  
+
+  def augment film
+    puts "AUGMENTING #{film.title}"
+    matches = RottenMovie.find title: film.title
+    if matches.is_a? Array
+      if matches.length > 0
+        augment_with_movie film, best_match(film, matches)
+      end
+    elsif !matches.nil?
+      augment_with_movie film, matches
+    end
+  end
+
+  def augment_with_movie film, rotten_movie
+    film.link = rotten_movie.links.alternate
+    film.rating = rotten_movie.ratings.critics_score
+    film.rating = rotten_movie.ratings.audience_score unless film.rating
+  end
+
   def best_match film, matches
     closest_match = matches[0]
     matches.each {|match| closest_match = match if match.year != "" && (match.year - film.year).abs < (closest_match.year - film.year).abs}
     closest_match
-  end
-
-  def augment film, rotten_movie
-    film.link = rotten_movie.links.alternate
-    film.rating = rotten_movie.ratings.critics_score
-    film.rating = rotten_movie.ratings.audience_score unless film.rating
   end
 end
