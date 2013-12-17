@@ -14,8 +14,10 @@ class FilmAugmenter
     films.each do |film|
       puts "AUGMENTING #{film.title}"
       matches = RottenMovie.find title: film.title
-      if matches.is_a?(Array) && matches.length > 0
-        augment(film, best_match(film, matches)) 
+      if matches.is_a? Array
+        if matches.length > 0
+          augment(film, best_match(film, matches)) 
+        end
       elsif !matches.nil?
         augment(film, matches) 
       end
