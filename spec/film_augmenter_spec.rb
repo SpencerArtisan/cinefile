@@ -83,11 +83,13 @@ describe FilmAugmenter do
   end
 
   context 'When rotten tomatoes matches with multiple movies' do
-    context 'With different years' do
-      let (:right_movie) { double(year: film.year).as_null_object }
-      let (:wrong_movie) { double(year: 2013).as_null_object }
+    let (:right_movie) { double.as_null_object }
+    let (:wrong_movie) { double.as_null_object }
 
+    context 'With different years' do
       before do
+        allow(right_movie).to receive(:release_dates).and_return double(theater: '1946-12-25')
+        allow(wrong_movie).to receive(:release_dates).and_return double(theater: '2013-12-25')
         film.title = "Gaslight (1944)"
         allow(RottenMovie).to receive(:find).and_return [wrong_movie, right_movie]
       end
@@ -105,10 +107,9 @@ describe FilmAugmenter do
     end
 
     context 'With identical years' do
-      let (:right_movie) { double(year: film.year).as_null_object }
-      let (:wrong_movie) { double(year: film.year).as_null_object }
-
       before do
+        allow(right_movie).to receive(:release_dates).and_return double(theater: '1946-12-25')
+        allow(wrong_movie).to receive(:release_dates).and_return double(theater: '1946-12-25')
         film.title = "Gaslight (1944)"
         allow(RottenMovie).to receive(:find).and_return [right_movie, wrong_movie]
       end
