@@ -11,10 +11,10 @@ class FilmAugmenter
 
   def get_films postcode, days, max_cinemas
     films = @data_source.get_films postcode, days, max_cinemas
-    puts "AUGMENTING #{films.map(&:title)}..."
     films.each do |film|
-      matches = RottenMovie.find(title: film.title)
-      if matches.is_a? Array
+      puts "AUGMENTING #{film.title}"
+      matches = RottenMovie.find title: film.title
+      if matches.is_a?(Array) && matches.length > 0
         augment(film, best_match(film, matches)) 
       elsif !matches.nil?
         augment(film, matches) 
