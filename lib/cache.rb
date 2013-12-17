@@ -5,12 +5,11 @@ require 'film_grouper'
 require 'find_any_film'
 require 'film_augmenter'
 require 'film_filter'
-require 'rotten_tomatoes'
 
 class Cache
   FILM_KEY = "films"
 
-  def initialize finder = FilmAugmenter.new(FilmGrouper.new(FilmFilter.new(FindAnyFilm.new)), RottenTomatoes.new)
+  def initialize finder = FilmAugmenter.new(FilmGrouper.new(FilmFilter.new(FindAnyFilm.new)))
     @finder = finder
     puts "Using redis at '#{ENV["REDISTOGO_URL"]}'"
     uri = URI.parse(ENV["REDISTOGO_URL"])

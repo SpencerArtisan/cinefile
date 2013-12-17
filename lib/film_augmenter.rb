@@ -1,18 +1,31 @@
 require 'film'
+require 'rottentomatoes'
+
+include RottenTomatoes
+Rotten.api_key = 'khyrfh8p43auq75j5eh66gae'
 
 class FilmAugmenter
-  def initialize data_source, rotten_tomatoes
+  def initialize data_source
     @data_source = data_source
-    @rotten_tomatoes = rotten_tomatoes
   end
 
   def get_films postcode, days, max_cinemas
     films = @data_source.get_films postcode, days, max_cinemas
     puts "AUGMENTING #{films.map(&:title)}..."
     films.each do |film|
-      details = @rotten_tomatoes.get_details film
-      film.link = details.link
-      film.rating = details.rating
+      matches = RottenMovie.find(title: film.title)
+      if matches.is_a? Array
+        augment(film, matches[0]) 
+      elsif !matches.nil?
+        augment(film, matches) 
+      end
     end
+    films
+  end
+
+  def augment film, rotten_movie
+    film.link = rotten_movie.links.alternate
+    film.rating = rotten_movie.ratings.critics_score
+    film.rating = rotten_movie.ratings.audience_score unless film.rating
   end
 end

@@ -16,8 +16,8 @@ describe 'Cinefile' do
     Capybara.javascript_driver = :webkit
     allow_any_instance_of(FindAnyFilm).to receive(:read_films).and_return File.read('find_any_film_sample.json')
     allow_any_instance_of(FindAnyFilm).to receive(:read_cinemas).and_return File.read('cinemas_sample.html')
-    details = OpenStruct.new link: 'a link', rating: 92
-    allow_any_instance_of(RottenTomatoes).to receive(:get_details).and_return details
+    details = double links: double(alternate: 'a link'), ratings: double(critics_score: 92)
+    allow(RottenMovie).to receive(:find).and_return details
     visit '/films/clear_cache'
   end
 
