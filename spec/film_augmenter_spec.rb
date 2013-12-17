@@ -76,6 +76,7 @@ describe FilmAugmenter do
     let (:right_movie) { double(year: film.year).as_null_object }
 
     before do
+      film.title = "Gaslight (1944)"
       allow(RottenMovie).to receive(:find).and_return [wrong_movie, right_movie]
     end
 

@@ -27,7 +27,7 @@ class FilmAugmenter
   
   def best_match film, matches
     closest_match = matches[0]
-    matches.each {|match| closest_match = match if (match.year - film.year).abs < (closest_match.year - film.year).abs}
+    matches.each {|match| closest_match = match if match.year != "" && (match.year - film.year).abs < (closest_match.year - film.year).abs}
     closest_match
   end
 
