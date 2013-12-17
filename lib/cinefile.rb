@@ -2,7 +2,7 @@ require 'sinatra'
 require 'cache'
 
 set :root, File.join(File.dirname(__FILE__), '..')
-set :lookahead, 14
+set :lookahead, 21
 set :postcode, 'WC1N'
 set :max_cinemas, 30
 
