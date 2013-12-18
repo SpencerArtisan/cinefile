@@ -80,6 +80,28 @@ describe FilmAugmenter do
         expect(film.rating).to eq 96
       end
     end
+
+    context 'The critics rating is -1' do
+      before do
+        allow(rotten_movie).to receive(:ratings).and_return double(critics_score: -1, audience_score: 96)
+      end
+
+      it 'should use the audience rating' do
+        augmenter.get_films 'a postcode', 7, 42
+        expect(film.rating).to eq 96
+      end
+    end
+
+    context 'The critics and audience ratings are -1' do
+      before do
+        allow(rotten_movie).to receive(:ratings).and_return double(critics_score: -1, audience_score: -1)
+      end
+
+      it 'should have a nil rating' do
+        augmenter.get_films 'a postcode', 7, 42
+        expect(film.rating).to be_nil
+      end
+    end
   end
 
   context 'When rotten tomatoes matches with multiple movies' do

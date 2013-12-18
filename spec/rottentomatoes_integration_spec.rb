@@ -5,8 +5,8 @@ include RottenTomatoes
 Rotten.api_key = 'khyrfh8p43auq75j5eh66gae'
 
 describe RottenTomatoes do
-  it 'should have a link for Dead of Night' do
-    matches = RottenMovie.find title: 'Dead Of Night (1945) (PG)'
+  it 'should have a link' do
+    matches = RottenMovie.find title: 'The Great White Silence'
     puts matches
   end
 

@@ -41,7 +41,8 @@ class FilmAugmenter
   def augment_with_movie film, rotten_movie
     film.link = rotten_movie.links.alternate
     film.rating = rotten_movie.ratings.critics_score
-    film.rating = rotten_movie.ratings.audience_score unless film.rating
+    film.rating = rotten_movie.ratings.audience_score unless film.rating && film.rating != -1
+    film.rating = nil if film.rating == -1
   end
 
   def best_match film, matches
