@@ -1,3 +1,8 @@
+.bar {
+  margin-top:10px;
+  margin-left: 10px;
+}
+
 .back-button {
     top: 10px;
     position: absolute;
@@ -7,7 +12,7 @@
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     position: absolute;
-    top: 168px;
+    top: 40px;
     bottom: 0px;
     left: 0px;
     right: 0px;
@@ -18,6 +23,8 @@
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
+    width: 20px;
+    height: 20px;
 }
 
 .count {
@@ -46,7 +53,7 @@ p.title {
 
 a {
     text-decoration: none;
-    color: blue;
+    color: #5ac8fa;
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: rgb(0, 0, 0);
 }
