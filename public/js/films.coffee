@@ -1,12 +1,7 @@
 'use strict'
 
-console.log "Initializing Angular Controllers"
-
-controllers = angular.module("app")
-#controllers = angular.module("app.controllers")
-
-controllers.controller "FilmsController", ["$scope", "$resource",
-  (scope, resource) ->
+angular.module("app").controller "FilmsController", ["$scope", "$resource", "$location",
+  (scope, resource, location) ->
     scope.loadFilms = ->
       scope.films = []
 
@@ -22,4 +17,9 @@ controllers.controller "FilmsController", ["$scope", "$resource",
     scope.when_formatted = (showing) ->
       moment(showing.day_on).format('ddd Do MMM')
 
+    scope.showFilm = (id) ->
+      location.path("/films/#{id}")
+
+    scope.link = (film) ->
+      encodeURIComponent(film.link)
 ]

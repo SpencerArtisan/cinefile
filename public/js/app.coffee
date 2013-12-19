@@ -8,6 +8,9 @@ app.config ["$routeProvider", (routeProvider) ->
   routeProvider.when("/",
     templateUrl: "views/films.html"
     controller: "FilmsController"
+  ).when("/films",
+    templateUrl: "views/film.html"
+    controller: "FilmController"
   )
 ]
 

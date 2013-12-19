@@ -14,7 +14,7 @@
 }
 
 .topcoat-icon--back {
-    background: url("images/back_light.svg") no-repeat;
+    background: url("/images/back_light.svg") no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
