@@ -11,7 +11,7 @@
       };
       return scope.init = function() {
         var rottentomatoes;
-        rottentomatoes = "<object data='" + scope.link + "' type='text/html' style='margin-top:-160px' width='100%' height='100%'>";
+        rottentomatoes = "<object data='" + scope.link + "' type='text/html' style='margin-top:-160px' width='100%' height='1000px'>";
         return $('#content').append(rottentomatoes);
       };
     }
