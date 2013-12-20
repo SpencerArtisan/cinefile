@@ -15,6 +15,7 @@
 .bar {
   margin-top:10px;
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 .back-button {
@@ -67,7 +68,7 @@ p.title {
 
 a {
     text-decoration: none;
-    color: #34aadc;
+    color: #157dfb;
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: rgb(0, 0, 0);
 }
