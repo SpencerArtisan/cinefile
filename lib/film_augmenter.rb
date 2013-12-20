@@ -24,7 +24,7 @@ class FilmAugmenter
 
   def augment film
     puts "AUGMENTING #{film.title}"
-    matches = UnreliableObjectDelegate.new(self, 10, 10).find_rotten_movie film
+    matches = UnreliableObjectDelegate.new(self, 10, 30).find_rotten_movie film
     if matches.is_a? Array
       if matches.length > 0
         augment_with_movie film, best_match(film, matches)
