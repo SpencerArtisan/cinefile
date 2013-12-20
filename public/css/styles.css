@@ -1,3 +1,17 @@
+.list {
+  margin-bottom:10px;
+  border-color: #ccc;
+}
+
+.topcoat-list__item {
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+.topcoat-list {
+  background: white
+}
+
 .bar {
   margin-top:10px;
   margin-left: 10px;
@@ -90,7 +104,8 @@ a {
 
 .rating {
   float: right;
-  color: #e44;
+  font-size: 20px;
+  color: #777;
   font-weight: bold;
 }
 
