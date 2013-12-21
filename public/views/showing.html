@@ -1,16 +1,13 @@
-<div ng-init="loadShowing()">
+<div ng-init="loadCinema()">
   <header>
     <a id="back" href="#/films/{{film.id}}">
       <span class="topcoat-icon topcoat-icon--back"></span>
       Screenings
     </a>
-    <h1>Cinema</h1>
+    <h1>{{showing.cinema}}</h1>
   </header>
 
-  <div class="topcoat-list__container scroller">
-    <div class="cinema">
-      <p>{{showing.cinema}}</p>
-    </div>
+  <div id="content" class="topcoat-list__container scroller">
   </div>
 </div>
 

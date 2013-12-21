@@ -59,6 +59,17 @@
           }
         }).get(success, failure);
       };
+      scope.loadCinema = function() {
+        var success;
+        success = function(response) {
+          var map;
+          scope.film = response.films[parseInt(routeParams.id) - 1];
+          scope.showing = scope.film.showings[parseInt(routeParams.showing_id)];
+          map = "<iframe width='320' height='500' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.co.uk/maps?q=" + scope.showing.cinema + "+cinema+london&amp;spn=0.028411,0.007193&amp;t=m&amp;output=embed'></iframe>";
+          return $('#content').append(map);
+        };
+        return scope.loadFilmsFromBackend(success);
+      };
       scope.when_formatted = function(showing) {
         return moment(showing.day_on).format('ddd Do MMM');
       };
