@@ -1,7 +1,16 @@
+.main {
+  position: absolute;
+  overflow: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
 .rating {
   margin: 0px;
   padding: 0px 20px;
-  background-color: white;
+  background-color: rgba(255,255,255,0.9);
   font-weight: lighter;
   text-align: right;
   font-size: 60px;
@@ -11,7 +20,7 @@
 .title {
   padding-top: 10px;
   margin: 0px;
-  background-color: white;
+  background-color: rgba(255,255,255,0.9);
   text-align:center;
 }
 
@@ -73,7 +82,7 @@ h1 {
 }
 
 .topcoat-list {
-  background: white;
+  background: rgba(255,255,255,0.9)
 }
 
 .cinema {
