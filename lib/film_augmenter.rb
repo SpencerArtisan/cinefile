@@ -38,6 +38,9 @@ class FilmAugmenter
   def augment_with_movie film, rotten_movie
     return unless rotten_movie
     film.link = rotten_movie.links.alternate
+    film.synopsis = rotten_movie.synopsis
+    film.review = rotten_movie.critics_consensus
+    film.image = rotten_movie.posters.original
     film.rating = rotten_movie.ratings.critics_score
     film.rating = rotten_movie.ratings.audience_score unless film.rating && film.rating != -1
     film.rating = nil if film.rating == -1

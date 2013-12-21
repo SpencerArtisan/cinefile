@@ -76,6 +76,24 @@ describe FilmAugmenter do
         expect(film.link).to eq 'a link'
       end
 
+      it 'should add an image for the film' do
+        allow(rotten_movie).to receive(:posters).and_return double(original: 'an image link')
+        augmenter.get_films 'a postcode', 7, 42
+        expect(film.image).to eq 'an image link'
+      end
+
+      it 'should add a review for the film' do
+        allow(rotten_movie).to receive(:critics_consensus).and_return 'a review'
+        augmenter.get_films 'a postcode', 7, 42
+        expect(film.review).to eq 'a review'
+      end
+
+      it 'should add a synopsis for the film' do
+        allow(rotten_movie).to receive(:synopsis).and_return 'a synopsis'
+        augmenter.get_films 'a postcode', 7, 42
+        expect(film.synopsis).to eq 'a synopsis'
+      end
+
       context 'The year is way out' do
         before do
           allow(rotten_movie).to receive(:release_dates).and_return double(theater: '2013-12-25')
