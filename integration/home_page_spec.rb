@@ -1,22 +1,11 @@
-ENV['RACK_ENV'] = 'test'
-
-require 'test_environment'
-require 'cinefile'
-require 'capybara'
-require 'capybara/rspec'
-require 'capybara-webkit'
+require_relative './spec_helper'
 
 describe 'Cinefile' do
   include Capybara::DSL
 
   before do
-    Capybara.app = Sinatra::Application.new
-    Capybara.javascript_driver = :webkit
-    allow_any_instance_of(FindAnyFilm).to receive(:read_films).and_return File.read('find_any_film_sample.json')
-    allow_any_instance_of(FindAnyFilm).to receive(:read_cinemas).and_return File.read('cinemas_sample.html')
-    details = double links: double(alternate: 'a link'), ratings: double(critics_score: 92)
-    allow(RottenMovie).to receive(:find).and_return details
-    visit '/films/clear_cache'
+    mock_external_components
+    reload_cache
   end
 
   it 'should be able to get a list of films' do

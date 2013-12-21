@@ -2,9 +2,9 @@ require 'sinatra'
 require 'cache'
 
 set :root, File.join(File.dirname(__FILE__), '..')
-set :lookahead, 21
+set :lookahead, 1
 set :postcode, 'WC1N'
-set :max_cinemas, 30
+set :max_cinemas, 1
 
 get '/films' do
   content_type :json
