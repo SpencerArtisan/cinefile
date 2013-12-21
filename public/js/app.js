@@ -16,8 +16,8 @@
       }).when("/films/:id", {
         templateUrl: "views/film.html",
         controller: "FilmController"
-      }).when("/films;screenings/:id", {
-        templateUrl: "views/film_screenings.html",
+      }).when("/films;showings/:id", {
+        templateUrl: "views/film_showings.html",
         controller: "FilmShowingsController"
       }).when("/films;reviews/:id", {
         templateUrl: "views/film_reviews.html",
