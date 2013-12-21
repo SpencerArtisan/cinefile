@@ -9,6 +9,7 @@ angular.module("app").controller "FilmShowingsController", ["$scope", "$routePar
         console.log("film succeeded with showings")
         console.log response.showings
         scope.showings = response.showings
+        scope.film = response
         
       failure = (response) ->
         console.log("film failed with " + response.status)

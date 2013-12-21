@@ -10,7 +10,8 @@
         success = function(response) {
           console.log("film succeeded with showings");
           console.log(response.showings);
-          return scope.showings = response.showings;
+          scope.showings = response.showings;
+          return scope.film = response;
         };
         failure = function(response) {
           return console.log("film failed with " + response.status);
