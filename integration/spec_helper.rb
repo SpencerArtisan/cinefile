@@ -12,7 +12,7 @@ Capybara.javascript_driver = :webkit
 def mock_external_components
   allow_any_instance_of(FindAnyFilm).to receive(:read_films).and_return File.read('find_any_film_sample.json')
   allow_any_instance_of(FindAnyFilm).to receive(:read_cinemas).and_return File.read('cinemas_sample.html')
-  details = double links: double(alternate: 'a link'), ratings: double(critics_score: 92)
+  details = double links: double(alternate: 'a link'), ratings: double(critics_score: 92), release_dates: double(theater: '1939-12-25')
   allow(RottenMovie).to receive(:find).and_return details
 end
 

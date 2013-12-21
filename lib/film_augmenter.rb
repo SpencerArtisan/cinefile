@@ -18,6 +18,7 @@ class FilmAugmenter
         film.id = i + 1
       rescue Exception => e
         puts "Exception whilst augmenting #{film.title}: #{e.inspect}"
+        puts e.backtrace
       end
     end
     films
@@ -26,13 +27,8 @@ class FilmAugmenter
   def augment film
     puts "AUGMENTING #{film.title}"
     matches = UnreliableObjectDelegate.new(self, 10, 30).find_rotten_movie film
-    if matches.is_a? Array
-      if matches.length > 0
-        augment_with_movie film, best_match(film, matches)
-      end
-    elsif !matches.nil?
-      augment_with_movie film, matches
-    end
+    matches = [matches] unless matches.is_a?(Array)
+    augment_with_movie(film, best_match(film, matches)) if matches.length > 0
   end
 
   def find_rotten_movie film
@@ -40,6 +36,7 @@ class FilmAugmenter
   end
 
   def augment_with_movie film, rotten_movie
+    return unless rotten_movie
     film.link = rotten_movie.links.alternate
     film.rating = rotten_movie.ratings.critics_score
     film.rating = rotten_movie.ratings.audience_score unless film.rating && film.rating != -1
@@ -49,7 +46,7 @@ class FilmAugmenter
   def best_match film, matches
     closest_match = matches[0]
     matches.each {|match| closest_match = match if is_closer_match?(film, match, closest_match) }
-    closest_match
+    year_gap(film, closest_match) < 2 ? closest_match : nil
   end
 
   def is_closer_match? film, match, closest_match

@@ -12,7 +12,7 @@ describe FilmAugmenter do
 
     before do
       allow(data_source).to receive(:get_films).and_return [film, film2]
-      allow(RottenMovie).to receive(:find).and_return nil
+      allow(RottenMovie).to receive(:find).and_return []
     end
 
     it 'should assign ids to the films' do
@@ -62,6 +62,7 @@ describe FilmAugmenter do
     context 'When rotten tomatoes matches with one movie' do
       before do
         allow(RottenMovie).to receive(:find).and_return rotten_movie
+        allow(rotten_movie).to receive(:release_dates).and_return double(theater: '1979-12-25')
       end
 
       it 'should return the same films as the datasource' do
@@ -73,6 +74,17 @@ describe FilmAugmenter do
         allow(rotten_movie).to receive(:links).and_return double(alternate: 'a link')
         augmenter.get_films 'a postcode', 7, 42
         expect(film.link).to eq 'a link'
+      end
+
+      context 'The year is way out' do
+        before do
+          allow(rotten_movie).to receive(:release_dates).and_return double(theater: '2013-12-25')
+        end
+
+        it 'should not augment the film' do
+          augmenter.get_films 'a postcode', 7, 42
+          expect(film.link).to be_nil
+        end
       end
 
       context 'A critics rating is available' do
@@ -126,9 +138,10 @@ describe FilmAugmenter do
 
       context 'With different years' do
         before do
-          allow(right_movie).to receive(:release_dates).and_return double(theater: '1946-12-25')
+          allow(right_movie).to receive(:release_dates).and_return double(theater: '1944-12-25')
           allow(wrong_movie).to receive(:release_dates).and_return double(theater: '2013-12-25')
           film.title = "Gaslight (1944)"
+          film.year = 1944
           allow(RottenMovie).to receive(:find).and_return [wrong_movie, right_movie]
         end
 
@@ -146,9 +159,10 @@ describe FilmAugmenter do
 
       context 'With identical years' do
         before do
-          allow(right_movie).to receive(:release_dates).and_return double(theater: '1946-12-25')
-          allow(wrong_movie).to receive(:release_dates).and_return double(theater: '1946-12-25')
+          allow(right_movie).to receive(:release_dates).and_return double(theater: '1944-12-25')
+          allow(wrong_movie).to receive(:release_dates).and_return double(theater: '1944-12-25')
           film.title = "Gaslight (1944)"
+          film.year = 1944
           allow(RottenMovie).to receive(:find).and_return [right_movie, wrong_movie]
         end
 
@@ -161,6 +175,18 @@ describe FilmAugmenter do
           allow(right_movie).to receive(:links).and_return double(alternate: 'right link')
           augmenter.get_films 'a postcode', 7, 42
           expect(film.link).to eq 'right link'
+        end
+      end
+
+      context 'With the years way out' do
+        before do
+          allow(right_movie).to receive(:release_dates).and_return double(theater: '2013-12-25')
+          allow(wrong_movie).to receive(:release_dates).and_return double(theater: '2013-12-25')
+        end
+
+        it 'should not augment the film' do
+          augmenter.get_films 'a postcode', 7, 42
+          expect(film.link).to be_nil
         end
       end
     end
