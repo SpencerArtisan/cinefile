@@ -26,6 +26,8 @@ class Cache
       {films: map {|film| film.to_hash}}.to_json
     end
     films
+  ensure
+    @redis.quit
   end
 
   def cached_films
@@ -42,5 +44,7 @@ class Cache
 
   def clear
     @redis.del FILM_KEY
+  ensure
+    @redis.quit
   end
 end
