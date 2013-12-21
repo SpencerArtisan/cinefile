@@ -2,9 +2,9 @@ require 'sinatra'
 require 'cache'
 
 set :root, File.join(File.dirname(__FILE__), '..')
-set :lookahead, 1
+set :lookahead, 21
 set :postcode, 'WC1N'
-set :max_cinemas, 1
+set :max_cinemas, 30
 
 helpers do
   def films

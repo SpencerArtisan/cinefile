@@ -8,7 +8,8 @@
         var failure, success;
         success = function(response) {
           console.log("film succeeded with " + response.films);
-          return scope.film = response;
+          scope.film = response;
+          return scope.$apply();
         };
         failure = function(response) {
           return console.log("film failed with " + response.status);

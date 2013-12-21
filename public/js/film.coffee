@@ -6,6 +6,7 @@ angular.module("app").controller "FilmController", ["$scope", "$routeParams", "$
       success = (response) ->
         console.log("film succeeded with " + response.films)
         scope.film = response
+        scope.$apply()
         
       failure = (response) ->
         console.log("film failed with " + response.status)
