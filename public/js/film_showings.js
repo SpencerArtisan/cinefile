@@ -2,13 +2,15 @@
 (function() {
   'use strict';
 
-  angular.module("app").controller("FilmController", [
+  angular.module("app").controller("FilmShowingsController", [
     "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
+      scope.showings = [];
       scope.loadFilm = function() {
         var failure, success;
         success = function(response) {
-          console.log("film succeeded");
-          return scope.film = response;
+          console.log("film succeeded with showings");
+          console.log(response.showings);
+          return scope.showings = response.showings;
         };
         failure = function(response) {
           return console.log("film failed with " + response.status);

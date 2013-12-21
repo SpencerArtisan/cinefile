@@ -6,12 +6,16 @@ angular.module("app").controller "FilmShowingsController", ["$scope", "$routePar
 
     scope.loadFilm = ->
       success = (response) ->
-        console.log("film succeeded with showings #{response.showings}")
+        console.log("film succeeded with showings")
+        console.log response.showings
         scope.showings = response.showings
         
       failure = (response) ->
         console.log("film failed with " + response.status)
           
       resource("/films/#{routeParams.id}").get(success, failure)
+
+    scope.when_formatted = (showing) ->
+      moment(showing.day_on).format('ddd Do MMM')
 ]
 
