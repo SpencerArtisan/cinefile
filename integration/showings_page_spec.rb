@@ -1,6 +1,6 @@
 require_relative './spec_helper'
 
-describe 'Film page' do
+describe 'Showings page' do
   include Capybara::DSL
 
   before do
@@ -12,10 +12,16 @@ describe 'Film page' do
     before do
       visit '/'
       click_on 'Gone With The Wind (1939) (PG)'
+      click_on 'Showings'
     end
 
-    it 'should show the film rating' do
-      expect(page).to have_content '92%'
+    it 'should show the film cinemas' do
+      expect(page).to have_content 'Renoir'
+    end
+
+    it 'should show the film times' do
+      expect(page).to have_content '13:30 18:20'
     end
   end
 end
+
