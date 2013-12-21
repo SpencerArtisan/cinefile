@@ -30,7 +30,7 @@ class Film
   end
 
   def title 
-    @title =~ /(.*) \(\w\)/ ? @title.scan(/(.*) \(\w\)/)[0][0] : @title
+    @title =~ /(.*)\) \(\S*\)/ ? @title.scan(/(.*) \(\S*\)/)[0][0] : @title
   end
 
   def to_hash

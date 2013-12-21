@@ -11,7 +11,7 @@ describe Film do
   end
 
   it 'should strip off the rating from the title' do
-    film.title = "Casablanca (1942) (U)"
+    film.title = "Casablanca (1942) (15)"
     expect(film.title).to eq "Casablanca (1942)"
   end
 
