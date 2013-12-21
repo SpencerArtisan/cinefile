@@ -14,6 +14,10 @@ describe 'Film page' do
       click_on 'Gone With The Wind (1939) (PG)'
     end
 
+    it 'should show the film title' do
+      expect(page).to have_content 'Gone With The Wind'
+    end
+
     it 'should show the film rating' do
       expect(page).to have_content '92%'
     end

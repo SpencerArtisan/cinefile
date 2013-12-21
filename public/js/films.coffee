@@ -34,6 +34,9 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.when_formatted = (showing) ->
       moment(showing.day_on).format('ddd Do MMM')
 
+    scope.short_title = (film) ->
+      film.title.split("(")[0]
+
     scope.showFilm = (id) ->
       location.path("/films/#{id}")
 

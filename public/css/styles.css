@@ -1,3 +1,20 @@
+.rating {
+  margin: 0px;
+  padding: 0px 20px;
+  background-color: white;
+  font-weight: lighter;
+  text-align: right;
+  font-size: 60px;
+  color: #777;
+  border-bottom: 1px solid #ccc;
+}
+.title {
+  padding-top: 10px;
+  margin: 0px;
+  background-color: white;
+  text-align:center;
+}
+
 header {
     position: absolute;
     top:0;
@@ -56,7 +73,7 @@ h1 {
 }
 
 .topcoat-list {
-  background: white
+  background: white;
 }
 
 .bar {
@@ -109,14 +126,6 @@ h1 {
     width: 100%;
 }
 
-.title {
-    font-weight: bold;
-}
-
-p.title {
-  color: black;
-}
-
 a {
   color: black;
   display: block;
@@ -155,12 +164,6 @@ a {
     color: #888;
 }
 
-.rating {
-  float: right;
-  font-size: 20px;
-  color: #777;
-  font-weight: bold;
-}
 
 .list {
     list-style-type: none;
