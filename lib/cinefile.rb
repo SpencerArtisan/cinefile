@@ -3,10 +3,10 @@ require 'cache'
 
 set :root, File.join(File.dirname(__FILE__), '..')
 set :postcode, 'WC1N'
-#set :lookahead, 21
-#set :max_cinemas, 30
-set :lookahead, 1
-set :max_cinemas, 1
+set :lookahead, 13
+set :max_cinemas, 14
+#set :lookahead, 1
+#set :max_cinemas, 1
 
 helpers do
   def films

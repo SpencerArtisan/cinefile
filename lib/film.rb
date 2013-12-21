@@ -3,10 +3,10 @@ require 'ostruct'
 require 'json'
 
 class Film
-  attr_accessor :title, :year, :link, :rating, :id
+  attr_accessor :year, :link, :rating, :id
 
   def initialize title, year, cinema, day_on, times_on
-    self.title = title
+    @title = title
     self.year = year
     add_showing cinema, day_on, times_on
   end
@@ -23,6 +23,14 @@ class Film
 
   def showings
     @showings ||= []
+  end
+
+  def title= value
+    @title = value
+  end
+
+  def title 
+    @title =~ /(.*) \(\w\)/ ? @title.scan(/(.*) \(\w\)/)[0][0] : @title
   end
 
   def to_hash
