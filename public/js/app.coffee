@@ -12,6 +12,9 @@ app.config ["$routeProvider", (routeProvider) ->
   ).when("/films;screenings/:id",
     templateUrl: "views/film_screenings.html"
     controller: "FilmController"
+  ).when("/films;reviews/:id",
+    templateUrl: "views/film_reviews.html"
+    controller: "FilmReviewController"
   )
 ]
 

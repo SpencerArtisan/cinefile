@@ -12,6 +12,7 @@ describe 'Cinefile' do
     before do
       visit '/'
       click_on 'Gone With The Wind (1939) (PG)'
+      click_on 'Reviews'
     end
 
     it 'should show the rotten tomatoes details' do

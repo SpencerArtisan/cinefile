@@ -19,7 +19,7 @@ angular.module("app").controller "FilmController", ["$scope", "$routeParams", "$
       location.path("/")
 
     scope.init = ->
-      rottentomatoes = "<object data='#{scope.link}' type='text/html' style='margin-top:-155px' width='100%' height='3000px'>"
-      #rottentomatoes = "<iframe src='#{scope.link}' seamless='seamless' width='100%' height='100%'>"
+      scope.loadFilm()
+      rottentomatoes = "<object data='#{scope.film.link}' type='text/html' style='margin-top:-155px' width='100%' height='3000px'>"
       $('#content').append(rottentomatoes)
 ]

@@ -21,5 +21,9 @@ describe 'Film page' do
     it 'should show a Screenings link' do
       expect(page).to have_link 'Screenings'
     end
+
+    it 'should show a Reviews link' do
+      expect(page).to have_link 'Reviews'
+    end
   end
 end

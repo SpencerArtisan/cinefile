@@ -23,7 +23,8 @@
       };
       return scope.init = function() {
         var rottentomatoes;
-        rottentomatoes = "<object data='" + scope.link + "' type='text/html' style='margin-top:-155px' width='100%' height='3000px'>";
+        scope.loadFilm();
+        rottentomatoes = "<object data='" + scope.film.link + "' type='text/html' style='margin-top:-155px' width='100%' height='3000px'>";
         return $('#content').append(rottentomatoes);
       };
     }
