@@ -19,7 +19,7 @@ describe FindAnyFilm do
     end
 
     it 'should get the film title' do
-      expect(@films[0].title).to eq 'Gone With The Wind (1939) (PG)'
+      expect(@films[0].title).to eq 'Gone With The Wind (1939)'
     end
 
     it 'should get the film year' do

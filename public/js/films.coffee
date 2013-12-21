@@ -7,15 +7,20 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.loadFilms = ->
       success = (response) ->
         scope.films = response.films
-      failure = (response) ->
-        console.log("films failed with " + response.status)
-      resource('/films', {}, {get: {method: 'GET', cache: true}}).get(success, failure)
+      scope.loadFilmsFromBackend success
 
     scope.loadFilm = ->
-      console.log "route params are #{routeParams.id}"
       success = (response) ->
         scope.film = response.films[parseInt(routeParams.id) - 1]
-        console.log "film is #{scope.film}"
+      scope.loadFilmsFromBackend success
+
+    scope.loadShowing = ->
+      success = (response) ->
+        scope.film = response.films[parseInt(routeParams.id) - 1]
+        scope.showing = scope.film.showings[parseInt(routeParams.showing_id)]
+      scope.loadFilmsFromBackend success
+
+    scope.loadFilmsFromBackend = (success) ->
       failure = (response) ->
         console.log("films failed with " + response.status)
       resource('/films', {}, {get: {method: 'GET', cache: true}}).get(success, failure)

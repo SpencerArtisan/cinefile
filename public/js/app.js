@@ -22,6 +22,9 @@
       }).when("/films;reviews/:id", {
         templateUrl: "views/film_reviews.html",
         controller: "FilmsController"
+      }).when("/films/:id/showings/:showing_id", {
+        templateUrl: "views/showing.html",
+        controller: "FilmsController"
       });
     }
   ]);

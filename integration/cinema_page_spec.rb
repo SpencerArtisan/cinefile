@@ -1,6 +1,6 @@
 require_relative './spec_helper'
 
-describe 'Review page' do
+describe 'Showings page' do
   include Capybara::DSL
 
   before do
@@ -12,12 +12,14 @@ describe 'Review page' do
     before do
       visit '/'
       click_on 'Gone With The Wind (1939)'
-      click_on 'Reviews'
+      click_on 'Screenings'
+      click_on 'Renoir - 13:30 18:20'
     end
 
-    it 'should show the rotten tomatoes details' do
-      expect(page).to have_xpath "//object"
-      expect(page).to have_xpath "//object[@data='a link']"
+    it 'should show the film cinemas' do
+      expect(page).to have_content 'Renoir'
     end
   end
 end
+
+

@@ -13,7 +13,7 @@
         <div class="film">
           <p>{{when_formatted(showing)}}</p>
         </div>
-        <a href="#/films;cinema/{{film.id}}">
+        <a href="#/films/{{film.id}}/showings/{{$index}}">
           <div class="film">
             <p>{{showing.cinema}} - {{showing.times_on}}</p>
             <span class="chevron"></span>

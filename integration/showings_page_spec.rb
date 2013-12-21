@@ -11,7 +11,7 @@ describe 'Showings page' do
   context 'Selecting a film', js: true do
     before do
       visit '/'
-      click_on 'Gone With The Wind (1939) (PG)'
+      click_on 'Gone With The Wind (1939)'
       click_on 'Screenings'
     end
 

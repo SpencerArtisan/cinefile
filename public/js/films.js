@@ -6,27 +6,29 @@
     "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
       console.log("route params are " + routeParams.id);
       scope.loadFilms = function() {
-        var failure, success;
+        var success;
         success = function(response) {
           return scope.films = response.films;
         };
-        failure = function(response) {
-          return console.log("films failed with " + response.status);
-        };
-        return resource('/films', {}, {
-          get: {
-            method: 'GET',
-            cache: true
-          }
-        }).get(success, failure);
+        return scope.loadFilmsFromBackend(success);
       };
       scope.loadFilm = function() {
-        var failure, success;
-        console.log("route params are " + routeParams.id);
+        var success;
+        success = function(response) {
+          return scope.film = response.films[parseInt(routeParams.id) - 1];
+        };
+        return scope.loadFilmsFromBackend(success);
+      };
+      scope.loadShowing = function() {
+        var success;
         success = function(response) {
           scope.film = response.films[parseInt(routeParams.id) - 1];
-          return console.log("film is " + scope.film);
+          return scope.showing = scope.film.showings[parseInt(routeParams.showing_id)];
         };
+        return scope.loadFilmsFromBackend(success);
+      };
+      scope.loadFilmsFromBackend = function(success) {
+        var failure;
         failure = function(response) {
           return console.log("films failed with " + response.status);
         };
