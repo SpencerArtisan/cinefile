@@ -17,6 +17,6 @@ def mock_external_components
 end
 
 def reload_cache
-  visit '/films/clear_cache'
+  visit '/films;clear_cache'
   visit '/films'
 end

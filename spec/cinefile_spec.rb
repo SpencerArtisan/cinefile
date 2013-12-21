@@ -12,6 +12,7 @@ describe 'Cinefile' do
   end
 
   let (:films) { double }
+  let (:film) { double }
   let (:cache) { double }
 
   before do
@@ -26,9 +27,17 @@ describe 'Cinefile' do
     expect(last_response.body).to eq 'some json'
   end
 
+  it 'should be able to get a specific films' do
+    allow(cache).to receive(:get_films).and_return [film]
+    allow(film).to receive(:to_json).and_return 'some json'
+    get '/films/0'
+    expect(last_response).to be_ok
+    expect(last_response.body).to eq 'some json'
+  end
+
   it 'should be able to clear the cache' do
     expect(cache).to receive(:clear)
-    get '/films/clear_cache'
+    get '/films;clear_cache'
     expect(last_response).to be_ok
   end
 

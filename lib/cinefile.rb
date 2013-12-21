@@ -6,13 +6,22 @@ set :lookahead, 1
 set :postcode, 'WC1N'
 set :max_cinemas, 1
 
+helpers do
+  def films
+    Cache.new.get_films settings.postcode, settings.lookahead, settings.max_cinemas
+  end
+end
+
 get '/films' do
   content_type :json
-  films = Cache.new.get_films settings.postcode, settings.lookahead, settings.max_cinemas
   films.to_json
 end
 
-get '/films/clear_cache' do
+get '/films/:id' do
+  films[params[:id].to_i - 1].to_json
+end
+
+get '/films;clear_cache' do
   Cache.new.clear
 end
 
