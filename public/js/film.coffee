@@ -2,11 +2,13 @@
 
 angular.module("app").controller "FilmController", ["$scope", "$routeParams", "$resource", "$location",
   (scope, routeParams, resource, location) ->
+    scope.showings = []
+
     scope.loadFilm = ->
       success = (response) ->
         console.log("film succeeded with " + response.films)
         scope.film = response
-        scope.$apply()
+        scope.showings = response.showings
         
       failure = (response) ->
         console.log("film failed with " + response.status)

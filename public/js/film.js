@@ -4,12 +4,13 @@
 
   angular.module("app").controller("FilmController", [
     "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
+      scope.showings = [];
       scope.loadFilm = function() {
         var failure, success;
         success = function(response) {
           console.log("film succeeded with " + response.films);
           scope.film = response;
-          return scope.$apply();
+          return scope.showings = response.showings;
         };
         failure = function(response) {
           return console.log("film failed with " + response.status);
