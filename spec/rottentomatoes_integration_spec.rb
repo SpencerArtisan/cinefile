@@ -6,7 +6,7 @@ Rotten.api_key = 'khyrfh8p43auq75j5eh66gae'
 
 describe RottenTomatoes do
   it 'should have a link' do
-    matches = RottenMovie.find title: 'Wuthering Heights (1962)'
+    matches = RottenMovie.find title: 'Metropolis (1927)'
     puts matches
   end
 
