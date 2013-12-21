@@ -12,7 +12,7 @@ describe 'Showings page' do
     before do
       visit '/'
       click_on 'Gone With The Wind (1939) (PG)'
-      click_on 'Showings'
+      click_on 'Screenings'
     end
 
     it 'should show the film cinemas' do

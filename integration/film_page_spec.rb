@@ -17,5 +17,9 @@ describe 'Film page' do
     it 'should show the film rating' do
       expect(page).to have_content '92%'
     end
+
+    it 'should show a Screenings link' do
+      expect(page).to have_link 'Screenings'
+    end
   end
 end

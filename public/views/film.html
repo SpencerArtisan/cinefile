@@ -1,10 +1,24 @@
-<div ng-init="init()">
-  <div class="left quarter bar">
+<div ng-init="loadFilm()">
+  <header>
     <a id="back" href="#/">
       <span class="topcoat-icon topcoat-icon--back"></span>
       Movies
     </a>
-  </div>
+    <h1>All Contacts</h1>
+  </header>
+
+  <!--<div class="left quarter bar">-->
+    <!--<a id="back" href="#/">-->
+      <!--<span class="topcoat-icon topcoat-icon--back"></span>-->
+      <!--Movies-->
+      <!--</a>-->
+    <!--<span class="header">Details</span>-->
+    <!--</div>-->
   <div id="content" class="topcoat-list__container scroller">
+    <p>{{film.rating}}%</p>
+    <a href="#/films;screenings/{{film.id}}">
+      <p>Screenings</p>
+      <span class="chevron"></span>
+    </a>
   </div>
 </div>

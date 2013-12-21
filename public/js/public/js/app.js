@@ -16,9 +16,6 @@
       }).when("/films/:id", {
         templateUrl: "views/film.html",
         controller: "FilmController"
-      }).when("/films;screenings/:id", {
-        templateUrl: "views/film_screenings.html",
-        controller: "FilmController"
       });
     }
   ]);

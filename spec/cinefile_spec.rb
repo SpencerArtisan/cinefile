@@ -30,7 +30,7 @@ describe 'Cinefile' do
   it 'should be able to get a specific films' do
     allow(cache).to receive(:get_films).and_return [film]
     allow(film).to receive(:to_json).and_return 'some json'
-    get '/films/0'
+    get '/films/1'
     expect(last_response).to be_ok
     expect(last_response.body).to eq 'some json'
   end

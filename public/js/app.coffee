@@ -2,14 +2,15 @@
 console.log "Initializing Angular App"
 app = angular.module("app", ["ngRoute", "ngResource"])
 
-#angular.module "app.controllers", []
-
 app.config ["$routeProvider", (routeProvider) ->
   routeProvider.when("/",
     templateUrl: "views/films.html"
     controller: "FilmsController"
-  ).when("/films",
+  ).when("/films/:id",
     templateUrl: "views/film.html"
+    controller: "FilmController"
+  ).when("/films;screenings/:id",
+    templateUrl: "views/film_screenings.html"
     controller: "FilmController"
   )
 ]

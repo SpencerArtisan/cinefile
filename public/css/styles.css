@@ -1,5 +1,49 @@
+header {
+    position: absolute;
+    top:0;
+    height: 44px;
+    line-height: 44px;
+    width: 100%;
+    padding-top: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+    background-color: rgba(248, 248, 248, 0.9);
+    background-image: linear-gradient(0deg, rgb(200, 199, 204), rgb(200, 199, 204) 50%, transparent 50%);
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    z-index: 10;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+    -webkit-touch-callout: none;
+}
+
+header a {
+  color: #157dfb;
+  position: absolute;
+  display: inline-block;
+}
+
+h1 {
+    display: block;
+    padding: 0;
+    font-size: 17px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    overflow: hidden;
+    -webkit-box-flex: 1;
+       -moz-box-flex: 1;
+            box-flex: 1;
+    margin: 0 65px;
+    font-weight: 500;
+    -webkit-tap-highlight-color: transparent;
+}
+
 .header {
   font-weight: bold;
+  text-align: center;
 }
 
 .list {
@@ -35,7 +79,7 @@
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     position: absolute;
-    top: 40px;
+    top: 45px;
     bottom: 0px;
     left: 0px;
     right: 0px;
