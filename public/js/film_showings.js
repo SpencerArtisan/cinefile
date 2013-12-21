@@ -10,7 +10,6 @@
         success = function(response) {
           console.log("film succeeded with showings");
           console.log(response.showings);
-          sleep(1);
           scope.showings = response.showings;
           return scope.film = response;
         };
