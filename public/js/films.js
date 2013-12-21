@@ -3,18 +3,59 @@
   'use strict';
 
   angular.module("app").controller("FilmsController", [
-    "$scope", "$resource", "$location", function(scope, resource, location) {
+    "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
+      console.log("route params are " + routeParams.id);
       scope.loadFilms = function() {
         var failure, success;
-        scope.films = [];
         success = function(response) {
-          console.log("films succeeded with " + response.films);
           return scope.films = response.films;
         };
         failure = function(response) {
           return console.log("films failed with " + response.status);
         };
-        return resource('/films').get(success, failure);
+        return resource('/films', {}, {
+          get: {
+            method: 'GET',
+            cache: true
+          }
+        }).get(success, failure);
+      };
+      scope.loadFilm = function() {
+        var failure, success;
+        console.log("route params are " + routeParams.id);
+        success = function(response) {
+          scope.film = response.films[parseInt(routeParams.id) - 1];
+          return console.log("film is " + scope.film);
+        };
+        failure = function(response) {
+          return console.log("films failed with " + response.status);
+        };
+        return resource('/films', {}, {
+          get: {
+            method: 'GET',
+            cache: true
+          }
+        }).get(success, failure);
+      };
+      scope.loadReview = function() {
+        var failure, success;
+        console.log("route params are " + routeParams.id);
+        success = function(response) {
+          var rottentomatoes;
+          scope.film = response.films[parseInt(routeParams.id) - 1];
+          console.log("film for review is " + scope.film);
+          rottentomatoes = "<object data='" + scope.film.link + "' type='text/html' style='margin-top:-155px' width='100%' height='3000px'>";
+          return $('#content').append(rottentomatoes);
+        };
+        failure = function(response) {
+          return console.log("films failed with " + response.status);
+        };
+        return resource('/films', {}, {
+          get: {
+            method: 'GET',
+            cache: true
+          }
+        }).get(success, failure);
       };
       scope.when_formatted = function(showing) {
         return moment(showing.day_on).format('ddd Do MMM');

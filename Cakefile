@@ -13,7 +13,7 @@ build = (callback) ->
         callback?() if code is 0
 
 watch = (callback) ->
-    coffee = spawn 'coffee', ['-w', '-c', '-o', 'public/js', '.']
+    coffee = spawn 'coffee', ['-w', '-c', '-o', 'public/js', 'public/js']
     coffee.stderr.on 'data', (data) ->
         process.stderr.write data.toString()
     coffee.stdout.on 'data', (data) ->
