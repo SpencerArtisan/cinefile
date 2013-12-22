@@ -9,7 +9,8 @@ class FilmGrouper
     cinemas = @datasource.find_cinemas postcode, max_cinemas
     films = []
     cinemas.each {|cinema| films.concat get_cinema_films(cinema, days) }
-    merge_matching_films films
+    merged = merge_matching_films films
+    merged.sort! {|film1, film2| film1.title <=> film2.title}
   end
 
   def get_cinema_films cinema, days

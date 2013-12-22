@@ -14,13 +14,18 @@ describe FilmGrouper do
       allow(datasource).to receive(:find_cinemas).with('a postcode', 42).and_return [cinema1, cinema2] 
       allow(datasource).to receive(:get_films).with(cinema1, 1).and_return [film1]
       allow(datasource).to receive(:get_films).with(cinema2, 1).and_return [film2]
-      @films = grouper.get_films 'a postcode', 1, 42
     end
 
     it 'should retrieve films from all cinemas' do
-      expect(@films).to eq [film1, film2]
+      films = grouper.get_films 'a postcode', 1, 42
+      expect(films).to eq [film1, film2]
     end
 
+    it 'should order the films alphabetically' do
+      film1.title = 'z'
+      films = grouper.get_films 'a postcode', 1, 42
+      expect(films).to eq [film2, film1]
+    end
   end
 
   context 'films with matching titles' do
