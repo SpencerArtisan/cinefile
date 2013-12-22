@@ -22,7 +22,7 @@
           scope.film = response.films[parseInt(routeParams.id) - 1];
           background = "<div class='main' style=\"background: url(\'" + scope.film.image + "\');background-size:320px;background-repeat: no-repeat\"/>";
           console.log(background);
-          return $('body').append(background);
+          return $('#template').append(background);
         };
         return scope.loadFilmsFromBackend(success);
       };
