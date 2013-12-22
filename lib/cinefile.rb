@@ -3,8 +3,6 @@ require 'cache'
 
 set :root, File.join(File.dirname(__FILE__), '..')
 set :postcode, 'WC1N'
-#set :lookahead, 21
-#set :max_cinemas, 34
 set :lookahead, 21
 set :max_cinemas, 35
 
