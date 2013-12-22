@@ -23,8 +23,8 @@ body {
   font-weight: lighter;
   text-align: right;
   font-size: 60px;
-  color: #777;
-  border-bottom: 1px solid #ccc;
+  color: #444;
+  border-bottom: 1px solid #fff;
 }
 .title {
   padding-top: 10px;
@@ -40,7 +40,7 @@ header {
     line-height: 44px;
     width: 100%;
     padding-top: 0;
-    background-color: rgba(248, 248, 248, 0.9);
+    background-color: rgba(248, 248, 248, 0.7);
     background-image: linear-gradient(0deg, rgb(200, 199, 204), rgb(200, 199, 204) 50%, transparent 50%);
     background-size: 100% 1px;
     background-repeat: no-repeat;
@@ -294,7 +294,7 @@ ul {
     height: 14px;
     position: absolute;
     right: 12px;
-    top: 22px;
+    bottom: 22px;
 }
 
 .slide-left.ng-enter,
