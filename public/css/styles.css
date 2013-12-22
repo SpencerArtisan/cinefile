@@ -331,7 +331,6 @@ ul {
     transition:  .25s ease-in-out;
 }
 
-
 .slide-left.ng-enter {
     z-index: 101;
     -webkit-transform: translateX(100%);

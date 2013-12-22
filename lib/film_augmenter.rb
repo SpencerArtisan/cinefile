@@ -57,6 +57,12 @@ class FilmAugmenter
   end
 
   def year_gap film, movie
-    (film.year - movie.release_dates.theater.to_i).abs
+    theater_year_gap = (film.year - movie.release_dates.theater.to_i).abs
+    movie_year_gap = is_numeric?(movie.year) ? (film.year - movie.year.to_i).abs : 999
+    [theater_year_gap, movie_year_gap].min
+  end
+
+  def is_numeric? text
+    !!(text.to_s =~ /^[-+]?[0-9]+$/)
   end
 end

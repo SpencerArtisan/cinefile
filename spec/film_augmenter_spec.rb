@@ -94,7 +94,7 @@ describe FilmAugmenter do
         expect(film.synopsis).to eq 'a synopsis'
       end
 
-      context 'The year is way out' do
+      context 'The theater release year is way out' do
         before do
           allow(rotten_movie).to receive(:release_dates).and_return double(theater: '2013-12-25')
         end
@@ -102,6 +102,17 @@ describe FilmAugmenter do
         it 'should not augment the film' do
           augmenter.get_films 'a postcode', 7, 42
           expect(film.link).to be_nil
+        end
+
+        context 'The year is roughly right' do
+          before do
+            allow(rotten_movie).to receive(:year).and_return 1980
+          end
+
+          it 'should augment the film' do
+            augmenter.get_films 'a postcode', 7, 42
+            expect(film.link).not_to be_nil
+          end
         end
       end
 
@@ -200,6 +211,7 @@ describe FilmAugmenter do
         before do
           allow(right_movie).to receive(:release_dates).and_return double(theater: '2013-12-25')
           allow(wrong_movie).to receive(:release_dates).and_return double(theater: '2013-12-25')
+          allow(RottenMovie).to receive(:find).and_return [right_movie, wrong_movie]
         end
 
         it 'should not augment the film' do

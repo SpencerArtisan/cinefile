@@ -6,7 +6,7 @@ Rotten.api_key = 'khyrfh8p43auq75j5eh66gae'
 
 describe RottenTomatoes do
   it 'should have a link' do
-    matches = RottenMovie.find title: 'Solaris (1972)'
+    matches = RottenMovie.find title: 'Witchfinder General (1968)'
     puts matches
   end
 
