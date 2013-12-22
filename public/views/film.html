@@ -18,8 +18,8 @@
         </a>
       </li>
     </ul>
-    <p ng-if="film.review != null" class="review">{{film.review}}</p>
-    <p ng-if="film.synopsis != null" class="synopsis">{{film.synopsis}}</p>
+    <p ng-if="film.review != null && film.review != ''" class="review">{{film.review}}</p>
+    <p ng-if="film.synopsis != null && film.synopsis != ''" class="synopsis">{{film.synopsis}}</p>
   </div>
   <div class="filler"/>
 </div>
