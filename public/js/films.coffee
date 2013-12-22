@@ -3,6 +3,7 @@
 angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location",
   (scope, routeParams, resource, location) ->
     console.log "route params are #{routeParams.id}"
+    scope.mainStyle = {background: "red"}
 
     scope.loadFilms = ->
       success = (response) ->
@@ -12,6 +13,9 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.loadFilm = ->
       success = (response) ->
         scope.film = response.films[parseInt(routeParams.id) - 1]
+        background = "<div class='main' style=\"background: url(\'#{scope.film.image}\');background-size:320px;background-repeat: no-repeat\"/>"
+        console.log background
+        $('body').append(background)
       scope.loadFilmsFromBackend success
 
     scope.loadShowing = ->

@@ -5,6 +5,9 @@
   angular.module("app").controller("FilmsController", [
     "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
       console.log("route params are " + routeParams.id);
+      scope.mainStyle = {
+        background: "red"
+      };
       scope.loadFilms = function() {
         var success;
         success = function(response) {
@@ -15,7 +18,11 @@
       scope.loadFilm = function() {
         var success;
         success = function(response) {
-          return scope.film = response.films[parseInt(routeParams.id) - 1];
+          var background;
+          scope.film = response.films[parseInt(routeParams.id) - 1];
+          background = "<div class='main' style=\"background: url(\'" + scope.film.image + "\');background-size:320px;background-repeat: no-repeat\"/>";
+          console.log(background);
+          return $('body').append(background);
         };
         return scope.loadFilmsFromBackend(success);
       };
