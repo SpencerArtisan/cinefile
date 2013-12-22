@@ -16,6 +16,21 @@ body {
   width: 320px;
 }
 
+.review {
+  padding: 0px 20px;
+  padding-bottom:10px;
+  background-color: rgba(255,255,255,0);
+  font-style: italic;
+  border-bottom: 1px solid #fff;
+}
+
+.synopsis {
+  padding: 0px 20px;
+  padding-bottom:10px;
+  background-color: rgba(255,255,255,0);
+  border-bottom: 1px solid #fff;
+}
+
 .rating {
   margin: 0px;
   padding: 0px 20px;

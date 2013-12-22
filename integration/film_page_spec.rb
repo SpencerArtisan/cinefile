@@ -14,6 +14,14 @@ describe 'Film page' do
       click_on 'Gone With The Wind (1939)'
     end
 
+    it 'should show the film synopsis' do
+      expect(page).to have_content 'a synopsis'
+    end
+
+    it 'should show the film review' do
+      expect(page).to have_content 'a review'
+    end
+
     it 'should show the film title' do
       expect(page).to have_content 'Gone With The Wind'
     end
@@ -24,10 +32,6 @@ describe 'Film page' do
 
     it 'should show a Screenings link' do
       expect(page).to have_link 'Screenings'
-    end
-
-    it 'should show a Reviews link' do
-      expect(page).to have_link 'Reviews'
     end
   end
 end
