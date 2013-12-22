@@ -6,12 +6,12 @@ Rotten.api_key = 'khyrfh8p43auq75j5eh66gae'
 
 describe RottenTomatoes do
   it 'should have a link' do
-    matches = RottenMovie.find title: 'Metropolis (1927)'
+    matches = RottenMovie.find title: 'Solaris (1972)'
     puts matches
   end
 
   let (:cinema) { double }
-  let (:film) { Film.new 'Wuthering Heights (1962)', 1962, cinema, Date.new(2001, 12, 25), 'a time' }
+  let (:film) { Film.new 'Solaris (1972)', 1962, cinema, Date.new(2001, 12, 25), 'a time' }
   let (:data_source) { double }
   let (:augmenter) { FilmAugmenter.new data_source }
 

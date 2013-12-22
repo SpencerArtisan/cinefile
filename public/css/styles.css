@@ -178,6 +178,10 @@ a {
   margin-bottom: 10px;
 }
 
+.film p {
+  margin-right:60px;
+}
+
 .details {
     margin: auto;
 }

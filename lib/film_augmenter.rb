@@ -49,7 +49,7 @@ class FilmAugmenter
   def best_match film, matches
     closest_match = matches[0]
     matches.each {|match| closest_match = match if is_closer_match?(film, match, closest_match) }
-    year_gap(film, closest_match) < 2 ? closest_match : nil
+    year_gap(film, closest_match) < 5 ? closest_match : nil
   end
 
   def is_closer_match? film, match, closest_match
