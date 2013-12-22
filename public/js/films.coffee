@@ -13,7 +13,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.loadFilm = ->
       success = (response) ->
         scope.film = response.films[parseInt(routeParams.id) - 1]
-        background = "<div class='main' style=\"background: url(\'#{scope.film.image}\');background-size:320px;background-repeat: no-repeat\"/>"
+        background = "<div class='main' style=\"background: url(\'#{scope.film.image}\');background-size:320px 550px;background-repeat: no-repeat\"/>"
         console.log background
         $('#template').append(background)
       scope.loadFilmsFromBackend success
