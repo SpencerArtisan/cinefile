@@ -155,7 +155,16 @@ h1 {
     background-size: cover;
     width: 20px;
     height: 20px;
-  }
+}
+
+.icon-movie {
+    background: url("/images/movie-25.png") no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+}
 
 .topcoat-icon--back {
     background: url("/images/back_light.svg") no-repeat;
