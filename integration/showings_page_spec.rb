@@ -22,6 +22,10 @@ describe 'Showings page' do
     it 'should show the film times' do
       expect(page).to have_content '13:30 18:20'
     end
+
+    it 'should show the film date' do
+      expect(page).to have_content Date.today.strftime("%A %-d %B")
+    end
   end
 end
 

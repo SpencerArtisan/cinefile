@@ -49,7 +49,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       scope.loadFilmsFromBackend success
 
     scope.when_formatted = (showing) ->
-      moment(showing.day_on).format('ddd Do MMM')
+      moment(showing.day_on).format('dddd D MMMM')
 
     scope.short_title = (film) ->
       film.title.split("(")[0]
