@@ -33,7 +33,6 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       console.log "route params are #{routeParams.id}"
       success = (response) ->
         scope.film = response.films[parseInt(routeParams.id) - 1]
-        console.log "film for review is #{scope.film}"
         rottentomatoes = "<object data='#{scope.film.link}' type='text/html' style='margin-top:-155px' width='100%' height='3000px'>"
         $('#content').append(rottentomatoes)
       failure = (response) ->
@@ -48,8 +47,12 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
         $('#content').append(map)
       scope.loadFilmsFromBackend success
 
-    scope.film_dates = ->
-      []
+    scope.filmDates = ->
+      showings = (film.showings for film in scope.films)
+      showings = _.flatten(showings)
+      days_on = (showing.day_on for showing in showings)
+      days_on = _.uniq days_on
+      _.sortBy(days_on, (day) -> moment(day))
 
     scope.when_formatted = (day) ->
       moment(day).format('dddd D MMMM')

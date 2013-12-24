@@ -26,7 +26,6 @@ describe "FilmsController", ->
             films: 
                 [
                     {id: 1, title: 'a film', day_on: '2001-12-25'}
-                    {id: 2, title: 'another film', day_on: '2001-12-25'}
                 ]
         )
         scope.loadFilms()
@@ -34,7 +33,7 @@ describe "FilmsController", ->
         @film = scope.films[0]
 
       it "should provide all the films", ->
-        expect(scope.films.length).toEqual(2)
+        expect(scope.films.length).toEqual(1)
 
       it "should provide the film title", ->
         expect(@film.title).toEqual("a film")
@@ -45,9 +44,39 @@ describe "FilmsController", ->
       it "should provide a formatted date", ->
         expect(scope.when_formatted(@film.day_on)).toEqual("Tuesday 25 December")
 
-  #describe "Selecting a film", ->
-  #describe "Selecting a film", ->
-    #it "should navigate to the film page", ->
-      #spyOn(location, "path")
-      #scope.showRace("id")
-      #expect(location.path).toHaveBeenCalledWith("/races/id")
+    describe "which retrieves multiple films with single showings", ->
+      beforeEach ->
+        httpBackend.expectGET("/films").respond(201, 
+            films: 
+                [
+                    {id: 1, title: 'a film', showings:[{day_on: '2001-12-26'}]}
+                    {id: 2, title: 'another film', showings:[{day_on: '2001-12-25'}]}
+                    {id: 2, title: 'a third film', showings:[{day_on: '2001-12-26'}]}
+                ]
+        )
+        scope.loadFilms()
+        httpBackend.flush()
+
+      it "should provide a list of dates", ->
+        expect(scope.filmDates()).toEqual(["2001-12-25", "2001-12-26"])
+
+    describe "which retrieves a single film with multiple showings", ->
+      beforeEach ->
+        httpBackend.expectGET("/films").respond(201, 
+            films: 
+                [
+                    {id: 1, title: 'a film', showings:
+                        [
+                            {day_on: '2001-12-26'}
+                            {day_on: '2001-12-25'}
+                            {day_on: '2001-12-26'}
+                        ]
+                    }
+                ]
+        )
+        scope.loadFilms()
+        httpBackend.flush()
+
+      it "should provide a list of dates", ->
+        expect(scope.filmDates()).toEqual(["2001-12-25", "2001-12-26"])
+

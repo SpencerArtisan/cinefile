@@ -23,17 +23,13 @@
       });
     });
     return describe("Loading the films", function() {
-      return describe("which succeeds when retrieving from the server", function() {
+      describe("which succeeds when retrieving from the server", function() {
         beforeEach(function() {
           httpBackend.expectGET("/films").respond(201, {
             films: [
               {
                 id: 1,
                 title: 'a film',
-                day_on: '2001-12-25'
-              }, {
-                id: 2,
-                title: 'another film',
                 day_on: '2001-12-25'
               }
             ]
@@ -43,7 +39,7 @@
           return this.film = scope.films[0];
         });
         it("should provide all the films", function() {
-          return expect(scope.films.length).toEqual(2);
+          return expect(scope.films.length).toEqual(1);
         });
         it("should provide the film title", function() {
           return expect(this.film.title).toEqual("a film");
@@ -53,6 +49,70 @@
         });
         return it("should provide a formatted date", function() {
           return expect(scope.when_formatted(this.film.day_on)).toEqual("Tuesday 25 December");
+        });
+      });
+      describe("which retrieves multiple films with single showings", function() {
+        beforeEach(function() {
+          httpBackend.expectGET("/films").respond(201, {
+            films: [
+              {
+                id: 1,
+                title: 'a film',
+                showings: [
+                  {
+                    day_on: '2001-12-26'
+                  }
+                ]
+              }, {
+                id: 2,
+                title: 'another film',
+                showings: [
+                  {
+                    day_on: '2001-12-25'
+                  }
+                ]
+              }, {
+                id: 2,
+                title: 'a third film',
+                showings: [
+                  {
+                    day_on: '2001-12-26'
+                  }
+                ]
+              }
+            ]
+          });
+          scope.loadFilms();
+          return httpBackend.flush();
+        });
+        return it("should provide a list of dates", function() {
+          return expect(scope.filmDates()).toEqual(["2001-12-25", "2001-12-26"]);
+        });
+      });
+      return describe("which retrieves a single film with multiple showings", function() {
+        beforeEach(function() {
+          httpBackend.expectGET("/films").respond(201, {
+            films: [
+              {
+                id: 1,
+                title: 'a film',
+                showings: [
+                  {
+                    day_on: '2001-12-26'
+                  }, {
+                    day_on: '2001-12-25'
+                  }, {
+                    day_on: '2001-12-26'
+                  }
+                ]
+              }
+            ]
+          });
+          scope.loadFilms();
+          return httpBackend.flush();
+        });
+        return it("should provide a list of dates", function() {
+          return expect(scope.filmDates()).toEqual(["2001-12-25", "2001-12-26"]);
         });
       });
     });

@@ -52,7 +52,6 @@
         success = function(response) {
           var rottentomatoes;
           scope.film = response.films[parseInt(routeParams.id) - 1];
-          console.log("film for review is " + scope.film);
           rottentomatoes = "<object data='" + scope.film.link + "' type='text/html' style='margin-top:-155px' width='100%' height='3000px'>";
           return $('#content').append(rottentomatoes);
         };
@@ -77,8 +76,32 @@
         };
         return scope.loadFilmsFromBackend(success);
       };
-      scope.film_dates = function() {
-        return [];
+      scope.filmDates = function() {
+        var days_on, film, showing, showings;
+        showings = (function() {
+          var _i, _len, _ref, _results;
+          _ref = scope.films;
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            film = _ref[_i];
+            _results.push(film.showings);
+          }
+          return _results;
+        })();
+        showings = _.flatten(showings);
+        days_on = (function() {
+          var _i, _len, _results;
+          _results = [];
+          for (_i = 0, _len = showings.length; _i < _len; _i++) {
+            showing = showings[_i];
+            _results.push(showing.day_on);
+          }
+          return _results;
+        })();
+        days_on = _.uniq(days_on);
+        return _.sortBy(days_on, function(day) {
+          return moment(day);
+        });
       };
       scope.when_formatted = function(day) {
         return moment(day).format('dddd D MMMM');
