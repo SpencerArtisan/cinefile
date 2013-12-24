@@ -8,10 +8,10 @@
 
   <div class="topcoat-list__container scroller" >
     <ul class="topcoat-list list">
-      <li ng-repeat="date in filmDates()" class="topcoat-list__item">
+      <li ng-repeat="date in filmDates()" class="topcoat-list__item day">
         <p>{{when_formatted(date)}}</p>
         <ul class="topcoat-list list">
-          <li ng-repeat="film in filmsOn(date)" class="topcoat-list__item">
+          <li ng-repeat="film in filmsOn(date)" class="topcoat-list__item film">
             <a href="#/films/{{film.id}}">
               <div class="film">
                 <p>{{film.title}}</p>

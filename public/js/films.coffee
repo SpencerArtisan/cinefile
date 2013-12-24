@@ -2,7 +2,6 @@
 
 angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location",
   (scope, routeParams, resource, location) ->
-    console.log "route params are #{routeParams.id}"
     scope.mainStyle = {background: "red"}
 
     scope.loadFilms = ->
@@ -14,7 +13,6 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       success = (response) ->
         scope.film = response.films[parseInt(routeParams.id) - 1]
         background = "<div class='main' style=\"background: url(\'#{scope.film.image}\');background-size:320px 550px;background-repeat: no-repeat\"/>"
-        console.log background
         $('#template').append(background)
       scope.loadFilmsFromBackend success
 
@@ -30,7 +28,6 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       resource('/films', {}, {get: {method: 'GET', cache: true}}).get(success, failure)
 
     scope.loadReview = ->
-      console.log "route params are #{routeParams.id}"
       success = (response) ->
         scope.film = response.films[parseInt(routeParams.id) - 1]
         rottentomatoes = "<object data='#{scope.film.link}' type='text/html' style='margin-top:-155px' width='100%' height='3000px'>"
@@ -55,13 +52,9 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       _.sortBy(days_on, (day) -> moment(day))
       
     scope.filmsOn = (day) ->
-      console.log "FILMS ON"
-      console.log scope.films
       (film for film in scope.films when scope.isOn(film, day))
 
     scope.isOn = (film, day) ->
-      console.log "FILM IS ON"
-      console.log film
       _.some(film.showings, (showing) -> showing.day_on == day)
 
     scope.when_formatted = (day) ->

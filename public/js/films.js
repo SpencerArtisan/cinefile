@@ -4,7 +4,6 @@
 
   angular.module("app").controller("FilmsController", [
     "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
-      console.log("route params are " + routeParams.id);
       scope.mainStyle = {
         background: "red"
       };
@@ -21,7 +20,6 @@
           var background;
           scope.film = response.films[parseInt(routeParams.id) - 1];
           background = "<div class='main' style=\"background: url(\'" + scope.film.image + "\');background-size:320px 550px;background-repeat: no-repeat\"/>";
-          console.log(background);
           return $('#template').append(background);
         };
         return scope.loadFilmsFromBackend(success);
@@ -48,7 +46,6 @@
       };
       scope.loadReview = function() {
         var failure, success;
-        console.log("route params are " + routeParams.id);
         success = function(response) {
           var rottentomatoes;
           scope.film = response.films[parseInt(routeParams.id) - 1];
@@ -105,8 +102,6 @@
       };
       scope.filmsOn = function(day) {
         var film, _i, _len, _ref, _results;
-        console.log("FILMS ON");
-        console.log(scope.films);
         _ref = scope.films;
         _results = [];
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -118,8 +113,6 @@
         return _results;
       };
       scope.isOn = function(film, day) {
-        console.log("FILM IS ON");
-        console.log(film);
         return _.some(film.showings, function(showing) {
           return showing.day_on === day;
         });
