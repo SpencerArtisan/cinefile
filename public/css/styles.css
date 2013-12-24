@@ -140,6 +140,23 @@ h1 {
     right: 0px;
 }
 
+#by-date {
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    top: 0px; 
+    right: 20px;
+}
+
+.icon-calendar {
+    background: url("/images/calendar-25.png") no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+  }
+
 .topcoat-icon--back {
     background: url("/images/back_light.svg") no-repeat;
     -webkit-background-size: cover;
