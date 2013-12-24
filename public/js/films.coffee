@@ -53,6 +53,16 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       days_on = (showing.day_on for showing in showings)
       days_on = _.uniq days_on
       _.sortBy(days_on, (day) -> moment(day))
+      
+    scope.filmsOn = (day) ->
+      console.log "FILMS ON"
+      console.log scope.films
+      (film for film in scope.films when scope.isOn(film, day))
+
+    scope.isOn = (film, day) ->
+      console.log "FILM IS ON"
+      console.log film
+      _.some(film.showings, (showing) -> showing.day_on == day)
 
     scope.when_formatted = (day) ->
       moment(day).format('dddd D MMMM')

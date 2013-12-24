@@ -103,6 +103,27 @@
           return moment(day);
         });
       };
+      scope.filmsOn = function(day) {
+        var film, _i, _len, _ref, _results;
+        console.log("FILMS ON");
+        console.log(scope.films);
+        _ref = scope.films;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          film = _ref[_i];
+          if (scope.isOn(film, day)) {
+            _results.push(film);
+          }
+        }
+        return _results;
+      };
+      scope.isOn = function(film, day) {
+        console.log("FILM IS ON");
+        console.log(film);
+        return _.some(film.showings, function(showing) {
+          return showing.day_on === day;
+        });
+      };
       scope.when_formatted = function(day) {
         return moment(day).format('dddd D MMMM');
       };

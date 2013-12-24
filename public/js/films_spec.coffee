@@ -60,6 +60,10 @@ describe "FilmsController", ->
       it "should provide a list of dates", ->
         expect(scope.filmDates()).toEqual(["2001-12-25", "2001-12-26"])
 
+      it "should get the films on a date", ->
+        expect(scope.filmsOn("2001-12-25")).toEqual([scope.films[1]])
+        expect(scope.filmsOn("2001-12-26")).toEqual([scope.films[0], scope.films[2]])
+
     describe "which retrieves a single film with multiple showings", ->
       beforeEach ->
         httpBackend.expectGET("/films").respond(201, 
@@ -79,4 +83,8 @@ describe "FilmsController", ->
 
       it "should provide a list of dates", ->
         expect(scope.filmDates()).toEqual(["2001-12-25", "2001-12-26"])
+
+      it "should get the films on a date", ->
+        expect(scope.filmsOn("2001-12-25")).toEqual([scope.films[0]])
+        expect(scope.filmsOn("2001-12-26")).toEqual([scope.films[0]])
 
