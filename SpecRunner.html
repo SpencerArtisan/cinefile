@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jasmine Test Runner</title>
+    <link rel="stylesheet" type="text/css" href="public/css/jasmine.css">
+  </head>
+
+  <body>
+    <div style="display:none" id="container"></div>
+  </body>
+
+  <script src="public/js/jasmine.js"></script>
+  <script src="public/js/jasmine-html.js"></script>
+
+  <script src="public/js/angular.js"></script>
+  <script src="public/js/angular-mocks.js"></script>
+  <script src="public/js/angular-route.js"></script>
+  <script src="public/js/angular-resource.js"></script>
+  <script src="public/js/app.js"></script>
+  <script src="public/js/films.js"></script>
+  <script src="public/js/moment.min.js"></script>
+  <script src="public/js/jquery-1.7.2.js"></script>
+
+  <script src="public/js/app.js"></script>
+  <script src="public/js/films.js"></script>
+  <script src="public/js/films_spec.js"></script>
+
+  <script type="text/javascript">
+    jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+    jasmine.getEnv().execute();
+  </script>
+</html>

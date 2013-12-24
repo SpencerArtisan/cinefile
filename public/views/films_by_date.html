@@ -1,0 +1,28 @@
+<div id="template" ng-init="loadFilms()">
+  <header>
+    <a id="by-film" href='#/'>
+      <span class="topcoat-icon">F</span>
+    </a>
+    <h1>Classic Movies</h1>
+  </header>
+
+  <div class="topcoat-list__container scroller" >
+    <ul class="topcoat-list list">
+      <li ng-repeat="date in film_dates()" class="topcoat-list__item">
+        <p>{{when_formatted(date)}}</p>
+        <!--<ul class="topcoat-list list">-->
+          <!--<li ng-repeat="film in films(date)" class="topcoat-list__item">-->
+            <!--<a href="#/films/{{film.id}}">-->
+              <!--<div class="film">-->
+                <!--<p>{{film.title}}</p>-->
+                <!--<span class="chevron"></span>-->
+              <!--</div>-->
+            <!--</a>-->
+          <!--</li>-->
+        <!--</ul>-->
+      </li>
+    </ul>
+  </div>
+  <div class='main' style="background: url('/images/Frankenstein3.png');background-size:320px 550px;background-repeat: no-repeat\"/>
+  <div class="filler"/>
+</div>

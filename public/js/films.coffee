@@ -48,8 +48,11 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
         $('#content').append(map)
       scope.loadFilmsFromBackend success
 
-    scope.when_formatted = (showing) ->
-      moment(showing.day_on).format('dddd D MMMM')
+    scope.film_dates = ->
+      []
+
+    scope.when_formatted = (day) ->
+      moment(day).format('dddd D MMMM')
 
     scope.short_title = (film) ->
       film.title.split("(")[0]

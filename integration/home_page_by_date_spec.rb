@@ -17,6 +17,10 @@ describe 'Cinefile' do
     it 'should show the film names' do
       expect(page).to have_content 'Gone With The Wind'
     end
+
+    it 'should show the film date' do
+      expect(page).to have_content Date.today.strftime("%A %-d %B")
+    end
   end
 end
 

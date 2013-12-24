@@ -10,7 +10,7 @@
     <ul class="topcoat-list list">
       <li ng-repeat="showing in film.showings" class="topcoat-list__item">
         <div class="film">
-          <p>{{when_formatted(showing)}}</p>
+          <p>{{when_formatted(showing.day_on)}}</p>
         </div>
         <a href="#/films/{{film.id}}/showings/{{$index}}">
           <div class="film">

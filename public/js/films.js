@@ -77,8 +77,11 @@
         };
         return scope.loadFilmsFromBackend(success);
       };
-      scope.when_formatted = function(showing) {
-        return moment(showing.day_on).format('dddd D MMMM');
+      scope.film_dates = function() {
+        return [];
+      };
+      scope.when_formatted = function(day) {
+        return moment(day).format('dddd D MMMM');
       };
       scope.short_title = function(film) {
         return film.title.split("(")[0];
