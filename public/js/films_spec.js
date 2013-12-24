@@ -29,10 +29,12 @@
             films: [
               {
                 id: 1,
-                title: 'a film'
+                title: 'a film',
+                day_on: '2001-12-25'
               }, {
                 id: 2,
-                title: 'another film'
+                title: 'another film',
+                day_on: '2001-12-25'
               }
             ]
           });
@@ -40,8 +42,17 @@
           httpBackend.flush();
           return this.film = scope.films[0];
         });
-        return it("should provide all the films", function() {
+        it("should provide all the films", function() {
           return expect(scope.films.length).toEqual(2);
+        });
+        it("should provide the film title", function() {
+          return expect(this.film.title).toEqual("a film");
+        });
+        it("should provide the film date", function() {
+          return expect(this.film.day_on).toEqual("2001-12-25");
+        });
+        return it("should provide a formatted date", function() {
+          return expect(scope.when_formatted(this.film.day_on)).toEqual("Tuesday 25 December");
         });
       });
     });
