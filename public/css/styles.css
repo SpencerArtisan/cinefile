@@ -24,15 +24,14 @@ a {
 
 .review {
   margin: 0px;
-  padding: 10px 20px 10px 20px;
+  padding: 0px 15px 10px 20px;
   background-color: rgba(255,255,255,0);
   font-style: italic;
-  border-top: 1px solid rgba(250, 250, 250, 0.7);
 }
 
 .rating {
   margin: 0px;
-  padding: 0px 20px;
+  padding: 0px 10px;
   padding-bottom: 0px;
   background-color: rgba(255,255,255,0);
   font-weight: lighter;
@@ -204,7 +203,7 @@ li {
   height: 14px;
   top: 50%;
   margin-top: -7px;
-  right: 0px;
+  right: 4px;
 }
 
 .slide-left.ng-enter,
