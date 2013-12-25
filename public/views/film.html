@@ -18,8 +18,9 @@
           <li ng-repeat="showing in showingsOn(date)" class="topcoat-list__item film">
             <a href="#/films/{{film.id}}/showings/{{showing.id}}">
               <div class="film">
-                <p>{{showing.cinema}} - {{showing.times_on}}</p>
+                <p>{{showing.cinema}} - {{showing.times_on}}
                 <span class="chevron"></span>
+                </p>
               </div>
             </a>
           </li>

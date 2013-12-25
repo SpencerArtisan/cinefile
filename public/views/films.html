@@ -6,14 +6,12 @@
     </a>
   </header>
 
-  <div class="topcoat-list__container scroller" >
-    <ul class="topcoat-list list">
-      <li ng-repeat="film in films" class="topcoat-list__item">
-        <a href="#/films/{{film.id}}">
-          <div class="film">
-            <p>{{film.title}}</p>
-            <span class="chevron"></span>
-          </div>
+  <div class="scroller" >
+    <ul class=list">
+      <li ng-repeat="film in films">
+        <a class="film" href="#/films/{{film.id}}">
+          <span style="float:right" class="chevron"></span>
+          <span class="title">{{film.title.trim()}}</span>
         </a>
       </li>
     </ul>
