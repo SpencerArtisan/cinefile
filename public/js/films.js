@@ -73,8 +73,8 @@
         };
         return scope.loadFilmsFromBackend(success);
       };
-      scope.filmDates = function() {
-        var days_on, film, showing, showings;
+      scope.filmsDates = function() {
+        var film, showings;
         showings = (function() {
           var _i, _len, _ref, _results;
           _ref = scope.films;
@@ -85,7 +85,13 @@
           }
           return _results;
         })();
-        showings = _.flatten(showings);
+        return scope.showingDates(_.flatten(showings));
+      };
+      scope.filmDates = function() {
+        return scope.showingDates(scope.film.showings);
+      };
+      scope.showingDates = function(showings) {
+        var days_on, showing;
         days_on = (function() {
           var _i, _len, _results;
           _results = [];
@@ -99,6 +105,18 @@
         return _.sortBy(days_on, function(day) {
           return moment(day);
         });
+      };
+      scope.showingsOn = function(day) {
+        var showing, _i, _len, _ref, _results;
+        _ref = scope.film.showings;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          showing = _ref[_i];
+          if (showing.day_on === day) {
+            _results.push(showing);
+          }
+        }
+        return _results;
       };
       scope.filmsOn = function(day) {
         var film, _i, _len, _ref, _results;

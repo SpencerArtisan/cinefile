@@ -155,6 +155,8 @@ h1 {
     background-size: cover;
     width: 20px;
     height: 20px;
+    margin-left:10px;
+    margin-right:10px;
 }
 
 .icon-movie {
@@ -164,6 +166,8 @@ h1 {
     background-size: cover;
     width: 20px;
     height: 20px;
+    margin-left:10px;
+    margin-right:10px;
 }
 
 .topcoat-icon--back {

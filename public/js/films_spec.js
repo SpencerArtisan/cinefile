@@ -30,13 +30,18 @@
               {
                 id: 1,
                 title: 'a film',
-                day_on: '2001-12-25'
+                showings: [
+                  {
+                    day_on: '2001-12-26'
+                  }
+                ]
               }
             ]
           });
           scope.loadFilms();
           httpBackend.flush();
-          return this.film = scope.films[0];
+          this.film = scope.films[0];
+          return scope.film = scope.films[0];
         });
         it("should provide all the films", function() {
           return expect(scope.films.length).toEqual(1);
@@ -45,10 +50,19 @@
           return expect(this.film.title).toEqual("a film");
         });
         it("should provide the film date", function() {
-          return expect(this.film.day_on).toEqual("2001-12-25");
+          return expect(this.film.showings[0].day_on).toEqual("2001-12-26");
         });
-        return it("should provide a formatted date", function() {
-          return expect(scope.when_formatted(this.film.day_on)).toEqual("Tuesday 25 December");
+        it("should provide a formatted date", function() {
+          return expect(scope.when_formatted(this.film.day_on)).toEqual("Wednesday 25 December");
+        });
+        it("should provide a list of dates for a specific film", function() {
+          return expect(scope.filmDates()).toEqual(["2001-12-26"]);
+        });
+        it("should provide a list of showings for a specific film on a specific date", function() {
+          return expect(scope.showingsOn("2001-12-26")[0].day_on).toEqual("2001-12-26");
+        });
+        return it("should provide an empty list of showings for a specific film on a specific date", function() {
+          return expect(scope.showingsOn("2001-12-27").length).toEqual(0);
         });
       });
       describe("which retrieves multiple films with single showings", function() {
@@ -85,8 +99,12 @@
           scope.loadFilms();
           return httpBackend.flush();
         });
-        it("should provide a list of dates", function() {
-          return expect(scope.filmDates()).toEqual(["2001-12-25", "2001-12-26"]);
+        it("should provide a list of dates for all films", function() {
+          return expect(scope.filmsDates()).toEqual(["2001-12-25", "2001-12-26"]);
+        });
+        it("should provide a list of dates for a specific film", function() {
+          scope.film = scope.films[0];
+          return expect(scope.filmDates()).toEqual(["2001-12-26"]);
         });
         return it("should get the films on a date", function() {
           expect(scope.filmsOn("2001-12-25")).toEqual([scope.films[1]]);
@@ -115,7 +133,11 @@
           scope.loadFilms();
           return httpBackend.flush();
         });
-        it("should provide a list of dates", function() {
+        it("should provide a list of dates for all films", function() {
+          return expect(scope.filmsDates()).toEqual(["2001-12-25", "2001-12-26"]);
+        });
+        it("should provide a list of dates for a specific film", function() {
+          scope.film = scope.films[0];
           return expect(scope.filmDates()).toEqual(["2001-12-25", "2001-12-26"]);
         });
         return it("should get the films on a date", function() {

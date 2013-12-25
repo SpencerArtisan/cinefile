@@ -12,7 +12,6 @@ describe 'Showings page' do
     before do
       visit '/'
       click_on 'Gone With The Wind (1939)'
-      click_on 'Screenings'
       click_on 'Renoir - 13:30 18:20'
     end
 

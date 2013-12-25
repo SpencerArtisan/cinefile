@@ -44,12 +44,20 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
         $('#content').append(map)
       scope.loadFilmsFromBackend success
 
-    scope.filmDates = ->
+    scope.filmsDates = ->
       showings = (film.showings for film in scope.films)
-      showings = _.flatten(showings)
+      scope.showingDates(_.flatten(showings))
+      
+    scope.filmDates = ->
+      scope.showingDates(scope.film.showings)
+
+    scope.showingDates = (showings) ->
       days_on = (showing.day_on for showing in showings)
       days_on = _.uniq days_on
       _.sortBy(days_on, (day) -> moment(day))
+
+    scope.showingsOn = (day) ->
+      (showing for showing in scope.film.showings when showing.day_on == day)
       
     scope.filmsOn = (day) ->
       (film for film in scope.films when scope.isOn(film, day))

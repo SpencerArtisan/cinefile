@@ -14,10 +14,6 @@ describe 'Film page' do
       click_on 'Gone With The Wind (1939)'
     end
 
-    it 'should show the film synopsis' do
-      expect(page).to have_content 'a synopsis'
-    end
-
     it 'should show the film review' do
       expect(page).to have_content 'a review'
     end
@@ -30,8 +26,16 @@ describe 'Film page' do
       expect(page).to have_content '92%'
     end
 
-    it 'should show a Screenings link' do
-      expect(page).to have_link 'Screenings'
+    it 'should show the film cinemas' do
+      expect(page).to have_content 'Renoir'
+    end
+
+    it 'should show the film times' do
+      expect(page).to have_content '13:30 18:20'
+    end
+
+    it 'should show the film date' do
+      expect(page).to have_content Date.today.strftime("%A %-d %B")
     end
   end
 end
