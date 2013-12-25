@@ -3,8 +3,7 @@
 angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location",
   (scope, routeParams, resource, location) ->
     scope.go = (url) ->
-      console.log 'sss'
-      location.url(url)
+      window.location.href = "##{url}"
 
     scope.loadFilms = ->
       scope.loadFilmsFromBackend()
