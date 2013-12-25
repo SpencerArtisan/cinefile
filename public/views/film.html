@@ -1,27 +1,25 @@
 <div id="template" ng-init="loadFilm()">
   <header>
-  <a id="back" href="#/">
-    <span class="topcoat-icon topcoat-icon--back"></span>
-  </a>
-  <h1>{{short_title(film)}}</h1>
+    <a id="back" href="#/">
+      <span class="topcoat-icon topcoat-icon--back"></span>
+    </a>
+    <h1>{{short_title(film)}}</h1>
   </header>
 
-  <div id="content" class="topcoat-list__container scroller">
+  <div id="content" class="scroller">
     <p class="rating">rated
       <span class="value">{{film.rating}}%</span>
     </p>
     <p ng-if="film.review != null && film.review != ''" class="review">{{film.review}}</p>
-    <ul class="topcoat-list list">
-      <li ng-repeat="date in filmDates()" class="topcoat-list__item day">
+
+    <ul class="list">
+      <li ng-repeat="date in filmDates()" class="day">
         <p>{{when_formatted(date)}}</p>
-        <ul class="topcoat-list list">
-          <li ng-repeat="showing in showingsOn(date)" class="topcoat-list__item film">
-            <a href="#/films/{{film.id}}/showings/{{showing.id}}">
-              <div class="film">
-                <p>{{showing.cinema}} - {{showing.times_on}}
-                <span class="chevron"></span>
-                </p>
-              </div>
+        <ul class="list">
+          <li ng-repeat="showing in showingsOn(date)">
+            <a class="film" href="#/films/{{film.id}}/showings/{{showing.id}}">
+              <span style="float:right" class="chevron"></span>
+              <span class="title">{{showing.cinema}} - {{showing.times_on}}</span>
             </a>
           </li>
         </ul>
