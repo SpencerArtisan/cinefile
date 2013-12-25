@@ -3,7 +3,7 @@ console.log "Initializing Angular App"
 app = angular.module("app", ["ngRoute", "ngResource"])
 
 app.config ["$routeProvider", (routeProvider) ->
-  routeProvider.when("/filmsby-date",
+  routeProvider.when("/films;by-date",
     templateUrl: "views/films_by_date.html"
     controller: "FilmsController"
   ).when("/",

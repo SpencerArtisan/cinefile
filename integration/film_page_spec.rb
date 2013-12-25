@@ -11,7 +11,7 @@ describe 'Film page' do
   context 'Selecting a film', js: true do
     before do
       visit '/'
-      click_on 'Gone With The Wind (1939)'
+      first("span", text: 'Gone With The Wind (1939)').click
     end
 
     it 'should show the film review' do

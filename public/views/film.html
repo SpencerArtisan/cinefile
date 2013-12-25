@@ -17,10 +17,10 @@
         <p>{{when_formatted(date)}}</p>
         <ul class="list">
           <li ng-repeat="showing in showingsOn(date)">
-            <a class="film" href="#/films/{{film.id}}/showings/{{showing.id}}">
+            <span class="film" ng-click='go("/films/{{film.id}}/showings/{{showing.id}}")'>
               <span style="float:right" class="chevron"></span>
               <span class="title">{{showing.cinema}} - {{showing.times_on}}</span>
-            </a>
+            </span>
           </li>
         </ul>
       </li>

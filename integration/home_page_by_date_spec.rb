@@ -11,7 +11,7 @@ describe 'Cinefile' do
   context 'clicking the date icon on the home page', js: true do
     before do
       visit '/'
-      click_on 'by-date'
+      find('#by-date').click
     end
 
     it 'should show the film names' do

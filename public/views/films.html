@@ -1,18 +1,18 @@
 <div id="template" ng-init="loadFilms()">
   <header>
     <h1>Classic Movies</h1>
-    <a class="right" id="by-date" ng-click='go("/filmsby-date")'>
+    <span class="right" id="by-date" ng-click='go("/films;by-date")'>
       <span class="topcoat-icon icon icon-calendar"></span>
-    </a>
+    </span>
   </header>
 
   <div class="scroller" >
     <ul class=list">
       <li ng-repeat="film in films">
-        <a class="film" href="#/films/{{film.id}}">
+        <span class="film" ng-click='go("/films/{{film.id}}")'>
           <span style="float:right" class="chevron"></span>
           <span class="title">{{film.title.trim()}}</span>
-        </a>
+        </span>
       </li>
     </ul>
   </div>

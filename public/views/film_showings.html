@@ -1,8 +1,8 @@
 <div id="template" ng-init="loadFilm()">
   <header>
-    <a id="back" href="#/films/{{film.id}}">
+    <span id="back" ng-click='go("#/films/{{film.id}}")'>
       <span class="topcoat-icon topcoat-icon--back"></span>
-    </a>
+    </span>
     <h1>{{short_title(film)}}</h1>
   </header>
 
@@ -12,12 +12,12 @@
         <div class="film">
           <p>{{when_formatted(showing.day_on)}}</p>
         </div>
-        <a href="#/films/{{film.id}}/showings/{{$index}}">
+        <span ng-click='go("#/films/{{film.id}}/showings/{{$index}}")'>
           <div class="film">
             <p>{{showing.cinema}} - {{showing.times_on}}</p>
             <span class="chevron"></span>
           </div>
-        </a>
+        </span>
       </li>
     </ul>
   </div>

@@ -11,8 +11,8 @@ describe 'Showings page' do
   context 'Selecting a film', js: true do
     before do
       visit '/'
-      click_on 'Gone With The Wind (1939)'
-      click_on 'Renoir - 13:30 18:20'
+      first("span", text: 'Gone With The Wind (1939)').click
+      first("span", text: 'Renoir - 13:30 18:20').click
     end
 
     it 'should show the film cinemas' do
