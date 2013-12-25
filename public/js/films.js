@@ -4,8 +4,9 @@
 
   angular.module("app").controller("FilmsController", [
     "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
-      scope.mainStyle = {
-        background: "red"
+      scope.go = function(url) {
+        console.log('sss');
+        return location.url(url);
       };
       scope.loadFilms = function() {
         return scope.loadFilmsFromBackend();

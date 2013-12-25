@@ -2,7 +2,9 @@
 
 angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location",
   (scope, routeParams, resource, location) ->
-    scope.mainStyle = {background: "red"}
+    scope.go = (url) ->
+      console.log 'sss'
+      location.url(url)
 
     scope.loadFilms = ->
       scope.loadFilmsFromBackend()

@@ -1,6 +1,6 @@
 <div id="template" ng-init="loadFilm()">
   <header>
-    <a id="back" href="#/">
+    <a id="back" ng-click='go("/")'>
       <span class="topcoat-icon topcoat-icon--back"></span>
     </a>
     <h1>{{short_title(film)}}</h1>
