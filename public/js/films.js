@@ -5,7 +5,7 @@
   angular.module("app").controller("FilmsController", [
     "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
       scope.go = function(url) {
-        return window.location.assign("#" + url);
+        return location.path("" + url);
       };
       scope.loadFilms = function() {
         return scope.loadFilmsFromBackend();

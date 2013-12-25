@@ -10,7 +10,7 @@
 
   app.config([
     "$routeProvider", function(routeProvider) {
-      return routeProvider.when("/films;by-date", {
+      return routeProvider.when("/filmsby-date", {
         templateUrl: "views/films_by_date.html",
         controller: "FilmsController"
       }).when("/", {
