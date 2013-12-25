@@ -163,7 +163,7 @@ li {
     margin: 0px;
     position: absolute;
     top: 0px; 
-    right: 20px;
+    right: 0px;
 }
 
 .icon {
@@ -171,9 +171,7 @@ li {
     -moz-background-size: cover;
     width: 20px;
     height: 20px;
-    margin-top: -4px;
-    margin-left:0px;
-    margin-right:-10px;
+    margin: 10px;
 }
 .icon-calendar {
     background: url("/images/calendar-25.png") no-repeat;
