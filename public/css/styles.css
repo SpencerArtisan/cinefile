@@ -42,9 +42,16 @@ a {
   font-size: 60px;
 }
 
-.title {
+.film {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+  position: relative;
   margin-left: 10px;
-  margin-right: 20px;
+}
+ 
+.title {
+  margin-right: 25px;
 }
 
 header {
@@ -132,9 +139,9 @@ li {
   font-weight: lighter;
 }
 
-/*.list > li:nth-of-type(1) {*/
-    /*border-top: none;*/
-/*}*/
+.list > li:last-of-type {
+  border-bottom: none;
+}
 
 .cinema {
   margin-left: 10px
@@ -163,9 +170,9 @@ li {
     -moz-background-size: cover;
     width: 20px;
     height: 20px;
-    margin-top: -6px;
+    margin-top: -4px;
     margin-left:0px;
-    margin-right:0px;
+    margin-right:-10px;
 }
 .icon-calendar {
     background: url("/images/calendar-25.png") no-repeat;
@@ -186,13 +193,6 @@ li {
     height: 20px;
 }
 
-.film {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: block;
-  position: relative;
-}
- 
 .chevron {
   position: absolute;
   background: transparent url("/images/next.svg");
