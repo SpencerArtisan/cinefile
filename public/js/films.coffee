@@ -5,44 +5,33 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.mainStyle = {background: "red"}
 
     scope.loadFilms = ->
-      success = (response) ->
-        scope.films = response.films
-      scope.loadFilmsFromBackend success
+      scope.loadFilmsFromBackend()
 
     scope.loadFilm = ->
-      success = (response) ->
-        scope.film = response.films[parseInt(routeParams.id) - 1]
+      scope.loadFilmsFromBackend ->
         background = "<div class='main' style=\"background: url(\'#{scope.film.image}\');background-size:320px 550px;background-repeat: no-repeat\"/>"
         $('#template').append(background)
-      scope.loadFilmsFromBackend success
 
     scope.loadShowing = ->
-      success = (response) ->
-        scope.film = response.films[parseInt(routeParams.id) - 1]
-        scope.showing = scope.film.showings[parseInt(routeParams.showing_id)]
-      scope.loadFilmsFromBackend success
-
-    scope.loadFilmsFromBackend = (success) ->
-      failure = (response) ->
-        console.log("films failed with " + response.status)
-      resource('/films', {}, {get: {method: 'GET', cache: true}}).get(success, failure)
-
-    scope.loadReview = ->
-      success = (response) ->
-        scope.film = response.films[parseInt(routeParams.id) - 1]
-        rottentomatoes = "<object data='#{scope.film.link}' type='text/html' style='margin-top:-155px' width='100%' height='3000px'>"
-        $('#content').append(rottentomatoes)
-      failure = (response) ->
-        console.log("films failed with " + response.status)
-      resource('/films', {}, {get: {method: 'GET', cache: true}}).get(success, failure)
+      scope.loadFilmsFromBackend()
 
     scope.loadCinema = ->
-      success = (response) ->
-        scope.film = response.films[parseInt(routeParams.id) - 1]
-        scope.showing = scope.film.showings[parseInt(routeParams.showing_id)]
+      scope.loadFilmsFromBackend ->
         map = "<iframe width='320' height='500' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.co.uk/maps?q=#{scope.showing.cinema}+cinema+london&amp;spn=0.028411,0.007193&amp;t=m&amp;output=embed'></iframe>"
         $('#content').append(map)
-      scope.loadFilmsFromBackend success
+
+    scope.loadFilmsFromBackend = (extra_success = null) ->
+      success = (response) ->
+        scope.films = response.films
+        scope.film = response.films[parseInt(routeParams.id) - 1] if routeParams.id
+        scope.showing = scope.film.showings[parseInt(routeParams.showing_id)] if routeParams.showing_id
+        _.each(scope.films, (film) ->
+            _.each(film.showings, (showing, index) ->
+                showing.id = index))
+        extra_success() if extra_success
+      failure = (response) ->
+        console.log("films failed with " + response.status)
+      resource('/films', {}, {get: {method: 'GET', cache: true}}).get(success, failure)
 
     scope.filmsDates = ->
       showings = (film.showings for film in scope.films)

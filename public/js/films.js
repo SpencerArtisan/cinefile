@@ -8,70 +8,56 @@
         background: "red"
       };
       scope.loadFilms = function() {
-        var success;
-        success = function(response) {
-          return scope.films = response.films;
-        };
-        return scope.loadFilmsFromBackend(success);
+        return scope.loadFilmsFromBackend();
       };
       scope.loadFilm = function() {
-        var success;
-        success = function(response) {
+        return scope.loadFilmsFromBackend(function() {
           var background;
-          scope.film = response.films[parseInt(routeParams.id) - 1];
           background = "<div class='main' style=\"background: url(\'" + scope.film.image + "\');background-size:320px 550px;background-repeat: no-repeat\"/>";
           return $('#template').append(background);
-        };
-        return scope.loadFilmsFromBackend(success);
+        });
       };
       scope.loadShowing = function() {
-        var success;
-        success = function(response) {
-          scope.film = response.films[parseInt(routeParams.id) - 1];
-          return scope.showing = scope.film.showings[parseInt(routeParams.showing_id)];
-        };
-        return scope.loadFilmsFromBackend(success);
-      };
-      scope.loadFilmsFromBackend = function(success) {
-        var failure;
-        failure = function(response) {
-          return console.log("films failed with " + response.status);
-        };
-        return resource('/films', {}, {
-          get: {
-            method: 'GET',
-            cache: true
-          }
-        }).get(success, failure);
-      };
-      scope.loadReview = function() {
-        var failure, success;
-        success = function(response) {
-          var rottentomatoes;
-          scope.film = response.films[parseInt(routeParams.id) - 1];
-          rottentomatoes = "<object data='" + scope.film.link + "' type='text/html' style='margin-top:-155px' width='100%' height='3000px'>";
-          return $('#content').append(rottentomatoes);
-        };
-        failure = function(response) {
-          return console.log("films failed with " + response.status);
-        };
-        return resource('/films', {}, {
-          get: {
-            method: 'GET',
-            cache: true
-          }
-        }).get(success, failure);
+        return scope.loadFilmsFromBackend();
       };
       scope.loadCinema = function() {
-        var success;
-        success = function(response) {
+        return scope.loadFilmsFromBackend(function() {
           var map;
-          scope.film = response.films[parseInt(routeParams.id) - 1];
-          scope.showing = scope.film.showings[parseInt(routeParams.showing_id)];
           map = "<iframe width='320' height='500' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.co.uk/maps?q=" + scope.showing.cinema + "+cinema+london&amp;spn=0.028411,0.007193&amp;t=m&amp;output=embed'></iframe>";
           return $('#content').append(map);
+        });
+      };
+      scope.loadFilmsFromBackend = function(extra_success) {
+        var failure, success;
+        if (extra_success == null) {
+          extra_success = null;
+        }
+        success = function(response) {
+          scope.films = response.films;
+          if (routeParams.id) {
+            scope.film = response.films[parseInt(routeParams.id) - 1];
+          }
+          if (routeParams.showing_id) {
+            scope.showing = scope.film.showings[parseInt(routeParams.showing_id)];
+          }
+          _.each(scope.films, function(film) {
+            return _.each(film.showings, function(showing, index) {
+              return showing.id = index;
+            });
+          });
+          if (extra_success) {
+            return extra_success();
+          }
         };
-        return scope.loadFilmsFromBackend(success);
+        failure = function(response) {
+          return console.log("films failed with " + response.status);
+        };
+        return resource('/films', {}, {
+          get: {
+            method: 'GET',
+            cache: true
+          }
+        }).get(success, failure);
       };
       scope.filmsDates = function() {
         var film, showings;

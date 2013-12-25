@@ -133,6 +133,13 @@
           scope.loadFilms();
           return httpBackend.flush();
         });
+        it("should assign ids to the showings", function() {
+          var showings;
+          showings = scope.films[0].showings;
+          expect(showings[0].id).toEqual(0);
+          expect(showings[1].id).toEqual(1);
+          return expect(showings[2].id).toEqual(2);
+        });
         it("should provide a list of dates for all films", function() {
           return expect(scope.filmsDates()).toEqual(["2001-12-25", "2001-12-26"]);
         });
