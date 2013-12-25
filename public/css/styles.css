@@ -158,26 +158,23 @@ li {
     right: 20px;
 }
 
-.icon-calendar {
-    background: url("/images/calendar-25.png") no-repeat;
+.icon {
     -webkit-background-size: cover;
     -moz-background-size: cover;
-    background-size: cover;
     width: 20px;
     height: 20px;
-    margin-left:10px;
-    margin-right:10px;
+    margin-top: -6px;
+    margin-left:0px;
+    margin-right:0px;
+}
+.icon-calendar {
+    background: url("/images/calendar-25.png") no-repeat;
+    background-size: cover;
 }
 
 .icon-movie {
     background: url("/images/movie-25.png") no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
     background-size: cover;
-    width: 20px;
-    height: 20px;
-    margin-left:10px;
-    margin-right:10px;
 }
 
 .topcoat-icon--back {
