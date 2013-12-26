@@ -9,12 +9,12 @@ gem 'sprockets'
 gem 'redis'
 gem 'rottentomatoes'
 
-group :test do
+#group :test, :development do
   gem 'rspec'
   gem 'rack-test'
   gem 'watir-webdriver'
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'timecop'
-end
+#end
 

@@ -1,6 +1,10 @@
 <div id="template" ng-init="loadFilms()">
   <header>
-    <h1>Classic Movies</h1>
+    <div>
+      <span class="previous">&nbsp;&nbsp;&nbsp;</span>
+      <h1>Classic Movies</h1>
+      <span class="next">&nbsp;&nbsp;&nbsp;</span>
+    </div>
     <span class="right" id="by-date" ng-click='go("/films;by-date")'>
       <span class="topcoat-icon icon icon-calendar"></span>
     </span>

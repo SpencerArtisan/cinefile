@@ -25,9 +25,7 @@ a {
 .review {
   margin: 0px;
   padding: 4px 15px 10px 20px;
-  /*background-color: rgba(255,255,255,0);*/
   background-color: rgba(0,0,0,0.05);
-  /*background-color: rgba(0,0,0,0.1);*/
   font-style: italic;
 }
 
@@ -36,7 +34,6 @@ a {
   padding: 0px 10px;
   padding-bottom: 0px;
   background-color: rgba(0,0,0,0.05);
-  /*background-color: rgba(255,255,255,0);*/
   font-weight: lighter;
   text-align: right;
   color: #444;
@@ -77,6 +74,12 @@ header {
     -webkit-touch-callout: none;
 }
 
+header div {
+    height:44px;
+    text-align: center;
+    margin: 0 30px;
+}
+
 header a {
   margin-left: 10px;
   color: #157dfb;
@@ -85,7 +88,7 @@ header a {
 }
 
 h1 {
-    display: block;
+    display: inline-block;
     padding: 0;
     font-size: 17px;
     white-space: nowrap;
@@ -95,7 +98,7 @@ h1 {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     box-flex: 1;
-    margin: 0 36px;
+    margin: 0px;
     font-weight: 500;
     -webkit-tap-highlight-color: transparent;
 }
@@ -184,6 +187,25 @@ li {
 .icon-movie {
     background: url("/images/movie-25.png") no-repeat;
     background-size: cover;
+}
+
+.previous {
+    background: url("/images/back.svg") no-repeat;
+    background-size: contain;
+    width: 14px;
+    height: 14px;
+    margin: 8px;
+    display: inline-block;
+    padding-top: 2px;
+}
+.next {
+    background: url("/images/next.svg") no-repeat;
+    background-size: contain;
+    width: 14px;
+    height: 14px;
+    margin: 8px;
+    display: inline-block;
+    padding-top: 2px;
 }
 
 .topcoat-icon--back {
