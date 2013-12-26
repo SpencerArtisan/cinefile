@@ -25,10 +25,13 @@
     return describe("Loading the films", function() {
       describe("which has not yet returned data from the server", function() {
         it("should provide a blank film title", function() {
-          return expect(scope.short_title(this.film)).toEqual("");
+          return expect(scope.short_title(scope.film)).toEqual("");
         });
-        return it("should provide an empty list of film dates", function() {
+        it("should provide an empty list of film dates", function() {
           return expect(scope.filmDates()).toEqual([]);
+        });
+        return it("should identify this as not a great film", function() {
+          return expect(scope.great(scope.film)).toBeFalsy();
         });
       });
       describe("which succeeds when retrieving from the server", function() {
@@ -50,6 +53,14 @@
           httpBackend.flush();
           this.film = scope.films[0];
           return scope.film = scope.films[0];
+        });
+        it("should identify if this is a great film", function() {
+          this.film.rating = 92;
+          return expect(scope.great(this.film)).toBeTruthy();
+        });
+        it("should identify if this is not a great film", function() {
+          this.film.rating = 91;
+          return expect(scope.great(this.film)).toBeFalsy();
         });
         it("should provide all the films", function() {
           return expect(scope.films.length).toEqual(1);

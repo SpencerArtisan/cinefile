@@ -141,8 +141,11 @@
       scope.showFilm = function(id) {
         return location.path("/films/" + id);
       };
-      return scope.link = function(film) {
+      scope.link = function(film) {
         return encodeURIComponent(film.link);
+      };
+      return scope.great = function(film) {
+        return film && film.rating && film.rating > 91;
       };
     }
   ]);

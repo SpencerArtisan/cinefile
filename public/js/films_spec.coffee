@@ -22,10 +22,13 @@ describe "FilmsController", ->
   describe "Loading the films", ->
     describe "which has not yet returned data from the server", ->
       it "should provide a blank film title", ->
-        expect(scope.short_title(@film)).toEqual("")
+        expect(scope.short_title(scope.film)).toEqual("")
 
       it "should provide an empty list of film dates", ->
         expect(scope.filmDates()).toEqual([])
+
+      it "should identify this as not a great film", ->
+        expect(scope.great(scope.film)).toBeFalsy()
 
     describe "which succeeds when retrieving from the server", ->
       beforeEach ->
@@ -39,6 +42,14 @@ describe "FilmsController", ->
         httpBackend.flush()
         @film = scope.films[0]
         scope.film = scope.films[0]
+
+      it "should identify if this is a great film", ->
+        @film.rating = 92
+        expect(scope.great(@film)).toBeTruthy()
+
+      it "should identify if this is not a great film", ->
+        @film.rating = 91
+        expect(scope.great(@film)).toBeFalsy()
 
       it "should provide all the films", ->
         expect(scope.films.length).toEqual(1)
