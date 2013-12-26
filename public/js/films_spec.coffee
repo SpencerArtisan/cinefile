@@ -122,6 +122,10 @@ describe "FilmsController", ->
       it "should provide a list of dates for all films", ->
         expect(scope.filmsDates()).toEqual(["2001-12-25", "2001-12-26"])
 
+      it "should provide a list of dates for all great films", ->
+        scope.filterGreatMovies()
+        expect(scope.filmsDates()).toEqual(["2001-12-26"])
+
       it "should toggle the filter", ->
         scope.filterGreatMovies()
         scope.filterGreatMovies()
@@ -134,6 +138,11 @@ describe "FilmsController", ->
       it "should get the films on a date", ->
         expect(scope.filmsOn("2001-12-25")).toEqual([scope.films[1]])
         expect(scope.filmsOn("2001-12-26")).toEqual([scope.films[0], scope.films[2]])
+
+      it "should get the great films on a date", ->
+        scope.filterGreatMovies()
+        expect(scope.filmsOn("2001-12-25")).toEqual([])
+        expect(scope.filmsOn("2001-12-26")).toEqual([scope.films[2]])
 
     describe "which retrieves a single film with multiple showings", ->
       beforeEach ->

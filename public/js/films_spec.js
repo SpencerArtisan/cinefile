@@ -159,6 +159,10 @@
         it("should provide a list of dates for all films", function() {
           return expect(scope.filmsDates()).toEqual(["2001-12-25", "2001-12-26"]);
         });
+        it("should provide a list of dates for all great films", function() {
+          scope.filterGreatMovies();
+          return expect(scope.filmsDates()).toEqual(["2001-12-26"]);
+        });
         it("should toggle the filter", function() {
           scope.filterGreatMovies();
           scope.filterGreatMovies();
@@ -168,9 +172,14 @@
           scope.film = scope.films[0];
           return expect(scope.filmDates()).toEqual(["2001-12-26"]);
         });
-        return it("should get the films on a date", function() {
+        it("should get the films on a date", function() {
           expect(scope.filmsOn("2001-12-25")).toEqual([scope.films[1]]);
           return expect(scope.filmsOn("2001-12-26")).toEqual([scope.films[0], scope.films[2]]);
+        });
+        return it("should get the great films on a date", function() {
+          scope.filterGreatMovies();
+          expect(scope.filmsOn("2001-12-25")).toEqual([]);
+          return expect(scope.filmsOn("2001-12-26")).toEqual([scope.films[2]]);
         });
       });
       return describe("which retrieves a single film with multiple showings", function() {

@@ -108,7 +108,7 @@
         var film, showings;
         showings = (function() {
           var _i, _len, _ref, _results;
-          _ref = scope.films;
+          _ref = scope.allFilms();
           _results = [];
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
             film = _ref[_i];
@@ -155,7 +155,7 @@
       };
       scope.filmsOn = function(day) {
         var film, _i, _len, _ref, _results;
-        _ref = scope.films;
+        _ref = scope.allFilms();
         _results = [];
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           film = _ref[_i];

@@ -62,7 +62,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       resource('/films', {}, {get: {method: 'GET', cache: true}}).get(success, failure)
 
     scope.filmsDates = ->
-      showings = (film.showings for film in scope.films)
+      showings = (film.showings for film in scope.allFilms())
       scope.showingDates(_.flatten(showings))
       
     scope.filmDates = ->
@@ -77,7 +77,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       (showing for showing in scope.film.showings when showing.day_on == day)
       
     scope.filmsOn = (day) ->
-      (film for film in scope.films when scope.isOn(film, day))
+      (film for film in scope.allFilms() when scope.isOn(film, day))
 
     scope.isOn = (film, day) ->
       _.some(film.showings, (showing) -> showing.day_on == day)
