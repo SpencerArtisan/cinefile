@@ -47,6 +47,7 @@ class FilmAugmenter
     film.rating = rotten_movie.ratings.critics_score
     film.rating = rotten_movie.ratings.audience_score unless film.rating && film.rating != -1
     film.rating = nil if film.rating == -1
+    film.language = "EN"
   end
 
   def best_match film, matches

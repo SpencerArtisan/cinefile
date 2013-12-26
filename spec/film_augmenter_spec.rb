@@ -41,21 +41,23 @@ describe FilmAugmenter do
     context 'When rotten tomatoes matches with no movies' do
       before do
         allow(RottenMovie).to receive(:find).and_return nil
+        @films = augmenter.get_films 'a postcode', 7, 42
       end
 
       it 'should return the same films as the datasource' do
-        films = augmenter.get_films 'a postcode', 7, 42
-        expect(films).to eq [film]
+        expect(@films).to eq [film]
       end
 
       it 'should leave the link as nil' do
-        films = augmenter.get_films 'a postcode', 7, 42
-        expect(films[0].link).to be_nil
+        expect(@films[0].link).to be_nil
       end
 
       it 'should leave the rating as nil' do
-        films = augmenter.get_films 'a postcode', 7, 42
-        expect(films[0].rating).to be_nil
+        expect(@films[0].rating).to be_nil
+      end
+
+      it 'should leave the language as nil' do
+        expect(@films[0].language).to be_nil
       end
     end
 
@@ -92,6 +94,12 @@ describe FilmAugmenter do
         allow(rotten_movie).to receive(:synopsis).and_return 'a synopsis'
         augmenter.get_films 'a postcode', 7, 42
         expect(film.synopsis).to eq 'a synopsis'
+      end
+
+      it 'should add a language for the film' do
+        #allow(rotten_movie).to receive(:synopsis).and_return 'a synopsis'
+        augmenter.get_films 'a postcode', 7, 42
+        expect(film.language).to eq 'EN'
       end
 
       context 'The theater release year is way out' do
