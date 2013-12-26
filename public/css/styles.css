@@ -29,6 +29,14 @@ a {
   font-style: italic;
 }
 
+.norating {
+  margin: 0px;
+  padding: 10px;
+  background-color: rgba(0,0,0,0.05);
+  font-weight: lighter;
+  text-align: right;
+  color: #444;
+}
 .rating {
   margin: 0px;
   padding: 0px 10px;

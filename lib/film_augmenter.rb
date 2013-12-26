@@ -36,7 +36,10 @@ class FilmAugmenter
   end
 
   def augment_with_movie film, rotten_movie
-    return unless rotten_movie
+    if rotten_movie.nil?
+      puts "No decent matches found.  #{film.title} will NOT be augmented"
+      return
+    end
     film.link = rotten_movie.links.alternate
     film.synopsis = rotten_movie.synopsis
     film.review = rotten_movie.critics_consensus

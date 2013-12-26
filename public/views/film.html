@@ -4,12 +4,14 @@
       <span class="topcoat-icon topcoat-icon--back"></span>
     </a>
     <div>
-    <h1>{{short_title(film)}}</h1>
+      <h1>{{short_title(film)}}</h1>
     <div>
   </header>
 
   <div id="content" class="scroller">
-    <p class="rating">rated
+    <p ng-if="film.rating == null" class="norating">rating unavailable
+    </p>
+    <p ng-if="film.rating" class="rating">rated
       <span class="value">{{film.rating}}%</span>
     </p>
     <p ng-if="film.review != null && film.review != ''" class="review">{{film.review}}</p>
