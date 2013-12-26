@@ -13,8 +13,10 @@
       scope.loadFilm = function() {
         return scope.loadFilmsFromBackend(function() {
           var background;
-          background = "<div class='main' style=\"background: url(\'" + scope.film.image + "\');background-size:320px 550px;background-repeat: no-repeat\"/>";
-          return $('#template').append(background);
+          if (scope.film.image) {
+            background = "<div class='main' style=\"background: url(\'" + scope.film.image + "\');background-size:320px 550px;background-repeat: no-repeat\"/>";
+            return $('#template').append(background);
+          }
         });
       };
       scope.loadShowing = function() {
