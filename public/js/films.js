@@ -55,7 +55,7 @@
         if (scope.categoryIndex === 3 && film.year < new Date().getFullYear() - 1) {
           return false;
         }
-        if (scope.categoryIndex === 1 && film.language === "EN") {
+        if (scope.categoryIndex === 1 && (film.language === null || film.language === "EN")) {
           return false;
         }
         return true;

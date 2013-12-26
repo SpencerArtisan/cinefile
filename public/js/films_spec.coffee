@@ -95,6 +95,11 @@ describe "FilmsController", ->
         scope.films[0].language = "EN"
         expect(scope.allFilms()).toEqual([])
 
+      it "should filter Foreign Movies to exclude films of unspecified language", ->
+        scope.categoryIndex = 1
+        scope.films[0].language = null
+        expect(scope.allFilms()).toEqual([])
+
   describe "Loading the films", ->
     describe "which has not yet returned data from the server", ->
       it "should provide a blank film title", ->

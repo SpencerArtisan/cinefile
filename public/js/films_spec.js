@@ -100,9 +100,14 @@
           scope.films[0].language = "FR";
           return expect(scope.allFilms()).toEqual(scope.films);
         });
-        return it("should filter Foreign Movies to exclude films in the English language", function() {
+        it("should filter Foreign Movies to exclude films in the English language", function() {
           scope.categoryIndex = 1;
           scope.films[0].language = "EN";
+          return expect(scope.allFilms()).toEqual([]);
+        });
+        return it("should filter Foreign Movies to exclude films of unspecified language", function() {
+          scope.categoryIndex = 1;
+          scope.films[0].language = null;
           return expect(scope.allFilms()).toEqual([]);
         });
       });
