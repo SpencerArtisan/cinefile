@@ -12,10 +12,9 @@ class FilmAugmenter
 
   def get_films postcode, days, max_cinemas
     films = @data_source.get_films postcode, days, max_cinemas
-    films.each_with_index do |film, i|
+    films.each do |film|
       begin
         augment film
-        film.id = i + 1
       rescue Exception => e
         puts "Exception whilst augmenting #{film.title}: #{e.inspect}"
         puts e.backtrace

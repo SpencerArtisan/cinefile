@@ -50,7 +50,7 @@ describe "FilmsController", ->
         httpBackend.expectGET("/films").respond(201, 
             films: 
                 [
-                    {id: 1, title: 'a film (1939)', showings:[{day_on: '2001-12-26'}]}
+                    {title: 'a film (1939)', showings:[{day_on: '2001-12-26'}]}
                 ]
         )
         scope.loadFilms()
@@ -116,7 +116,7 @@ describe "FilmsController", ->
         httpBackend.expectGET("/films").respond(201, 
             films: 
                 [
-                    {id: 1, title: 'a film (1939)', showings:[{day_on: '2001-12-26'}]}
+                    {title: 'a film (1939)', showings:[{day_on: '2001-12-26'}]}
                 ]
         )
         scope.loadFilms()
@@ -161,9 +161,9 @@ describe "FilmsController", ->
         httpBackend.expectGET("/films").respond(201, 
             films: 
                 [
-                    {id: 1, title: 'a film', rating: 42, showings:[{day_on: '2001-12-26'}]}
-                    {id: 2, title: 'another film', rating: 82, showings:[{day_on: '2001-12-25'}]}
-                    {id: 3, title: 'a third film', rating: 96, showings:[{day_on: '2001-12-26'}]}
+                    {title: 'a film', rating: 42, showings:[{day_on: '2001-12-26'}]}
+                    {title: 'another film', rating: 82, showings:[{day_on: '2001-12-25'}]}
+                    {title: 'a third film', rating: 96, showings:[{day_on: '2001-12-26'}]}
                 ]
         )
         scope.loadFilms()
@@ -206,7 +206,7 @@ describe "FilmsController", ->
         httpBackend.expectGET("/films").respond(201, 
             films: 
                 [
-                    {id: 1, title: 'a film', showings:
+                    {title: 'a film', showings:
                         [
                             {day_on: '2001-12-26'}
                             {day_on: '2001-12-25'}

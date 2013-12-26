@@ -58,11 +58,12 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.loadFilmsFromBackend = (extra_success = null) ->
       success = (response) ->
         scope.films = response.films
-        scope.film = response.films[parseInt(routeParams.id) - 1] if routeParams.id
+        scope.film = response.films[parseInt(routeParams.id)] if routeParams.id
         scope.showing = scope.film.showings[parseInt(routeParams.showing_id)] if routeParams.showing_id
-        _.each(scope.films, (film) ->
-            _.each(film.showings, (showing, index) ->
-                showing.id = index))
+        _.each(scope.films, (film, film_index) ->
+            film.id = film_index
+            _.each(film.showings, (showing, showing_index) ->
+                showing.id = showing_index))
         extra_success() if extra_success
       failure = (response) ->
         console.log("films failed with " + response.status)

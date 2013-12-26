@@ -14,12 +14,6 @@ describe FilmAugmenter do
       allow(data_source).to receive(:get_films).and_return [film, film2]
       allow(RottenMovie).to receive(:find).and_return []
     end
-
-    it 'should assign ids to the films' do
-      films = augmenter.get_films 'a postcode', 7, 42
-      expect(film.id).to eq 1
-      expect(film2.id).to eq 2
-    end
   end
 
   context 'One film' do

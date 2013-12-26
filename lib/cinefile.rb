@@ -35,10 +35,6 @@ get '/films' do
   films.to_json
 end
 
-get '/films/:id' do
-  films[params[:id].to_i - 1].to_json
-end
-
 get '/films;clear_cache' do
   Cache.new.clear
 end

@@ -3,7 +3,7 @@ require 'ostruct'
 require 'json'
 
 class Film
-  attr_accessor :year, :rating, :id, :review, :image, :language
+  attr_accessor :year, :rating, :review, :image, :language
 
   def initialize title, year, cinema, day_on, times_on
     @title = title
@@ -35,7 +35,7 @@ class Film
 
   def to_hash
     showings_hash = showings.map {|showing| {cinema: showing.cinema.name, day_on: showing.day_on, times_on: showing.times_on}}
-    {id: id, title: title, year: year, rating: rating, image: image, review: review, language: language, showings: showings_hash}
+    {title: title, year: year, rating: rating, image: image, review: review, language: language, showings: showings_hash}
   end
 
   def to_json

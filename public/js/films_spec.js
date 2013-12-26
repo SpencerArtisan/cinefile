@@ -53,7 +53,6 @@
           httpBackend.expectGET("/films").respond(201, {
             films: [
               {
-                id: 1,
                 title: 'a film (1939)',
                 showings: [
                   {
@@ -129,7 +128,6 @@
           httpBackend.expectGET("/films").respond(201, {
             films: [
               {
-                id: 1,
                 title: 'a film (1939)',
                 showings: [
                   {
@@ -182,7 +180,6 @@
           httpBackend.expectGET("/films").respond(201, {
             films: [
               {
-                id: 1,
                 title: 'a film',
                 rating: 42,
                 showings: [
@@ -191,7 +188,6 @@
                   }
                 ]
               }, {
-                id: 2,
                 title: 'another film',
                 rating: 82,
                 showings: [
@@ -200,7 +196,6 @@
                   }
                 ]
               }, {
-                id: 3,
                 title: 'a third film',
                 rating: 96,
                 showings: [
@@ -252,7 +247,6 @@
           httpBackend.expectGET("/films").respond(201, {
             films: [
               {
-                id: 1,
                 title: 'a film',
                 showings: [
                   {

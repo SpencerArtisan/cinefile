@@ -91,14 +91,15 @@
         success = function(response) {
           scope.films = response.films;
           if (routeParams.id) {
-            scope.film = response.films[parseInt(routeParams.id) - 1];
+            scope.film = response.films[parseInt(routeParams.id)];
           }
           if (routeParams.showing_id) {
             scope.showing = scope.film.showings[parseInt(routeParams.showing_id)];
           }
-          _.each(scope.films, function(film) {
-            return _.each(film.showings, function(showing, index) {
-              return showing.id = index;
+          _.each(scope.films, function(film, film_index) {
+            film.id = film_index;
+            return _.each(film.showings, function(showing, showing_index) {
+              return showing.id = showing_index;
             });
           });
           if (extra_success) {
