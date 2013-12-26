@@ -187,6 +187,13 @@ li {
     height: 20px;
     margin: 10px;
 }
+
+.icon-great {
+    background: url("/images/star.png") no-repeat;
+    background-size: contain;
+    margin-left: -24px;
+}
+
 .icon-calendar {
     background: url("/images/calendar-25.png") no-repeat;
     background-size: cover;

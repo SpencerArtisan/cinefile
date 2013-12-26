@@ -16,6 +16,7 @@
         <span class="film" ng-click='go("/films/{{film.id}}")'>
           <span style="float:right" class="chevron"></span>
           <span class="title">{{film.title.trim()}}</span>
+          <span ng-if="great(film)" class="icon-great">&nbsp;&nbsp;&nbsp;</span>
         </span>
       </li>
     </ul>
