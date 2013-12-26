@@ -75,9 +75,24 @@
           scope.films[0].year = 1979;
           return expect(scope.allFilms()).toEqual(scope.films);
         });
-        return it("should filter Classic Movies to exclude films after 1980", function() {
+        it("should filter Classic Movies to exclude films after 1980", function() {
           scope.categoryIndex = 2;
           scope.films[0].year = 1980;
+          return expect(scope.allFilms()).toEqual([]);
+        });
+        it("should filter Latest Releases to include films made this year", function() {
+          scope.categoryIndex = 3;
+          scope.films[0].year = new Date().getFullYear();
+          return expect(scope.allFilms()).toEqual(scope.films);
+        });
+        it("should filter Latest Releases to include films made last year", function() {
+          scope.categoryIndex = 3;
+          scope.films[0].year = new Date().getFullYear() - 1;
+          return expect(scope.allFilms()).toEqual(scope.films);
+        });
+        return it("should filter Latest Releases to exclude films made two years ago", function() {
+          scope.categoryIndex = 3;
+          scope.films[0].year = new Date().getFullYear() - 2;
           return expect(scope.allFilms()).toEqual([]);
         });
       });

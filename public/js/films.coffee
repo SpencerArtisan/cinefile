@@ -34,6 +34,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.passesFilter = (film) ->
       return false if scope.filterOn && !scope.great(film)
       return false if scope.categoryIndex == 2 && film.year >= 1980
+      return false if scope.categoryIndex == 3 && film.year < new Date().getFullYear() - 1
       true
 
     scope.loadFilms = ->

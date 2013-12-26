@@ -70,6 +70,20 @@ describe "FilmsController", ->
         scope.films[0].year = 1980
         expect(scope.allFilms()).toEqual([])
 
+      it "should filter Latest Releases to include films made this year", ->
+        scope.categoryIndex = 3
+        scope.films[0].year = new Date().getFullYear()
+        expect(scope.allFilms()).toEqual(scope.films)
+
+      it "should filter Latest Releases to include films made last year", ->
+        scope.categoryIndex = 3
+        scope.films[0].year = new Date().getFullYear() - 1
+        expect(scope.allFilms()).toEqual(scope.films)
+
+      it "should filter Latest Releases to exclude films made two years ago", ->
+        scope.categoryIndex = 3
+        scope.films[0].year = new Date().getFullYear() - 2
+        expect(scope.allFilms()).toEqual([])
 
   describe "Loading the films", ->
     describe "which has not yet returned data from the server", ->

@@ -52,6 +52,9 @@
         if (scope.categoryIndex === 2 && film.year >= 1980) {
           return false;
         }
+        if (scope.categoryIndex === 3 && film.year < new Date().getFullYear() - 1) {
+          return false;
+        }
         return true;
       };
       scope.loadFilms = function() {
