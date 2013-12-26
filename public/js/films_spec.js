@@ -22,29 +22,64 @@
         return httpBackend = $injector.get("$httpBackend");
       });
     });
-    describe("Cateories", function() {
-      it("should have an initial category of Classic Movies", function() {
-        return expect(scope.category()).toEqual("Classic Movies");
+    describe("Categories", function() {
+      it("should have an initial category of All Movies", function() {
+        return expect(scope.category()).toEqual("All Movies");
       });
       it("should be able to go to the previous category", function() {
         scope.previousCategory();
-        return expect(scope.category()).toEqual("Foreign Movies");
+        return expect(scope.category()).toEqual("Latest Releases");
       });
       it("should be able to cycle round the categories backwards", function() {
         scope.previousCategory();
         scope.previousCategory();
         scope.previousCategory();
-        return expect(scope.category()).toEqual("Classic Movies");
+        scope.previousCategory();
+        return expect(scope.category()).toEqual("All Movies");
       });
       it("should be able to cycle round the categories forwards", function() {
         scope.nextCategory();
         scope.nextCategory();
         scope.nextCategory();
-        return expect(scope.category()).toEqual("Classic Movies");
-      });
-      return it("should be able to go to the next category", function() {
         scope.nextCategory();
-        return expect(scope.category()).toEqual("Latest Releases");
+        return expect(scope.category()).toEqual("All Movies");
+      });
+      it("should be able to go to the next category", function() {
+        scope.nextCategory();
+        return expect(scope.category()).toEqual("Foreign Movies");
+      });
+      return describe("Filtering", function() {
+        beforeEach(function() {
+          httpBackend.expectGET("/films").respond(201, {
+            films: [
+              {
+                id: 1,
+                title: 'a film (1939)',
+                showings: [
+                  {
+                    day_on: '2001-12-26'
+                  }
+                ]
+              }
+            ]
+          });
+          scope.loadFilms();
+          return httpBackend.flush();
+        });
+        it("shouldn't filter with the All category", function() {
+          scope.categoryIndex = 0;
+          return expect(scope.allFilms()).toEqual(scope.films);
+        });
+        it("should filter Classic Movies to include films before 1980", function() {
+          scope.categoryIndex = 2;
+          scope.films[0].year = 1979;
+          return expect(scope.allFilms()).toEqual(scope.films);
+        });
+        return it("should filter Classic Movies to exclude films after 1980", function() {
+          scope.categoryIndex = 2;
+          scope.films[0].year = 1980;
+          return expect(scope.allFilms()).toEqual([]);
+        });
       });
     });
     return describe("Loading the films", function() {

@@ -2,8 +2,8 @@
 
 angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location",
   (scope, routeParams, resource, location) ->
-    scope.categories = ["Foreign Movies", "Classic Movies", "Latest Releases"]
-    scope.categoryIndex = 1
+    scope.categories = ["All Movies", "Foreign Movies", "Classic Movies", "Latest Releases"]
+    scope.categoryIndex = 0
     scope.filterOn = false
 
     scope.previousCategory = ->
@@ -29,7 +29,12 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       scope.filterOn = !scope.filterOn
 
     scope.allFilms = ->
-      if scope.filterOn then (film for film in scope.films when scope.great(film)) else scope.films
+      (film for film in scope.films when scope.passesFilter(film))
+
+    scope.passesFilter = (film) ->
+      return false if scope.filterOn && !scope.great(film)
+      return false if scope.categoryIndex == 2 && film.year >= 1980
+      true
 
     scope.loadFilms = ->
       scope.loadFilmsFromBackend()

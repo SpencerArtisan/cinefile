@@ -4,8 +4,8 @@
 
   angular.module("app").controller("FilmsController", [
     "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
-      scope.categories = ["Foreign Movies", "Classic Movies", "Latest Releases"];
-      scope.categoryIndex = 1;
+      scope.categories = ["All Movies", "Foreign Movies", "Classic Movies", "Latest Releases"];
+      scope.categoryIndex = 0;
       scope.filterOn = false;
       scope.previousCategory = function() {
         return scope.changeCategory(-1);
@@ -35,19 +35,24 @@
       };
       scope.allFilms = function() {
         var film, _i, _len, _ref, _results;
-        if (scope.filterOn) {
-          _ref = scope.films;
-          _results = [];
-          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            film = _ref[_i];
-            if (scope.great(film)) {
-              _results.push(film);
-            }
+        _ref = scope.films;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          film = _ref[_i];
+          if (scope.passesFilter(film)) {
+            _results.push(film);
           }
-          return _results;
-        } else {
-          return scope.films;
         }
+        return _results;
+      };
+      scope.passesFilter = function(film) {
+        if (scope.filterOn && !scope.great(film)) {
+          return false;
+        }
+        if (scope.categoryIndex === 2 && film.year >= 1980) {
+          return false;
+        }
+        return true;
       };
       scope.loadFilms = function() {
         return scope.loadFilmsFromBackend();

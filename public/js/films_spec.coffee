@@ -19,29 +19,57 @@ describe "FilmsController", ->
       httpBackend = $injector.get("$httpBackend")
     )
 
-  describe "Cateories", ->
-    it "should have an initial category of Classic Movies", ->
-      expect(scope.category()).toEqual("Classic Movies")
+  describe "Categories", ->
+    it "should have an initial category of All Movies", ->
+      expect(scope.category()).toEqual("All Movies")
 
     it "should be able to go to the previous category", ->
       scope.previousCategory()
-      expect(scope.category()).toEqual("Foreign Movies")
+      expect(scope.category()).toEqual("Latest Releases")
 
     it "should be able to cycle round the categories backwards", ->
       scope.previousCategory()
       scope.previousCategory()
       scope.previousCategory()
-      expect(scope.category()).toEqual("Classic Movies")
+      scope.previousCategory()
+      expect(scope.category()).toEqual("All Movies")
 
     it "should be able to cycle round the categories forwards", ->
       scope.nextCategory()
       scope.nextCategory()
       scope.nextCategory()
-      expect(scope.category()).toEqual("Classic Movies")
+      scope.nextCategory()
+      expect(scope.category()).toEqual("All Movies")
 
     it "should be able to go to the next category", ->
       scope.nextCategory()
-      expect(scope.category()).toEqual("Latest Releases")
+      expect(scope.category()).toEqual("Foreign Movies")
+
+    describe "Filtering", ->
+      beforeEach ->
+        httpBackend.expectGET("/films").respond(201, 
+            films: 
+                [
+                    {id: 1, title: 'a film (1939)', showings:[{day_on: '2001-12-26'}]}
+                ]
+        )
+        scope.loadFilms()
+        httpBackend.flush()
+
+      it "shouldn't filter with the All category", ->
+        scope.categoryIndex = 0
+        expect(scope.allFilms()).toEqual(scope.films)
+
+      it "should filter Classic Movies to include films before 1980", ->
+        scope.categoryIndex = 2
+        scope.films[0].year = 1979
+        expect(scope.allFilms()).toEqual(scope.films)
+
+      it "should filter Classic Movies to exclude films after 1980", ->
+        scope.categoryIndex = 2
+        scope.films[0].year = 1980
+        expect(scope.allFilms()).toEqual([])
+
 
   describe "Loading the films", ->
     describe "which has not yet returned data from the server", ->
