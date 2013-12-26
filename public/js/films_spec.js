@@ -90,9 +90,19 @@
           scope.films[0].year = new Date().getFullYear() - 1;
           return expect(scope.allFilms()).toEqual(scope.films);
         });
-        return it("should filter Latest Releases to exclude films made two years ago", function() {
+        it("should filter Latest Releases to exclude films made two years ago", function() {
           scope.categoryIndex = 3;
           scope.films[0].year = new Date().getFullYear() - 2;
+          return expect(scope.allFilms()).toEqual([]);
+        });
+        it("should filter Foreign Movies to include films not in the English language", function() {
+          scope.categoryIndex = 1;
+          scope.films[0].language = "FR";
+          return expect(scope.allFilms()).toEqual(scope.films);
+        });
+        return it("should filter Foreign Movies to exclude films in the English language", function() {
+          scope.categoryIndex = 1;
+          scope.films[0].language = "EN";
           return expect(scope.allFilms()).toEqual([]);
         });
       });

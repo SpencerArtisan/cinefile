@@ -85,6 +85,16 @@ describe "FilmsController", ->
         scope.films[0].year = new Date().getFullYear() - 2
         expect(scope.allFilms()).toEqual([])
 
+      it "should filter Foreign Movies to include films not in the English language", ->
+        scope.categoryIndex = 1
+        scope.films[0].language = "FR"
+        expect(scope.allFilms()).toEqual(scope.films)
+
+      it "should filter Foreign Movies to exclude films in the English language", ->
+        scope.categoryIndex = 1
+        scope.films[0].language = "EN"
+        expect(scope.allFilms()).toEqual([])
+
   describe "Loading the films", ->
     describe "which has not yet returned data from the server", ->
       it "should provide a blank film title", ->
