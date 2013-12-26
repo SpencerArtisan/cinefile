@@ -4,20 +4,32 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
   (scope, routeParams, resource, location) ->
     scope.categories = ["Foreign Movies", "Classic Movies", "Latest Releases"]
     scope.categoryIndex = 1
+    scope.filterOn = false
 
     scope.previousCategory = ->
-      scope.categoryIndex += 2
-      scope.categoryIndex %= 3
+      scope.changeCategory -1
 
     scope.nextCategory = ->
-      scope.categoryIndex += 1
-      scope.categoryIndex %= 3
+      scope.changeCategory 1
+
+    scope.changeCategory = (delta) ->
+      scope.categoryIndex += delta + scope.categories.length
+      scope.categoryIndex %= scope.categories.length
 
     scope.category = ->
       scope.categories[scope.categoryIndex]
 
     scope.go = (url) ->
       location.path("#{url}")
+
+    scope.filterStyle = ->
+      if scope.filterOn then "filter-on" else "filter-off"
+
+    scope.filterGreatMovies = ->
+      scope.filterOn = !scope.filterOn
+
+    scope.allFilms = ->
+      if scope.filterOn then (film for film in scope.films when scope.great(film)) else scope.films
 
     scope.loadFilms = ->
       scope.loadFilmsFromBackend()

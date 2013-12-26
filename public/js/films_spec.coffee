@@ -104,16 +104,28 @@ describe "FilmsController", ->
         httpBackend.expectGET("/films").respond(201, 
             films: 
                 [
-                    {id: 1, title: 'a film', showings:[{day_on: '2001-12-26'}]}
-                    {id: 2, title: 'another film', showings:[{day_on: '2001-12-25'}]}
-                    {id: 2, title: 'a third film', showings:[{day_on: '2001-12-26'}]}
+                    {id: 1, title: 'a film', rating: 42, showings:[{day_on: '2001-12-26'}]}
+                    {id: 2, title: 'another film', rating: 82, showings:[{day_on: '2001-12-25'}]}
+                    {id: 3, title: 'a third film', rating: 96, showings:[{day_on: '2001-12-26'}]}
                 ]
         )
         scope.loadFilms()
         httpBackend.flush()
 
+      it "should provide a list of all films", ->
+        expect(scope.allFilms()).toEqual(scope.films)
+
+      it "should provide a list of all great films", ->
+        scope.filterGreatMovies()
+        expect(scope.allFilms()).toEqual([scope.films[2]])
+
       it "should provide a list of dates for all films", ->
         expect(scope.filmsDates()).toEqual(["2001-12-25", "2001-12-26"])
+
+      it "should toggle the filter", ->
+        scope.filterGreatMovies()
+        scope.filterGreatMovies()
+        expect(scope.allFilms()).toEqual(scope.films)
 
       it "should provide a list of dates for a specific film", ->
         scope.film = scope.films[0]

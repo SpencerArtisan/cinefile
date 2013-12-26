@@ -6,19 +6,48 @@
     "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
       scope.categories = ["Foreign Movies", "Classic Movies", "Latest Releases"];
       scope.categoryIndex = 1;
+      scope.filterOn = false;
       scope.previousCategory = function() {
-        scope.categoryIndex += 2;
-        return scope.categoryIndex %= 3;
+        return scope.changeCategory(-1);
       };
       scope.nextCategory = function() {
-        scope.categoryIndex += 1;
-        return scope.categoryIndex %= 3;
+        return scope.changeCategory(1);
+      };
+      scope.changeCategory = function(delta) {
+        scope.categoryIndex += delta + scope.categories.length;
+        return scope.categoryIndex %= scope.categories.length;
       };
       scope.category = function() {
         return scope.categories[scope.categoryIndex];
       };
       scope.go = function(url) {
         return location.path("" + url);
+      };
+      scope.filterStyle = function() {
+        if (scope.filterOn) {
+          return "filter-on";
+        } else {
+          return "filter-off";
+        }
+      };
+      scope.filterGreatMovies = function() {
+        return scope.filterOn = !scope.filterOn;
+      };
+      scope.allFilms = function() {
+        var film, _i, _len, _ref, _results;
+        if (scope.filterOn) {
+          _ref = scope.films;
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            film = _ref[_i];
+            if (scope.great(film)) {
+              _results.push(film);
+            }
+          }
+          return _results;
+        } else {
+          return scope.films;
+        }
       };
       scope.loadFilms = function() {
         return scope.loadFilmsFromBackend();

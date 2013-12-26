@@ -119,6 +119,7 @@
               {
                 id: 1,
                 title: 'a film',
+                rating: 42,
                 showings: [
                   {
                     day_on: '2001-12-26'
@@ -127,14 +128,16 @@
               }, {
                 id: 2,
                 title: 'another film',
+                rating: 82,
                 showings: [
                   {
                     day_on: '2001-12-25'
                   }
                 ]
               }, {
-                id: 2,
+                id: 3,
                 title: 'a third film',
+                rating: 96,
                 showings: [
                   {
                     day_on: '2001-12-26'
@@ -146,8 +149,20 @@
           scope.loadFilms();
           return httpBackend.flush();
         });
+        it("should provide a list of all films", function() {
+          return expect(scope.allFilms()).toEqual(scope.films);
+        });
+        it("should provide a list of all great films", function() {
+          scope.filterGreatMovies();
+          return expect(scope.allFilms()).toEqual([scope.films[2]]);
+        });
         it("should provide a list of dates for all films", function() {
           return expect(scope.filmsDates()).toEqual(["2001-12-25", "2001-12-26"]);
+        });
+        it("should toggle the filter", function() {
+          scope.filterGreatMovies();
+          scope.filterGreatMovies();
+          return expect(scope.allFilms()).toEqual(scope.films);
         });
         it("should provide a list of dates for a specific film", function() {
           scope.film = scope.films[0];

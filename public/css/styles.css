@@ -66,7 +66,6 @@ header {
     position: absolute;
     top:0;
     height: 44px;
-    line-height: 44px;
     width: 100%;
     padding-top: 0;
     border-bottom: 1px solid rgba(50, 50, 50, 0.5);
@@ -83,6 +82,7 @@ header {
 }
 
 header div {
+    line-height: 44px;
     height:44px;
     text-align: center;
     margin: 0 30px;
@@ -178,6 +178,30 @@ li {
     position: absolute;
     top: 0px; 
     right: 0px;
+}
+
+.filter-off {
+  margin: 10px;
+  position: absolute;
+  background: url("/images/star.png") no-repeat;
+  background-size: contain;
+  width: 10px;
+  top: 5px;
+  margin-left:14px;
+}
+
+.filter-on {
+  margin: 10px;
+  position: absolute;
+  background: url("/images/filled-star.png") no-repeat;
+  background-size: contain;
+}
+
+.page-back {
+  margin: 10px;
+  position: absolute;
+  background: url("/images/back_light.svg") no-repeat;
+  background-size: contain;
 }
 
 .icon {

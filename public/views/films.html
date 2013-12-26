@@ -1,5 +1,6 @@
 <div id="template" ng-init="loadFilms()">
   <header>
+    <span ng-class="filterStyle()" ng-click='filterGreatMovies()'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <div>
       <span class="previous" ng-click="previousCategory()">&nbsp;&nbsp;&nbsp;</span>
       <h1>{{category()}}</h1>
@@ -12,7 +13,7 @@
 
   <div class="scroller" >
     <ul class=list">
-      <li ng-repeat="film in films">
+      <li ng-repeat="film in allFilms()">
         <span class="film" ng-click='go("/films/{{film.id}}")'>
           <span style="float:right" class="chevron"></span>
           <span class="title">{{film.title.trim()}}</span>
