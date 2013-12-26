@@ -1,11 +1,12 @@
+require 'forwardable'
+
 class FilmFilter
   def initialize datasource
     @datasource = datasource
   end
 
-  def get_films cinema, day
-    films = @datasource.get_films cinema, day
-    films.select {|film| film.year < 1980}
+  def get_films *args
+    @datasource.get_films *args
   end
 
   def find_cinemas postcode, max_cinemas

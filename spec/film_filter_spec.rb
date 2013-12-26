@@ -11,14 +11,8 @@ describe FilmFilter do
       allow(datasource).to receive(:get_films).and_return [film]
     end
 
-    it 'should include films which are old' do
-      allow(film).to receive(:year).and_return 1979
+    it 'should include all films which are old' do
       expect(filter.get_films(cinema, 1)).to eq [film]
-    end
-
-    it 'should exclude films which are new' do
-      allow(film).to receive(:year).and_return 1980
-      expect(filter.get_films(cinema, 1)).to eq []
     end
   end
 
