@@ -20,12 +20,19 @@ describe "FilmsController", ->
     )
 
   describe "Loading the films", ->
+    describe "which has not yet returned data from the server", ->
+      it "should provide a blank film title", ->
+        expect(scope.short_title(@film)).toEqual("")
+
+      it "should provide an empty list of film dates", ->
+        expect(scope.filmDates()).toEqual([])
+
     describe "which succeeds when retrieving from the server", ->
       beforeEach ->
         httpBackend.expectGET("/films").respond(201, 
             films: 
                 [
-                    {id: 1, title: 'a film', showings:[{day_on: '2001-12-26'}]}
+                    {id: 1, title: 'a film (1939)', showings:[{day_on: '2001-12-26'}]}
                 ]
         )
         scope.loadFilms()
@@ -37,13 +44,16 @@ describe "FilmsController", ->
         expect(scope.films.length).toEqual(1)
 
       it "should provide the film title", ->
-        expect(@film.title).toEqual("a film")
+        expect(@film.title).toEqual("a film (1939)")
+
+      it "should provide the film title without the year", ->
+        expect(scope.short_title(@film)).toEqual("a film")
 
       it "should provide the film date", ->
         expect(@film.showings[0].day_on).toEqual("2001-12-26")
 
       it "should provide a formatted date", ->
-        expect(scope.when_formatted(@film.day_on)).toEqual("Wednesday 25 December")
+        expect(scope.when_formatted(@film.day_on)).toEqual("Thursday 26 December")
 
       it "should provide a list of dates for a specific film", ->
         expect(scope.filmDates()).toEqual(["2001-12-26"])

@@ -20,7 +20,7 @@ class FindAnyFilm
 end
 class RottenMovie
   def self.find title
-    double links: double(alternate: 'a link'), ratings: double(critics_score: 92), release_dates: double(theater: '1939-12-25'), posters: double(original: 'an image link'), synopsis: 'a synopsis', critics_consensus: 'a review', year: 2001
+    OpenStruct.new({links: OpenStruct.new({alternate: 'a link'}), ratings: OpenStruct.new({critics_score: 92}), release_dates: OpenStruct.new({theater: '1939-12-25'}), posters: OpenStruct.new({original: 'images/Frankenstein3.png'}), synopsis: 'a synopsis', critics_consensus: 'a review', year: 2001})
   end
 end
 

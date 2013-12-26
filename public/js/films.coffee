@@ -39,7 +39,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       scope.showingDates(_.flatten(showings))
       
     scope.filmDates = ->
-      scope.showingDates(scope.film.showings)
+      if scope.film then scope.showingDates(scope.film.showings) else []
 
     scope.showingDates = (showings) ->
       days_on = (showing.day_on for showing in showings)
@@ -59,7 +59,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       moment(day).format('dddd D MMMM')
 
     scope.short_title = (film) ->
-      film.title.split("(")[0]
+      if film then film.title.split("(")[0].trim() else ""
 
     scope.showFilm = (id) ->
       location.path("/films/#{id}")

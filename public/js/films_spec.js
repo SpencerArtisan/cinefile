@@ -23,13 +23,21 @@
       });
     });
     return describe("Loading the films", function() {
+      describe("which has not yet returned data from the server", function() {
+        it("should provide a blank film title", function() {
+          return expect(scope.short_title(this.film)).toEqual("");
+        });
+        return it("should provide an empty list of film dates", function() {
+          return expect(scope.filmDates()).toEqual([]);
+        });
+      });
       describe("which succeeds when retrieving from the server", function() {
         beforeEach(function() {
           httpBackend.expectGET("/films").respond(201, {
             films: [
               {
                 id: 1,
-                title: 'a film',
+                title: 'a film (1939)',
                 showings: [
                   {
                     day_on: '2001-12-26'
@@ -47,13 +55,16 @@
           return expect(scope.films.length).toEqual(1);
         });
         it("should provide the film title", function() {
-          return expect(this.film.title).toEqual("a film");
+          return expect(this.film.title).toEqual("a film (1939)");
+        });
+        it("should provide the film title without the year", function() {
+          return expect(scope.short_title(this.film)).toEqual("a film");
         });
         it("should provide the film date", function() {
           return expect(this.film.showings[0].day_on).toEqual("2001-12-26");
         });
         it("should provide a formatted date", function() {
-          return expect(scope.when_formatted(this.film.day_on)).toEqual("Wednesday 25 December");
+          return expect(scope.when_formatted(this.film.day_on)).toEqual("Thursday 26 December");
         });
         it("should provide a list of dates for a specific film", function() {
           return expect(scope.filmDates()).toEqual(["2001-12-26"]);

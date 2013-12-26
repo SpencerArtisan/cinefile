@@ -74,7 +74,11 @@
         return scope.showingDates(_.flatten(showings));
       };
       scope.filmDates = function() {
-        return scope.showingDates(scope.film.showings);
+        if (scope.film) {
+          return scope.showingDates(scope.film.showings);
+        } else {
+          return [];
+        }
       };
       scope.showingDates = function(showings) {
         var days_on, showing;
@@ -125,7 +129,11 @@
         return moment(day).format('dddd D MMMM');
       };
       scope.short_title = function(film) {
-        return film.title.split("(")[0];
+        if (film) {
+          return film.title.split("(")[0].trim();
+        } else {
+          return "";
+        }
       };
       scope.showFilm = function(id) {
         return location.path("/films/" + id);
