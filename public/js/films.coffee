@@ -10,9 +10,9 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
 
     scope.loadFilm = ->
       scope.loadFilmsFromBackend ->
-        if scope.film.image
-          background = "<div class='main' style=\"background: url(\'#{scope.film.image}\');background-size:320px 550px;background-repeat: no-repeat\"/>"
-          $('#template').append(background)
+        scope.film.image = '/images/startup-frankenstein.png' unless scope.film.image
+        background = "<div class='main' style=\"background: url(\'#{scope.film.image}\');background-size:320px 550px;background-repeat: no-repeat\"/>"
+        $('#template').append(background)
 
     scope.loadShowing = ->
       scope.loadFilmsFromBackend()
