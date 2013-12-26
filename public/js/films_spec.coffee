@@ -19,6 +19,30 @@ describe "FilmsController", ->
       httpBackend = $injector.get("$httpBackend")
     )
 
+  describe "Cateories", ->
+    it "should have an initial category of Classic Movies", ->
+      expect(scope.category()).toEqual("Classic Movies")
+
+    it "should be able to go to the previous category", ->
+      scope.previousCategory()
+      expect(scope.category()).toEqual("Foreign Movies")
+
+    it "should be able to cycle round the categories backwards", ->
+      scope.previousCategory()
+      scope.previousCategory()
+      scope.previousCategory()
+      expect(scope.category()).toEqual("Classic Movies")
+
+    it "should be able to cycle round the categories forwards", ->
+      scope.nextCategory()
+      scope.nextCategory()
+      scope.nextCategory()
+      expect(scope.category()).toEqual("Classic Movies")
+
+    it "should be able to go to the next category", ->
+      scope.nextCategory()
+      expect(scope.category()).toEqual("Latest Releases")
+
   describe "Loading the films", ->
     describe "which has not yet returned data from the server", ->
       it "should provide a blank film title", ->

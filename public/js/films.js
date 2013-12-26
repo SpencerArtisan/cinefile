@@ -4,6 +4,19 @@
 
   angular.module("app").controller("FilmsController", [
     "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
+      scope.categories = ["Foreign Movies", "Classic Movies", "Latest Releases"];
+      scope.categoryIndex = 1;
+      scope.previousCategory = function() {
+        scope.categoryIndex += 2;
+        return scope.categoryIndex %= 3;
+      };
+      scope.nextCategory = function() {
+        scope.categoryIndex += 1;
+        return scope.categoryIndex %= 3;
+      };
+      scope.category = function() {
+        return scope.categories[scope.categoryIndex];
+      };
       scope.go = function(url) {
         return location.path("" + url);
       };

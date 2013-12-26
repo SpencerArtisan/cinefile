@@ -22,6 +22,31 @@
         return httpBackend = $injector.get("$httpBackend");
       });
     });
+    describe("Cateories", function() {
+      it("should have an initial category of Classic Movies", function() {
+        return expect(scope.category()).toEqual("Classic Movies");
+      });
+      it("should be able to go to the previous category", function() {
+        scope.previousCategory();
+        return expect(scope.category()).toEqual("Foreign Movies");
+      });
+      it("should be able to cycle round the categories backwards", function() {
+        scope.previousCategory();
+        scope.previousCategory();
+        scope.previousCategory();
+        return expect(scope.category()).toEqual("Classic Movies");
+      });
+      it("should be able to cycle round the categories forwards", function() {
+        scope.nextCategory();
+        scope.nextCategory();
+        scope.nextCategory();
+        return expect(scope.category()).toEqual("Classic Movies");
+      });
+      return it("should be able to go to the next category", function() {
+        scope.nextCategory();
+        return expect(scope.category()).toEqual("Latest Releases");
+      });
+    });
     return describe("Loading the films", function() {
       describe("which has not yet returned data from the server", function() {
         it("should provide a blank film title", function() {

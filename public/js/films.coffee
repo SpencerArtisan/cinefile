@@ -2,6 +2,20 @@
 
 angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location",
   (scope, routeParams, resource, location) ->
+    scope.categories = ["Foreign Movies", "Classic Movies", "Latest Releases"]
+    scope.categoryIndex = 1
+
+    scope.previousCategory = ->
+      scope.categoryIndex += 2
+      scope.categoryIndex %= 3
+
+    scope.nextCategory = ->
+      scope.categoryIndex += 1
+      scope.categoryIndex %= 3
+
+    scope.category = ->
+      scope.categories[scope.categoryIndex]
+
     scope.go = (url) ->
       location.path("#{url}")
 
