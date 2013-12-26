@@ -40,8 +40,6 @@ class FilmAugmenter
       puts "No decent matches found.  #{film.title} will NOT be augmented"
       return
     end
-    film.link = rotten_movie.links.alternate
-    film.synopsis = rotten_movie.synopsis
     film.review = rotten_movie.critics_consensus
     film.image = rotten_movie.posters.original
     film.rating = rotten_movie.ratings.critics_score

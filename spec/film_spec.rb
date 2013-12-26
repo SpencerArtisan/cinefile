@@ -21,13 +21,11 @@ describe Film do
   end
 
   it 'should convert a single film to json' do
-    film.link = 'a link'
     film.rating = 42
     film.id = 1
     film.image = 'an image'
-    film.synopsis = 'a synopsis'
     film.language = 'a language'
     film.review = 'a review'
-    expect(film.to_json).to eq('{"id":1,"title":"a film (1934)","year":1979,"link":"a link","rating":42,"image":"an image","synopsis":"a synopsis","review":"a review","language":"a language","showings":[{"cinema":"a cinema","day_on":"2001-12-25","times_on":"some times"}]}')
+    expect(film.to_json).to eq('{"id":1,"title":"a film (1934)","year":1979,"rating":42,"image":"an image","review":"a review","language":"a language","showings":[{"cinema":"a cinema","day_on":"2001-12-25","times_on":"some times"}]}')
   end
 end

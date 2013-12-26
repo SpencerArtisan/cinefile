@@ -48,10 +48,6 @@ describe FilmAugmenter do
         expect(@films).to eq [film]
       end
 
-      it 'should leave the link as nil' do
-        expect(@films[0].link).to be_nil
-      end
-
       it 'should leave the rating as nil' do
         expect(@films[0].rating).to be_nil
       end
@@ -72,12 +68,6 @@ describe FilmAugmenter do
         expect(films).to eq [film]
       end
 
-      it 'should add a link to the film' do
-        allow(rotten_movie).to receive(:links).and_return double(alternate: 'a link')
-        augmenter.get_films 'a postcode', 7, 42
-        expect(film.link).to eq 'a link'
-      end
-
       it 'should add an image for the film' do
         allow(rotten_movie).to receive(:posters).and_return double(original: 'an image link')
         augmenter.get_films 'a postcode', 7, 42
@@ -88,12 +78,6 @@ describe FilmAugmenter do
         allow(rotten_movie).to receive(:critics_consensus).and_return 'a review'
         augmenter.get_films 'a postcode', 7, 42
         expect(film.review).to eq 'a review'
-      end
-
-      it 'should add a synopsis for the film' do
-        allow(rotten_movie).to receive(:synopsis).and_return 'a synopsis'
-        augmenter.get_films 'a postcode', 7, 42
-        expect(film.synopsis).to eq 'a synopsis'
       end
 
       it 'should add a language for the film' do
@@ -109,7 +93,7 @@ describe FilmAugmenter do
 
         it 'should not augment the film' do
           augmenter.get_films 'a postcode', 7, 42
-          expect(film.link).to be_nil
+          expect(film.rating).to be_nil
         end
 
         context 'The year is roughly right' do
@@ -119,7 +103,7 @@ describe FilmAugmenter do
 
           it 'should augment the film' do
             augmenter.get_films 'a postcode', 7, 42
-            expect(film.link).not_to be_nil
+            expect(film.rating).not_to be_nil
           end
         end
       end
@@ -188,9 +172,9 @@ describe FilmAugmenter do
         end
 
         it 'should pick the movie by year' do
-          allow(right_movie).to receive(:links).and_return double(alternate: 'right link')
+          allow(right_movie).to receive(:critics_consensus).and_return 'right review'
           augmenter.get_films 'a postcode', 7, 42
-          expect(film.link).to eq 'right link'
+          expect(film.review).to eq 'right review'
         end
       end
 
@@ -209,9 +193,9 @@ describe FilmAugmenter do
         end
 
         it 'should pick the first movie returned by rottentomatoes' do
-          allow(right_movie).to receive(:links).and_return double(alternate: 'right link')
+          allow(right_movie).to receive(:critics_consensus).and_return 'right review'
           augmenter.get_films 'a postcode', 7, 42
-          expect(film.link).to eq 'right link'
+          expect(film.review).to eq 'right review'
         end
       end
 
@@ -224,7 +208,7 @@ describe FilmAugmenter do
 
         it 'should not augment the film' do
           augmenter.get_films 'a postcode', 7, 42
-          expect(film.link).to be_nil
+          expect(film.review).to be_nil
         end
       end
     end
