@@ -6,7 +6,7 @@
 
   console.log("Initializing Angular App");
 
-  app = angular.module("app", ["ngRoute", "ngResource"]);
+  app = angular.module("app", ["ngRoute", "ngResource", "ngAnimate"]);
 
   app.config([
     "$routeProvider", function(routeProvider) {

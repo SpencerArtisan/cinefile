@@ -20,7 +20,13 @@
       scope.category = function() {
         return scope.categories[scope.categoryIndex];
       };
-      scope.go = function(url) {
+      scope.goForward = function(url) {
+        return location.path("" + url);
+      };
+      scope.goBackward = function(url) {
+        return location.path("" + url);
+      };
+      scope.goUp = function(url) {
         return location.path("" + url);
       };
       scope.filterStyle = function() {
@@ -49,13 +55,13 @@
         if (scope.filterOn && !scope.great(film)) {
           return false;
         }
+        if (scope.categoryIndex === 1 && (film.language === null || film.language === "EN")) {
+          return false;
+        }
         if (scope.categoryIndex === 2 && film.year >= 1980) {
           return false;
         }
         if (scope.categoryIndex === 3 && film.year < new Date().getFullYear() - 1) {
-          return false;
-        }
-        if (scope.categoryIndex === 1 && (film.language === null || film.language === "EN")) {
           return false;
         }
         return true;

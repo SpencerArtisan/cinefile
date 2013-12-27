@@ -6,15 +6,15 @@
       <h1>{{category()}}</h1>
     </div>
     <span class="next" ng-click="nextCategory()">&nbsp;&nbsp;&nbsp;</span>
-    <span class="right" id="by-date" ng-click='go("/films;by-date")'>
+    <span class="right" id="by-date" ng-click='goUp("/films;by-date")'>
       <span class="topcoat-icon icon icon-calendar"></span>
     </span>
   </header>
 
   <div class="scroller" >
-    <ul class=list">
+    <ul class="list">
       <li ng-repeat="film in allFilms()">
-        <span class="film" ng-click='go("/films/{{film.id}}")'>
+        <span class="film" ng-click='goForward("/films/{{film.id}}")'>
           <span style="float:right" class="chevron"></span>
           <span class="title">{{film.title.trim()}}</span>
           <span ng-if="great(film)" class="icon-great">&nbsp;&nbsp;&nbsp;&nbsp;</span>
