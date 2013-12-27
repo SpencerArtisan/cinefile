@@ -21,15 +21,16 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       scope.categories[scope.categoryIndex]
 
     scope.goForward = (url) ->
-      scope.animateStyle = "slide-left"
-      location.path("#{url}")
+      scope.go url, "slide-left"
 
     scope.goBackward = (url) ->
-      scope.animateStyle = "slide-right"
-      location.path("#{url}")
+      scope.go url, "slide-right"
 
     scope.goUp = (url) ->
-      scope.animateStyle = ""
+      scope.go url, ""
+
+    scope.go = (url, animation) ->
+      scope.animateStyle = animation
       location.path("#{url}")
 
     scope.filterStyle = ->

@@ -22,15 +22,16 @@
         return scope.categories[scope.categoryIndex];
       };
       scope.goForward = function(url) {
-        scope.animateStyle = "slide-left";
-        return location.path("" + url);
+        return scope.go(url, "slide-left");
       };
       scope.goBackward = function(url) {
-        scope.animateStyle = "slide-right";
-        return location.path("" + url);
+        return scope.go(url, "slide-right");
       };
       scope.goUp = function(url) {
-        scope.animateStyle = "";
+        return scope.go(url, "");
+      };
+      scope.go = function(url, animation) {
+        scope.animateStyle = animation;
         return location.path("" + url);
       };
       scope.filterStyle = function() {
