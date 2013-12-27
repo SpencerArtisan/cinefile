@@ -7,6 +7,7 @@
       scope.categories = ["All Movies", "Foreign Movies", "Classic Movies", "Latest Releases"];
       scope.categoryIndex = 0;
       scope.filterOn = false;
+      scope.animateStyle = "";
       scope.previousCategory = function() {
         return scope.changeCategory(-1);
       };
@@ -21,12 +22,15 @@
         return scope.categories[scope.categoryIndex];
       };
       scope.goForward = function(url) {
+        scope.animateStyle = "slide-left";
         return location.path("" + url);
       };
       scope.goBackward = function(url) {
+        scope.animateStyle = "slide-right";
         return location.path("" + url);
       };
       scope.goUp = function(url) {
+        scope.animateStyle = "";
         return location.path("" + url);
       };
       scope.filterStyle = function() {

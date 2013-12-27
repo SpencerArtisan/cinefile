@@ -5,6 +5,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.categories = ["All Movies", "Foreign Movies", "Classic Movies", "Latest Releases"]
     scope.categoryIndex = 0
     scope.filterOn = false
+    scope.animateStyle = ""
 
     scope.previousCategory = ->
       scope.changeCategory -1
@@ -20,12 +21,15 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       scope.categories[scope.categoryIndex]
 
     scope.goForward = (url) ->
+      scope.animateStyle = "slide-left"
       location.path("#{url}")
 
     scope.goBackward = (url) ->
+      scope.animateStyle = "slide-right"
       location.path("#{url}")
 
     scope.goUp = (url) ->
+      scope.animateStyle = ""
       location.path("#{url}")
 
     scope.filterStyle = ->
