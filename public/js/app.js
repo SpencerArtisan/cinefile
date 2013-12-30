@@ -8,20 +8,12 @@
 
   app = angular.module("app", ["ngRoute", "ngResource", "ngAnimate", "ngTouch"]);
 
-  app.directive('gfTap', function() {
+  app.directive('fastClick', function() {
     return function(scope, element, attrs) {
       var tapping;
       tapping = false;
-      element.bind('touchstart', function() {
-        return tapping = true;
-      });
-      element.bind('touchmove', function() {
-        return tapping = false;
-      });
-      return element.bind('touchend', function() {
-        if (tapping) {
-          return scope.$apply(attrs['gfTap']);
-        }
+      return element.bind('touchstart', function() {
+        return scope.$apply(attrs['fastClick']);
       });
     };
   });

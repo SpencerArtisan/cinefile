@@ -2,12 +2,12 @@
 console.log "Initializing Angular App"
 app = angular.module("app", ["ngRoute", "ngResource", "ngAnimate", "ngTouch"])
 
-app.directive 'gfTap', ->
+app.directive 'fastClick', ->
   (scope, element, attrs) ->
     tapping = false
-    element.bind 'touchstart', -> tapping = true
-    element.bind 'touchmove', -> tapping = false
-    element.bind 'touchend', -> scope.$apply(attrs['gfTap']) if tapping
+    #element.bind 'touchstart', -> tapping = true
+    #element.bind 'touchmove', -> tapping = false
+    element.bind 'touchstart', -> scope.$apply(attrs['fastClick'])
 
 app.config ["$routeProvider", (routeProvider) ->
   routeProvider.when("/films;by-date",
