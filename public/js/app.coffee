@@ -1,13 +1,17 @@
 "use strict"
 console.log "Initializing Angular App"
-app = angular.module("app", ["ngRoute", "ngResource", "ngAnimate", "ngTouch"])
+app = angular.module("app", ["ngRoute", "ngResource", "ngAnimate"])
 
 app.directive 'fastClick', ->
   (scope, element, attrs) ->
-    tapping = false
-    #element.bind 'touchstart', -> tapping = true
-    #element.bind 'touchmove', -> tapping = false
-    element.bind 'touchstart', -> scope.$apply(attrs['fastClick'])
+    scope.isMoving = false
+
+    scope.shortlyAfterTouchStart = =>
+      console.log "Shortly after touch start isMoving is #{scope.isMoving}"
+      scope.$apply(attrs['fastClick']) unless scope.isMoving
+
+    element.bind 'touchmove', => scope.isMoving = true
+    element.bind 'touchstart', => setTimeout(scope.shortlyAfterTouchStart, 20)
 
 app.config ["$routeProvider", (routeProvider) ->
   routeProvider.when("/films;by-date",
