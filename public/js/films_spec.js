@@ -34,11 +34,9 @@
         scope.previousCategory();
         scope.previousCategory();
         scope.previousCategory();
-        scope.previousCategory();
         return expect(scope.category()).toEqual("All Movies");
       });
       it("should be able to cycle round the categories forwards", function() {
-        scope.nextCategory();
         scope.nextCategory();
         scope.nextCategory();
         scope.nextCategory();
@@ -46,7 +44,7 @@
       });
       it("should be able to go to the next category", function() {
         scope.nextCategory();
-        return expect(scope.category()).toEqual("Foreign Movies");
+        return expect(scope.category()).toEqual("Classic Movies");
       });
       return describe("Filtering", function() {
         beforeEach(function() {

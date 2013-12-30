@@ -4,7 +4,7 @@
 
   angular.module("app").controller("FilmsController", [
     "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
-      scope.categories = ["All Movies", "Foreign Movies", "Classic Movies", "Latest Releases"];
+      scope.categories = ["All Movies", "Classic Movies", "Latest Releases"];
       scope.categoryIndex = 0;
       scope.filterOn = false;
       scope.animateStyle = "";

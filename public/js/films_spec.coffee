@@ -31,11 +31,9 @@ describe "FilmsController", ->
       scope.previousCategory()
       scope.previousCategory()
       scope.previousCategory()
-      scope.previousCategory()
       expect(scope.category()).toEqual("All Movies")
 
     it "should be able to cycle round the categories forwards", ->
-      scope.nextCategory()
       scope.nextCategory()
       scope.nextCategory()
       scope.nextCategory()
@@ -43,7 +41,7 @@ describe "FilmsController", ->
 
     it "should be able to go to the next category", ->
       scope.nextCategory()
-      expect(scope.category()).toEqual("Foreign Movies")
+      expect(scope.category()).toEqual("Classic Movies")
 
     describe "Filtering", ->
       beforeEach ->
