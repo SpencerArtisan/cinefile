@@ -232,9 +232,11 @@ li {
 }
 
 .icon-superb {
-  background: url("/images/filled-star.png") no-repeat;
+  background: url("/images/filled-star.png") repeat-x;
   background-size: contain;
-  margin-left: -20px;
+  margin-left: 0px;
+  padding-left:19px;
+  margin-right:15px;
 }
 
 .icon-calendar {
