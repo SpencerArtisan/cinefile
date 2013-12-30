@@ -60,6 +60,7 @@ a {
 
 .title {
   margin-right: 20px;
+  display: inline-block;
 }
 
 header {
@@ -199,7 +200,7 @@ li {
 }
 
 .page-back {
-  margin: 10px;
+  margin: 12px;
   position: absolute;
   background: url("/images/back_light.svg") no-repeat;
   background-size: contain;
