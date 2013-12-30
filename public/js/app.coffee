@@ -9,7 +9,7 @@ app.directive 'fastClick', ->
       scope.$apply(attrs['fastClick']) unless scope.isMoving
 
     element.bind 'touchmove', => scope.isMoving = true
-    element.bind 'touchstart', => scope.isMoving = false; setTimeout(scope.shortlyAfterTouchStart, 20)
+    element.bind 'touchstart', => scope.isMoving = false; setTimeout(scope.shortlyAfterTouchStart, 60)
 
 app.config ["$routeProvider", (routeProvider) ->
   routeProvider.when("/films;by-date",

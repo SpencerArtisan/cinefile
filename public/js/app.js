@@ -22,7 +22,7 @@
       });
       return element.bind('touchstart', function() {
         scope.isMoving = false;
-        return setTimeout(scope.shortlyAfterTouchStart, 20);
+        return setTimeout(scope.shortlyAfterTouchStart, 60);
       });
     };
   });
