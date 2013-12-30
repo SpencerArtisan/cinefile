@@ -6,7 +6,7 @@
     "$scope", "$routeParams", "$resource", "$location", function(scope, routeParams, resource, location) {
       scope.categories = ["All Movies", "Classic Movies", "Latest Releases"];
       scope.categoryIndex = 0;
-      scope.filterOn = false;
+      scope.ratingFilter = 0;
       scope.animateStyle = "";
       scope.previousCategory = function() {
         return scope.changeCategory(-1);
@@ -35,14 +35,11 @@
         return location.path("" + url);
       };
       scope.filterStyle = function() {
-        if (scope.filterOn) {
-          return "filter-on";
-        } else {
-          return "filter-off";
-        }
+        return "rating-" + scope.ratingFilter;
       };
-      scope.filterGreatMovies = function() {
-        return scope.filterOn = !scope.filterOn;
+      scope.toggleRatingFilter = function() {
+        scope.ratingFilter += 1;
+        return scope.ratingFilter %= 3;
       };
       scope.allFilms = function() {
         var film, _i, _len, _ref, _results;
@@ -57,7 +54,10 @@
         return _results;
       };
       scope.passesFilter = function(film) {
-        if (scope.filterOn && !scope.great(film)) {
+        if (scope.ratingFilter === 1 && !scope.great(film)) {
+          return false;
+        }
+        if (scope.ratingFilter === 2 && !scope.superb(film)) {
           return false;
         }
         if (scope.categoryIndex === 1 && film.year >= 1980) {

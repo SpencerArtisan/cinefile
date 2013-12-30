@@ -4,7 +4,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
   (scope, routeParams, resource, location) ->
     scope.categories = ["All Movies", "Classic Movies", "Latest Releases"]
     scope.categoryIndex = 0
-    scope.filterOn = false
+    scope.ratingFilter = 0
     scope.animateStyle = ""
 
     scope.previousCategory = ->
@@ -34,16 +34,18 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       location.path("#{url}")
 
     scope.filterStyle = ->
-      if scope.filterOn then "filter-on" else "filter-off"
+      "rating-#{scope.ratingFilter}"
 
-    scope.filterGreatMovies = ->
-      scope.filterOn = !scope.filterOn
+    scope.toggleRatingFilter = ->
+      scope.ratingFilter += 1
+      scope.ratingFilter %= 3
 
     scope.allFilms = ->
       (film for film in scope.films when scope.passesFilter(film))
 
     scope.passesFilter = (film) ->
-      return false if scope.filterOn && !scope.great(film)
+      return false if scope.ratingFilter == 1 && !scope.great(film)
+      return false if scope.ratingFilter == 2 && !scope.superb(film)
       return false if scope.categoryIndex == 1 && film.year >= 1980
       return false if scope.categoryIndex == 2 && film.year < new Date().getFullYear() - 1
       true

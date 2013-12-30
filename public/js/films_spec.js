@@ -183,7 +183,7 @@
                 ]
               }, {
                 title: 'another film',
-                rating: 82,
+                rating: 91,
                 showings: [
                   {
                     day_on: '2001-12-25'
@@ -207,19 +207,30 @@
           return expect(scope.allFilms()).toEqual(scope.films);
         });
         it("should provide a list of all great films", function() {
-          scope.filterGreatMovies();
+          scope.toggleRatingFilter();
+          return expect(scope.allFilms()).toEqual([scope.films[1], scope.films[2]]);
+        });
+        it("should provide a list of all superb films", function() {
+          scope.toggleRatingFilter();
+          scope.toggleRatingFilter();
           return expect(scope.allFilms()).toEqual([scope.films[2]]);
         });
         it("should provide a list of dates for all films", function() {
           return expect(scope.filmsDates()).toEqual(["2001-12-25", "2001-12-26"]);
         });
         it("should provide a list of dates for all great films", function() {
-          scope.filterGreatMovies();
+          scope.toggleRatingFilter();
+          return expect(scope.filmsDates()).toEqual(["2001-12-25", "2001-12-26"]);
+        });
+        it("should provide a list of dates for all superb films", function() {
+          scope.toggleRatingFilter();
+          scope.toggleRatingFilter();
           return expect(scope.filmsDates()).toEqual(["2001-12-26"]);
         });
         it("should toggle the filter", function() {
-          scope.filterGreatMovies();
-          scope.filterGreatMovies();
+          scope.toggleRatingFilter();
+          scope.toggleRatingFilter();
+          scope.toggleRatingFilter();
           return expect(scope.allFilms()).toEqual(scope.films);
         });
         it("should provide a list of dates for a specific film", function() {
@@ -230,8 +241,14 @@
           expect(scope.filmsOn("2001-12-25")).toEqual([scope.films[1]]);
           return expect(scope.filmsOn("2001-12-26")).toEqual([scope.films[0], scope.films[2]]);
         });
+        it("should get the great films on a date", function() {
+          scope.toggleRatingFilter();
+          expect(scope.filmsOn("2001-12-25")).toEqual([scope.films[1]]);
+          return expect(scope.filmsOn("2001-12-26")).toEqual([scope.films[2]]);
+        });
         return it("should get the great films on a date", function() {
-          scope.filterGreatMovies();
+          scope.toggleRatingFilter();
+          scope.toggleRatingFilter();
           expect(scope.filmsOn("2001-12-25")).toEqual([]);
           return expect(scope.filmsOn("2001-12-26")).toEqual([scope.films[2]]);
         });

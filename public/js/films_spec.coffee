@@ -157,7 +157,7 @@ describe "FilmsController", ->
             films: 
                 [
                     {title: 'a film', rating: 42, showings:[{day_on: '2001-12-26'}]}
-                    {title: 'another film', rating: 82, showings:[{day_on: '2001-12-25'}]}
+                    {title: 'another film', rating: 91, showings:[{day_on: '2001-12-25'}]}
                     {title: 'a third film', rating: 96, showings:[{day_on: '2001-12-26'}]}
                 ]
         )
@@ -168,19 +168,30 @@ describe "FilmsController", ->
         expect(scope.allFilms()).toEqual(scope.films)
 
       it "should provide a list of all great films", ->
-        scope.filterGreatMovies()
+        scope.toggleRatingFilter()
+        expect(scope.allFilms()).toEqual([scope.films[1], scope.films[2]])
+
+      it "should provide a list of all superb films", ->
+        scope.toggleRatingFilter()
+        scope.toggleRatingFilter()
         expect(scope.allFilms()).toEqual([scope.films[2]])
 
       it "should provide a list of dates for all films", ->
         expect(scope.filmsDates()).toEqual(["2001-12-25", "2001-12-26"])
 
       it "should provide a list of dates for all great films", ->
-        scope.filterGreatMovies()
+        scope.toggleRatingFilter()
+        expect(scope.filmsDates()).toEqual(["2001-12-25", "2001-12-26"])
+
+      it "should provide a list of dates for all superb films", ->
+        scope.toggleRatingFilter()
+        scope.toggleRatingFilter()
         expect(scope.filmsDates()).toEqual(["2001-12-26"])
 
       it "should toggle the filter", ->
-        scope.filterGreatMovies()
-        scope.filterGreatMovies()
+        scope.toggleRatingFilter()
+        scope.toggleRatingFilter()
+        scope.toggleRatingFilter()
         expect(scope.allFilms()).toEqual(scope.films)
 
       it "should provide a list of dates for a specific film", ->
@@ -192,7 +203,13 @@ describe "FilmsController", ->
         expect(scope.filmsOn("2001-12-26")).toEqual([scope.films[0], scope.films[2]])
 
       it "should get the great films on a date", ->
-        scope.filterGreatMovies()
+        scope.toggleRatingFilter()
+        expect(scope.filmsOn("2001-12-25")).toEqual([scope.films[1]])
+        expect(scope.filmsOn("2001-12-26")).toEqual([scope.films[2]])
+
+      it "should get the great films on a date", ->
+        scope.toggleRatingFilter()
+        scope.toggleRatingFilter()
         expect(scope.filmsOn("2001-12-25")).toEqual([])
         expect(scope.filmsOn("2001-12-26")).toEqual([scope.films[2]])
 

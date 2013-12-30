@@ -181,7 +181,7 @@ li {
   right: 0px;
 }
 
-.filter-off {
+.rating-0 {
   margin: 10px;
   position: absolute;
   background: url("/images/star.png") no-repeat;
@@ -191,12 +191,21 @@ li {
   margin-left:14px;
 }
 
-.filter-on {
+.rating-1 {
   margin: 10px;
   position: absolute;
   background: url("/images/filled-star.png") no-repeat;
   background-size: contain;
   top: 2px;
+}
+
+.rating-2 {
+  margin: 10px;
+  position: absolute;
+  background: url("/images/filled-star.png") repeat-x;
+  background-size: contain;
+  top: 2px;
+  width: 36px;
 }
 
 .page-back {
