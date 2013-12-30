@@ -215,7 +215,7 @@ li {
 }
 
 .icon-great {
-  background: url("/images/star.png") no-repeat;
+  background: url("/images/filled-star.png") no-repeat;
   background-size: contain;
   margin-left: 0px;
   padding-left:19px;

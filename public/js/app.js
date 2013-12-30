@@ -8,6 +8,24 @@
 
   app = angular.module("app", ["ngRoute", "ngResource", "ngAnimate"]);
 
+  app.directive('gfTap', function() {
+    return function(scope, element, attrs) {
+      var tapping;
+      tapping = false;
+      element.bind('touchstart', function() {
+        return tapping = true;
+      });
+      element.bind('touchmove', function() {
+        return tapping = false;
+      });
+      return element.bind('touchend', function() {
+        if (tapping) {
+          return scope.$apply(attrs['gfTap']);
+        }
+      });
+    };
+  });
+
   app.config([
     "$routeProvider", function(routeProvider) {
       return routeProvider.when("/films;by-date", {

@@ -1,12 +1,12 @@
 <div id="template" ng-init="loadFilms()">
   <header>
-    <span ng-class="filterStyle()" ng-click='filterGreatMovies()'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <span class="previous" ng-click="previousCategory()">&nbsp;&nbsp;&nbsp;</span>
+    <span ng-class="filterStyle()" gf-tap='filterGreatMovies()'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <span class="previous" gf-tap="previousCategory()">&nbsp;&nbsp;&nbsp;</span>
     <div>
       <h1>{{category()}}</h1>
     </div>
-    <span class="next" ng-click="nextCategory()">&nbsp;&nbsp;&nbsp;</span>
-    <span class="right" id="by-date" ng-click='goUp("/")'>
+    <span class="next" gf-tap="nextCategory()">&nbsp;&nbsp;&nbsp;</span>
+    <span class="right" id="by-date" gf-tap='goUp("/")'>
       <span class="topcoat-icon icon icon-movie"></span>
     </span>
   </header>
@@ -17,7 +17,7 @@
         <p>{{when_formatted(date)}}</p>
         <ul class="list">
           <li ng-repeat="film in filmsOn(date)">
-            <span class="film" ng-click='goForward("/films/{{film.id}}")'>
+            <span class="film" gf-tap='goForward("/films/{{film.id}}")'>
               <span style="float:right" class="chevron"></span>
               <span class="title">{{film.title.trim()}}</span>
               <span ng-if="great(film)" class="icon-great">&nbsp;&nbsp;&nbsp;&nbsp;</span>
