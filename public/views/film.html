@@ -1,6 +1,6 @@
 <div id="template" ng-init="loadFilm()">
   <header>
-    <span class="page-back" ng-click='goBackward("/")'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <span class="page-back" fast-click='goBackward("/")'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <div>
       <h1>{{short_title(film)}}</h1>
     <div>
@@ -19,7 +19,7 @@
         <p>{{when_formatted(date)}}</p>
         <ul class="list">
           <li ng-repeat="showing in showingsOn(date)">
-            <span class="film" ng-click='goForward("/films/{{film.id}}/showings/{{showing.id}}")'>
+            <span class="film" fast-click='goForward("/films/{{film.id}}/showings/{{showing.id}}")'>
               <span style="float:right" class="chevron"></span>
               <span class="title">{{showing.cinema}} - {{showing.times_on}}</span>
             </span>

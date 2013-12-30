@@ -11,7 +11,6 @@
   app.directive('fastClick', function() {
     return function(scope, element, attrs) {
       var _this = this;
-      scope.isMoving = false;
       scope.shortlyAfterTouchStart = function() {
         console.log("Shortly after touch start isMoving is " + scope.isMoving);
         if (!scope.isMoving) {
@@ -22,6 +21,7 @@
         return scope.isMoving = true;
       });
       return element.bind('touchstart', function() {
+        scope.isMoving = false;
         return setTimeout(scope.shortlyAfterTouchStart, 20);
       });
     };

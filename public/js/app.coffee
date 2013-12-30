@@ -4,14 +4,12 @@ app = angular.module("app", ["ngRoute", "ngResource", "ngAnimate"])
 
 app.directive 'fastClick', ->
   (scope, element, attrs) ->
-    scope.isMoving = false
-
     scope.shortlyAfterTouchStart = =>
       console.log "Shortly after touch start isMoving is #{scope.isMoving}"
       scope.$apply(attrs['fastClick']) unless scope.isMoving
 
     element.bind 'touchmove', => scope.isMoving = true
-    element.bind 'touchstart', => setTimeout(scope.shortlyAfterTouchStart, 20)
+    element.bind 'touchstart', => scope.isMoving = false; setTimeout(scope.shortlyAfterTouchStart, 20)
 
 app.config ["$routeProvider", (routeProvider) ->
   routeProvider.when("/films;by-date",
