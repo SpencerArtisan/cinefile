@@ -102,6 +102,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       _.sortBy(days_on, (day) -> moment(day))
 
     scope.showingsOn = (day) ->
+      return [] unless scope.film && scope.film.showings
       (showing for showing in scope.film.showings when showing.day_on == day)
       
     scope.filmsOn = (day) ->

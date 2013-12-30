@@ -122,8 +122,17 @@
         it("should identify this as not a superb film", function() {
           return expect(scope.superb(scope.film)).toBeFalsy();
         });
-        return it("should not provide any films", function() {
+        it("should not provide any films", function() {
           return expect(scope.allFilms()).toEqual([]);
+        });
+        it("should not provide any film dates", function() {
+          return expect(scope.filmDates()).toEqual([]);
+        });
+        it("should not provide any films dates", function() {
+          return expect(scope.filmsDates()).toEqual([]);
+        });
+        return it("should not provide any showings on", function() {
+          return expect(scope.showingsOn('2001-12-26')).toEqual([]);
         });
       });
       describe("which succeeds when retrieving from the server", function() {

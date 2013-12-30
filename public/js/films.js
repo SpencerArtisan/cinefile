@@ -177,6 +177,9 @@
       };
       scope.showingsOn = function(day) {
         var showing, _i, _len, _ref, _results;
+        if (!(scope.film && scope.film.showings)) {
+          return [];
+        }
         _ref = scope.film.showings;
         _results = [];
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {

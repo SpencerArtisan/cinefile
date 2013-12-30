@@ -114,6 +114,15 @@ describe "FilmsController", ->
       it "should not provide any films", ->
         expect(scope.allFilms()).toEqual([])
 
+      it "should not provide any film dates", ->
+        expect(scope.filmDates()).toEqual([])
+
+      it "should not provide any films dates", ->
+        expect(scope.filmsDates()).toEqual([])
+
+      it "should not provide any showings on", ->
+        expect(scope.showingsOn('2001-12-26')).toEqual([])
+
     describe "which succeeds when retrieving from the server", ->
       beforeEach ->
         httpBackend.expectGET("/films").respond(201, 
