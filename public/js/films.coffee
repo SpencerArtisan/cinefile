@@ -6,6 +6,13 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.categoryIndex = 0
     scope.ratingFilter = 0
     scope.animateStyle = ""
+    scope.byDate = false
+
+    scope.toggleMode = ->
+      scope.byDate = !scope.byDate
+
+    scope.modeStyle = ->
+      if scope.byDate then "icon-movie" else "icon-calendar"
 
     scope.previousCategory = ->
       scope.changeCategory -1

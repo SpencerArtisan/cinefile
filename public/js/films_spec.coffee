@@ -19,6 +19,19 @@ describe "FilmsController", ->
       httpBackend = $injector.get("$httpBackend")
     )
 
+  describe "By Date", ->
+    it "should initially show by film", ->
+      expect(scope.byDate).toBeFalsy()
+
+    it "should be able to go to by date mode", ->
+      scope.toggleMode()
+      expect(scope.byDate).toBeTruthy()
+
+    it "should rotate from by date back to by film", ->
+      scope.toggleMode()
+      scope.toggleMode()
+      expect(scope.byDate).toBeFalsy()
+
   describe "Categories", ->
     it "should have an initial category of All Movies", ->
       expect(scope.category()).toEqual("All Movies")

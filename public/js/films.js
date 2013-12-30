@@ -8,6 +8,17 @@
       scope.categoryIndex = 0;
       scope.ratingFilter = 0;
       scope.animateStyle = "";
+      scope.byDate = false;
+      scope.toggleMode = function() {
+        return scope.byDate = !scope.byDate;
+      };
+      scope.modeStyle = function() {
+        if (scope.byDate) {
+          return "icon-movie";
+        } else {
+          return "icon-calendar";
+        }
+      };
       scope.previousCategory = function() {
         return scope.changeCategory(-1);
       };

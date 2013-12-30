@@ -22,6 +22,20 @@
         return httpBackend = $injector.get("$httpBackend");
       });
     });
+    describe("By Date", function() {
+      it("should initially show by film", function() {
+        return expect(scope.byDate).toBeFalsy();
+      });
+      it("should be able to go to by date mode", function() {
+        scope.toggleMode();
+        return expect(scope.byDate).toBeTruthy();
+      });
+      return it("should rotate from by date back to by film", function() {
+        scope.toggleMode();
+        scope.toggleMode();
+        return expect(scope.byDate).toBeFalsy();
+      });
+    });
     describe("Categories", function() {
       it("should have an initial category of All Movies", function() {
         return expect(scope.category()).toEqual("All Movies");
