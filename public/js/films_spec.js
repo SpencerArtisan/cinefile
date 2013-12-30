@@ -68,43 +68,28 @@
           return expect(scope.allFilms()).toEqual(scope.films);
         });
         it("should filter Classic Movies to include films before 1980", function() {
-          scope.categoryIndex = 2;
+          scope.categoryIndex = 1;
           scope.films[0].year = 1979;
           return expect(scope.allFilms()).toEqual(scope.films);
         });
         it("should filter Classic Movies to exclude films after 1980", function() {
-          scope.categoryIndex = 2;
+          scope.categoryIndex = 1;
           scope.films[0].year = 1980;
           return expect(scope.allFilms()).toEqual([]);
         });
         it("should filter Latest Releases to include films made this year", function() {
-          scope.categoryIndex = 3;
+          scope.categoryIndex = 2;
           scope.films[0].year = new Date().getFullYear();
           return expect(scope.allFilms()).toEqual(scope.films);
         });
         it("should filter Latest Releases to include films made last year", function() {
-          scope.categoryIndex = 3;
+          scope.categoryIndex = 2;
           scope.films[0].year = new Date().getFullYear() - 1;
           return expect(scope.allFilms()).toEqual(scope.films);
         });
-        it("should filter Latest Releases to exclude films made two years ago", function() {
-          scope.categoryIndex = 3;
+        return it("should filter Latest Releases to exclude films made two years ago", function() {
+          scope.categoryIndex = 2;
           scope.films[0].year = new Date().getFullYear() - 2;
-          return expect(scope.allFilms()).toEqual([]);
-        });
-        it("should filter Foreign Movies to include films not in the English language", function() {
-          scope.categoryIndex = 1;
-          scope.films[0].language = "FR";
-          return expect(scope.allFilms()).toEqual(scope.films);
-        });
-        it("should filter Foreign Movies to exclude films in the English language", function() {
-          scope.categoryIndex = 1;
-          scope.films[0].language = "EN";
-          return expect(scope.allFilms()).toEqual([]);
-        });
-        return it("should filter Foreign Movies to exclude films of unspecified language", function() {
-          scope.categoryIndex = 1;
-          scope.films[0].language = null;
           return expect(scope.allFilms()).toEqual([]);
         });
       });

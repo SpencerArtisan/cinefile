@@ -59,44 +59,30 @@ describe "FilmsController", ->
         expect(scope.allFilms()).toEqual(scope.films)
 
       it "should filter Classic Movies to include films before 1980", ->
-        scope.categoryIndex = 2
+        scope.categoryIndex = 1
         scope.films[0].year = 1979
         expect(scope.allFilms()).toEqual(scope.films)
 
       it "should filter Classic Movies to exclude films after 1980", ->
-        scope.categoryIndex = 2
+        scope.categoryIndex = 1
         scope.films[0].year = 1980
         expect(scope.allFilms()).toEqual([])
 
       it "should filter Latest Releases to include films made this year", ->
-        scope.categoryIndex = 3
+        scope.categoryIndex = 2
         scope.films[0].year = new Date().getFullYear()
         expect(scope.allFilms()).toEqual(scope.films)
 
       it "should filter Latest Releases to include films made last year", ->
-        scope.categoryIndex = 3
+        scope.categoryIndex = 2
         scope.films[0].year = new Date().getFullYear() - 1
         expect(scope.allFilms()).toEqual(scope.films)
 
       it "should filter Latest Releases to exclude films made two years ago", ->
-        scope.categoryIndex = 3
+        scope.categoryIndex = 2
         scope.films[0].year = new Date().getFullYear() - 2
         expect(scope.allFilms()).toEqual([])
 
-      it "should filter Foreign Movies to include films not in the English language", ->
-        scope.categoryIndex = 1
-        scope.films[0].language = "FR"
-        expect(scope.allFilms()).toEqual(scope.films)
-
-      it "should filter Foreign Movies to exclude films in the English language", ->
-        scope.categoryIndex = 1
-        scope.films[0].language = "EN"
-        expect(scope.allFilms()).toEqual([])
-
-      it "should filter Foreign Movies to exclude films of unspecified language", ->
-        scope.categoryIndex = 1
-        scope.films[0].language = null
-        expect(scope.allFilms()).toEqual([])
 
   describe "Loading the films", ->
     describe "which has not yet returned data from the server", ->
