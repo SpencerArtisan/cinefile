@@ -113,5 +113,8 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       encodeURIComponent(film.link)
 
     scope.great = (film) ->
-      film && film.rating and film.rating > 91
+      film && film.rating and film.rating > 89
+
+    scope.superb = (film) ->
+      film && film.rating and film.rating > 94
 ]

@@ -222,6 +222,12 @@ li {
   padding-left:19px;
 }
 
+.icon-superb {
+  background: url("/images/filled-star.png") no-repeat;
+  background-size: contain;
+  margin-left: -20px;
+}
+
 .icon-calendar {
   background: url("/images/calendar-25.png") no-repeat;
   background-size: cover;

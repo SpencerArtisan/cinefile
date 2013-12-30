@@ -95,6 +95,9 @@ describe "FilmsController", ->
       it "should identify this as not a great film", ->
         expect(scope.great(scope.film)).toBeFalsy()
 
+      it "should identify this as not a superb film", ->
+        expect(scope.superb(scope.film)).toBeFalsy()
+
     describe "which succeeds when retrieving from the server", ->
       beforeEach ->
         httpBackend.expectGET("/films").respond(201, 
@@ -109,12 +112,20 @@ describe "FilmsController", ->
         scope.film = scope.films[0]
 
       it "should identify if this is a great film", ->
-        @film.rating = 92
+        @film.rating = 90
         expect(scope.great(@film)).toBeTruthy()
 
       it "should identify if this is not a great film", ->
-        @film.rating = 91
+        @film.rating = 89
         expect(scope.great(@film)).toBeFalsy()
+
+      it "should identify if this is a superb film", ->
+        @film.rating = 95
+        expect(scope.superb(@film)).toBeTruthy()
+
+      it "should identify if this is not a superb film", ->
+        @film.rating = 94
+        expect(scope.superb(@film)).toBeFalsy()
 
       it "should provide all the films", ->
         expect(scope.films.length).toEqual(1)

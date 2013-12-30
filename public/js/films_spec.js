@@ -102,8 +102,11 @@
         it("should provide an empty list of film dates", function() {
           return expect(scope.filmDates()).toEqual([]);
         });
-        return it("should identify this as not a great film", function() {
+        it("should identify this as not a great film", function() {
           return expect(scope.great(scope.film)).toBeFalsy();
+        });
+        return it("should identify this as not a superb film", function() {
+          return expect(scope.superb(scope.film)).toBeFalsy();
         });
       });
       describe("which succeeds when retrieving from the server", function() {
@@ -126,12 +129,20 @@
           return scope.film = scope.films[0];
         });
         it("should identify if this is a great film", function() {
-          this.film.rating = 92;
+          this.film.rating = 90;
           return expect(scope.great(this.film)).toBeTruthy();
         });
         it("should identify if this is not a great film", function() {
-          this.film.rating = 91;
+          this.film.rating = 89;
           return expect(scope.great(this.film)).toBeFalsy();
+        });
+        it("should identify if this is a superb film", function() {
+          this.film.rating = 95;
+          return expect(scope.superb(this.film)).toBeTruthy();
+        });
+        it("should identify if this is not a superb film", function() {
+          this.film.rating = 94;
+          return expect(scope.superb(this.film)).toBeFalsy();
         });
         it("should provide all the films", function() {
           return expect(scope.films.length).toEqual(1);

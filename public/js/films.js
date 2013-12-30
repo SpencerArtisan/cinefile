@@ -206,8 +206,11 @@
       scope.link = function(film) {
         return encodeURIComponent(film.link);
       };
-      return scope.great = function(film) {
-        return film && film.rating && film.rating > 91;
+      scope.great = function(film) {
+        return film && film.rating && film.rating > 89;
+      };
+      return scope.superb = function(film) {
+        return film && film.rating && film.rating > 94;
       };
     }
   ]);
