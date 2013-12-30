@@ -1,8 +1,6 @@
 require 'sinatra'
 require 'cache'
 
-require 'capybara'
-
 set :root, File.join(File.dirname(__FILE__), '..')
 set :postcode, 'WC1N'
 set :lookahead, 21
