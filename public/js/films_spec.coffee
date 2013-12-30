@@ -145,7 +145,7 @@ describe "FilmsController", ->
         expect(@film.showings[0].day_on).toEqual("2001-12-26")
 
       it "should provide a formatted date", ->
-        expect(scope.when_formatted(@film.day_on)).toEqual("Thursday 26 December")
+        expect(scope.when_formatted(@film.showings[0].day_on)).toEqual("Wednesday 26 December")
 
       it "should provide a list of dates for a specific film", ->
         expect(scope.filmDates()).toEqual(["2001-12-26"])
