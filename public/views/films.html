@@ -13,7 +13,7 @@
 
   <div class="scroller" >
     <ul class="list">
-      <li ng-repeat="film in allFilms()" ng-if="!byDate">
+      <li ng-repeat="film in allFilms()" ng-show="!byDate">
         <span class="film" ng-click='goForward("/films/{{film.id}}")'>
           <span style="float:right" class="chevron"></span>
           <span class="title">{{film.title.trim()}}</span>
@@ -21,7 +21,7 @@
           <span ng-if="superb(film)" class="icon-superb">&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </span>
       </li>
-      <li ng-repeat="date in filmsDates()" class="day" ng-if="byDate">
+      <li ng-repeat="date in filmsDates()" class="day" ng-show="byDate">
         <p>{{when_formatted(date)}}</p>
         <ul class="list">
           <li ng-repeat="film in filmsOn(date)">
