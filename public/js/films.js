@@ -3,14 +3,16 @@
   'use strict';
 
   angular.module("app").controller("FilmsController", [
-    "$scope", "$routeParams", "$resource", "$location", "$cookies", function(scope, routeParams, resource, location, cookies) {
-      scope.categories = ["All Movies", "Classic Movies", "Latest Releases"];
-      scope.categoryIndex = 0;
-      scope.ratingFilter = 0;
+    "$scope", "$routeParams", "$resource", "$location", "$cookieStore", function(scope, routeParams, resource, location, cookies) {
+      var _this = this;
       scope.animateStyle = "";
-      scope.byDate = false;
+      scope.categories = ["All Movies", "Classic Movies", "Latest Releases"];
+      scope.categoryIndex = cookies.get('categoryIndex') != null ? cookies.get('categoryIndex') : 0;
+      scope.ratingFilter = cookies.get('ratingFilter') != null ? cookies.get('ratingFilter') : 0;
+      scope.byDate = cookies.get('byDate') != null ? cookies.get('byDate') : false;
       scope.toggleMode = function() {
-        return scope.byDate = !scope.byDate;
+        scope.byDate = !scope.byDate;
+        return cookies.put('byDate', scope.byDate);
       };
       scope.modeStyle = function() {
         if (scope.byDate) {
@@ -27,7 +29,8 @@
       };
       scope.changeCategory = function(delta) {
         scope.categoryIndex += delta + scope.categories.length;
-        return scope.categoryIndex %= scope.categories.length;
+        scope.categoryIndex %= scope.categories.length;
+        return cookies.put('categoryIndex', scope.categoryIndex);
       };
       scope.category = function() {
         return scope.categories[scope.categoryIndex];
@@ -50,7 +53,8 @@
       };
       scope.toggleRatingFilter = function() {
         scope.ratingFilter += 1;
-        return scope.ratingFilter %= 3;
+        scope.ratingFilter %= 3;
+        return cookies.put('ratingFilter', scope.ratingFilter);
       };
       scope.allFilms = function() {
         var film, _i, _len, _ref, _results;

@@ -1,15 +1,16 @@
 'use strict'
 
-angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location", "$cookies",
+angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location", "$cookieStore",
   (scope, routeParams, resource, location, cookies) ->
-    scope.categories = ["All Movies", "Classic Movies", "Latest Releases"]
-    scope.categoryIndex = 0
-    scope.ratingFilter = 0
     scope.animateStyle = ""
-    scope.byDate = false
+    scope.categories = ["All Movies", "Classic Movies", "Latest Releases"]
+    scope.categoryIndex = if cookies.get('categoryIndex')? then cookies.get('categoryIndex') else 0
+    scope.ratingFilter = if cookies.get('ratingFilter')? then cookies.get('ratingFilter') else 0
+    scope.byDate = if cookies.get('byDate')? then cookies.get('byDate') else false
 
-    scope.toggleMode = ->
+    scope.toggleMode = =>
       scope.byDate = !scope.byDate
+      cookies.put('byDate', scope.byDate)
 
     scope.modeStyle = ->
       if scope.byDate then "icon-movie" else "icon-calendar"
@@ -23,6 +24,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.changeCategory = (delta) ->
       scope.categoryIndex += delta + scope.categories.length
       scope.categoryIndex %= scope.categories.length
+      cookies.put('categoryIndex', scope.categoryIndex)
 
     scope.category = ->
       scope.categories[scope.categoryIndex]
@@ -46,6 +48,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.toggleRatingFilter = ->
       scope.ratingFilter += 1
       scope.ratingFilter %= 3
+      cookies.put('ratingFilter', scope.ratingFilter)
 
     scope.allFilms = ->
       return [] unless scope.films
