@@ -1,7 +1,7 @@
 'use strict'
 
-angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location",
-  (scope, routeParams, resource, location) ->
+angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location", "$cookies",
+  (scope, routeParams, resource, location, cookies) ->
     scope.categories = ["All Movies", "Classic Movies", "Latest Releases"]
     scope.categoryIndex = 0
     scope.ratingFilter = 0

@@ -10,6 +10,7 @@ set :lookahead, 1
 set :max_cinemas, 1
 Capybara.app = Sinatra::Application.new
 Capybara.javascript_driver = :webkit
+Capybara.default_wait_time = 10
 
 def mock_external_components
   allow_any_instance_of(FindAnyFilm).to receive(:read_films).and_return File.read('find_any_film_sample.json')
