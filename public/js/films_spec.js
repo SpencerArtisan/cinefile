@@ -119,8 +119,11 @@
         it("should identify this as not a great film", function() {
           return expect(scope.great(scope.film)).toBeFalsy();
         });
-        return it("should identify this as not a superb film", function() {
+        it("should identify this as not a superb film", function() {
           return expect(scope.superb(scope.film)).toBeFalsy();
+        });
+        return it("should not provide any films", function() {
+          return expect(scope.allFilms()).toEqual([]);
         });
       });
       describe("which succeeds when retrieving from the server", function() {

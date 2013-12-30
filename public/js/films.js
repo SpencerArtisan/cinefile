@@ -54,6 +54,9 @@
       };
       scope.allFilms = function() {
         var film, _i, _len, _ref, _results;
+        if (!scope.films) {
+          return [];
+        }
         _ref = scope.films;
         _results = [];
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {

@@ -111,6 +111,9 @@ describe "FilmsController", ->
       it "should identify this as not a superb film", ->
         expect(scope.superb(scope.film)).toBeFalsy()
 
+      it "should not provide any films", ->
+        expect(scope.allFilms()).toEqual([])
+
     describe "which succeeds when retrieving from the server", ->
       beforeEach ->
         httpBackend.expectGET("/films").respond(201, 

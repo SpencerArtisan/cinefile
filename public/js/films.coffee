@@ -48,6 +48,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
       scope.ratingFilter %= 3
 
     scope.allFilms = ->
+      return [] unless scope.films
       (film for film in scope.films when scope.passesFilter(film))
 
     scope.passesFilter = (film) ->
