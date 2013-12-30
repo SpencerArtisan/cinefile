@@ -1,6 +1,6 @@
 "use strict"
 console.log "Initializing Angular App"
-app = angular.module("app", ["ngRoute", "ngResource", "ngAnimate"])
+app = angular.module("app", ["ngRoute", "ngResource", "ngAnimate", "ngTouch"])
 
 app.directive 'gfTap', ->
   (scope, element, attrs) ->
