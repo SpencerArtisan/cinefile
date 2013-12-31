@@ -115,7 +115,7 @@ h1 {
   margin: 0px;
   font-weight: 500;
   -webkit-tap-highlight-color: transparent;
-  width: 276px;
+  width: 252px;
 }
 
 ul {
@@ -212,7 +212,7 @@ li {
   background: url("/images/filled-star.png") repeat-x;
   background-size: contain;
   top: 2px;
-  width: 36px;
+  width: 38px;
 }
 
 .page-back {
