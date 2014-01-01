@@ -215,6 +215,24 @@ li {
   width: 38px;
 }
 
+.background-0 {
+  background: url("/images/batman.png");
+  background-size:320px 550px;
+  background-repeat: no-repeat
+}
+
+.background-1 {
+  background: url("/images/Frankenstein3.png");
+  background-size:320px 550px;
+  background-repeat: no-repeat
+}
+
+.background-2 {
+  background: url("/images/slave.png");
+  background-size:320px 550px;
+  background-repeat: no-repeat
+}
+
 .page-back {
   margin: 12px;
   position: absolute;

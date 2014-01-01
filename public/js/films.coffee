@@ -7,6 +7,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.categoryIndex = if cookies.get('categoryIndex')? then cookies.get('categoryIndex') else 0
     scope.ratingFilter = if cookies.get('ratingFilter')? then cookies.get('ratingFilter') else 0
     scope.byDate = if cookies.get('byDate')? then cookies.get('byDate') else false
+    scope.backgroundImage = "batman"
 
     scope.toggleMode = =>
       scope.byDate = !scope.byDate
@@ -14,6 +15,9 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
 
     scope.modeStyle = ->
       if scope.byDate then "icon-movie" else "icon-calendar"
+
+    scope.backgroundStyle = ->
+      "background-#{scope.categoryIndex}"
 
     scope.previousCategory = ->
       scope.changeCategory -1

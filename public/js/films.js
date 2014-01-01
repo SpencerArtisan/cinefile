@@ -10,6 +10,7 @@
       scope.categoryIndex = cookies.get('categoryIndex') != null ? cookies.get('categoryIndex') : 0;
       scope.ratingFilter = cookies.get('ratingFilter') != null ? cookies.get('ratingFilter') : 0;
       scope.byDate = cookies.get('byDate') != null ? cookies.get('byDate') : false;
+      scope.backgroundImage = "batman";
       scope.toggleMode = function() {
         scope.byDate = !scope.byDate;
         return cookies.put('byDate', scope.byDate);
@@ -20,6 +21,9 @@
         } else {
           return "icon-calendar";
         }
+      };
+      scope.backgroundStyle = function() {
+        return "background-" + scope.categoryIndex;
       };
       scope.previousCategory = function() {
         return scope.changeCategory(-1);
