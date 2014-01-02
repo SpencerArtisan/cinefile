@@ -20,7 +20,7 @@ class Cache
     films = cached_films
     if films.nil?
       films = @finder.get_films postcode, days, max_cinemas
-      matches = UnreliableObjectDelegate.new(self, 60, 30).cached_film = films
+      matches = UnreliableObjectDelegate.new(self, 60, 30).cached_films = films
     end
     def films.to_json
       {films: map {|film| film.to_hash}}.to_json
