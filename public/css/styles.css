@@ -216,19 +216,19 @@ li {
 }
 
 .background-0 {
-  background: url("/images/batman.png");
+  background: url("/images/batman.min.jpg");
   background-size:320px 550px;
   background-repeat: no-repeat
 }
 
 .background-1 {
-  background: url("/images/Frankenstein3.png");
+  background: url("/images/Frankenstein3.min.jpg");
   background-size:320px 550px;
   background-repeat: no-repeat
 }
 
 .background-2 {
-  background: url("/images/slave.png");
+  background: url("/images/slave.min.jpg");
   background-size:320px 550px;
   background-repeat: no-repeat
 }
