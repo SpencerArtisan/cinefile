@@ -6,7 +6,7 @@
 
   console.log("Initializing Angular App");
 
-  app = angular.module("app", ["ngTouch", "ngRoute", "ngResource", "ngAnimate", "ngCookies"]);
+  app = angular.module("app", ["ngTouch", "ngRoute", "ngResource", "ngAnimate", "ngCookies", "pasvaz.bindonce"]);
 
   app.config([
     "$routeProvider", function(routeProvider) {
