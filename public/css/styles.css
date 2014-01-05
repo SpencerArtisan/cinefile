@@ -1,6 +1,29 @@
 body {
+  margin: 0;
+  padding: 0;
+  color: #000;
+  font: 16px "Source Sans", helvetica, arial, sans-serif;
+  font-weight: 400;
   background-color: rgba(255,255,255,0.7);
   width: 320px;
+}
+
+.topcoat-icon,
+.topcoat-icon--large {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  width: 1.62rem;
+  height: 1.62rem;
+  vertical-align: middle;
+  top: -1px;
+}
+
+.topcoat-icon--large {
+  width: 2.499999998125rem;
+  height: 2.499999998125rem;
+  top: -2px;
 }
 
 div {
@@ -189,13 +212,13 @@ li {
 }
 
 .rating-0 {
-  margin: 10px;
+  margin: 11px;
   position: absolute;
   background: url("/images/star.png") no-repeat;
   background-size: contain;
   width: 10px;
   top: 6px;
-  margin-left:14px;
+  margin-left:22px;
 }
 
 .rating-1 {
@@ -203,6 +226,7 @@ li {
   position: absolute;
   background: url("/images/filled-star.png") no-repeat;
   background-size: contain;
+  margin-left:17px;
   top: 2px;
 }
 
@@ -234,6 +258,7 @@ li {
 }
 
 .page-back {
+  font-size: 18px;
   margin: 12px;
   position: absolute;
   background: url("/images/back_light.svg") no-repeat;
@@ -371,4 +396,21 @@ li {
 .slide-right.ng-leave.ng-leave-active {
   -webkit-transform: translateX(100%);
   transform: translateX(100%);
+}
+
+@font-face {
+  font-family: "Source Sans";
+  src: url("/fonts/SourceSansPro-Regular.otf");
+}
+
+@font-face {
+  font-family: "Source Sans";
+  src: url("/fonts/SourceSansPro-Light.otf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Source Sans";
+  src: url("/fonts/SourceSansPro-Semibold.otf");
+  font-weight: 600;
 }

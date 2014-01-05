@@ -1,6 +1,6 @@
 <div id="template" ng-init="loadFilms()">
   <header>
-    <span ng-class="filterStyle()" ng-click='toggleRatingFilter()'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <span ng-class="filterStyle()" ng-click='toggleRatingFilter()'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <span class="previous" ng-click="previousCategory()">&nbsp;&nbsp;&nbsp;</span>
     <div>
       <h1>{{category()}}</h1>
@@ -13,24 +13,24 @@
 
   <div class="scroller" >
     <ul class="list">
-      <li bindonce ng-repeat="film in allFilms()" ng-show="!byDate">
+      <li bindonce="film" ng-repeat="film in allFilms()" ng-show="!byDate">
         <span class="film" ng-click='goForward("/films/{{film.id}}")'>
           <span style="float:right" class="chevron"></span>
           <span class="title" bo-text="film.title.trim()"></span>
           <span bo-if="great(film) && !superb(film)" class="icon-great">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span bo-if="superb(film)" class="icon-superb">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span bo-if="superb(film)" class="icon-superb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </span>
       </li>
 
-      <li bindonce ng-repeat="date in filmsDates()" class="day" ng-show="byDate">
-        <p>{{when_formatted(date)}}</p>
+      <li bindonce="date" ng-repeat="date in filmsDates()" class="day" ng-show="byDate">
+        <p bo-text="when_formatted(date)"></p>
         <ul class="list">
-          <li bindonce ng-repeat="film in filmsOn(date)">
+          <li bindonce="film" ng-repeat="film in filmsOn(date)">
             <span class="film" ng-click='goForward("/films/{{film.id}}")'>
               <span style="float:right" class="chevron"></span>
-              <span class="title" bo-text="film.title.trim()"</span>
+              <span class="title" bo-text="film.title.trim()"></span>
               <span bo-if="great(film) && !superb(film)" class="icon-great">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span bo-if="superb(film)" class="icon-superb">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span bo-if="superb(film)" class="icon-superb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             </span>
           </li>
         </ul>
