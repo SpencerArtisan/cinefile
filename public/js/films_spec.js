@@ -155,11 +155,11 @@
           return scope.film = scope.films[0];
         });
         it("should identify if this is a great film", function() {
-          this.film.rating = 90;
+          this.film.rating = 87;
           return expect(scope.great(this.film)).toBeTruthy();
         });
         it("should identify if this is not a great film", function() {
-          this.film.rating = 89;
+          this.film.rating = 86;
           return expect(scope.great(this.film)).toBeFalsy();
         });
         it("should identify if this is a superb film", function() {

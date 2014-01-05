@@ -233,7 +233,7 @@
         return encodeURIComponent(film.link);
       };
       scope.great = function(film) {
-        return film && film.rating && film.rating > 89;
+        return film && film.rating && film.rating > 86;
       };
       return scope.superb = function(film) {
         return film && film.rating && film.rating > 94;

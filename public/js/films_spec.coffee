@@ -137,11 +137,11 @@ describe "FilmsController", ->
         scope.film = scope.films[0]
 
       it "should identify if this is a great film", ->
-        @film.rating = 90
+        @film.rating = 87
         expect(scope.great(@film)).toBeTruthy()
 
       it "should identify if this is not a great film", ->
-        @film.rating = 89
+        @film.rating = 86
         expect(scope.great(@film)).toBeFalsy()
 
       it "should identify if this is a superb film", ->
