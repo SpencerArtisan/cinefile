@@ -71,12 +71,12 @@ a {
   padding: 0px 10px;
   padding-bottom: 0px;
   background-color: rgba(0,0,0,0.05);
-  font-weight: lighter;
+  font-weight: normal;
   text-align: right;
   color: #444;
 }
 .rating .value {
-  font-size: 60px;
+  font-size: 75px;
 }
 
 .film {
