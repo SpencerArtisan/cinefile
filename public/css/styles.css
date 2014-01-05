@@ -76,6 +76,7 @@ a {
   color: #444;
 }
 .rating .value {
+  font-weight: lighter;
   font-size: 75px;
 }
 
