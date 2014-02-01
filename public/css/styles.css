@@ -303,9 +303,8 @@ li {
   position: absolute;
   background: url("/images/back.svg") no-repeat;
   background-size: contain;
-  width: 14px;
-  height: 14px;
-  margin: 10px;
+  width: 32px;
+  height: 32px;
   top: 5px;
   left:54px;
 }
@@ -314,9 +313,8 @@ li {
   position: absolute;
   background: url("/images/next.svg") no-repeat;
   background-size: contain;
-  width: 14px;
-  height: 14px;
-  margin: 10px;
+  width: 32px;
+  height: 32px;
   top: 5px;
   right:54px;
 }
