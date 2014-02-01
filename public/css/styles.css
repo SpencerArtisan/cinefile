@@ -137,7 +137,7 @@ h1 {
   -moz-box-flex: 1;
   box-flex: 1;
   margin: 0px;
-  font-weight: 500;
+  font-weight: bold;
   -webkit-tap-highlight-color: transparent;
   width: 252px;
 }
