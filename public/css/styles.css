@@ -260,14 +260,6 @@ li {
   background-repeat: no-repeat
 }
 
-.page-back {
-  font-size: 23px;
-  margin: 12px;
-  position: absolute;
-  background: url("/images/back_light.svg") no-repeat;
-  background-size: contain;
-}
-
 .icon {
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -300,6 +292,17 @@ li {
 .icon-movie {
   background: url("/images/movie-25.png") no-repeat;
   background-size: cover;
+}
+
+.page-back {
+  position: absolute;
+  background: url("/images/back_light.svg") no-repeat;
+  background-size: contain;
+  width: 32px;
+  height: 32px;
+  font-size: 23px;
+  top: 5px;
+  left: 10px;
 }
 
 .previous {
