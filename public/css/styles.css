@@ -8,6 +8,16 @@ body {
   width: 320px;
 }
 
+.center {
+   width: 320px;
+   height: 568px;
+   position: absolute;
+   left: 50%;
+   top: 50%; 
+   margin-left: -150px;
+   margin-top: -284px;
+}
+
 .topcoat-icon,
 .topcoat-icon--large {
   position: relative;
