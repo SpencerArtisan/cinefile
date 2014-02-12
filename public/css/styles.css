@@ -10,28 +10,27 @@ body {
 
 @media only screen 
 and (min-width : 1224px) {
-    /* Styles */
-.frame {
-  background: url("/images/iphone.jpg") no-repeat;
-   width: 388px;
-   height: 800px;
-   position: absolute;
-   left: 50%;
-   top: 50%; 
-   margin-left: -191px;
-   margin-top: -408px;
-   z-index: -100;
-}
+    .frame {
+       background: url("/images/iphone.jpg") no-repeat;
+       width: 388px;
+       height: 800px;
+       position: absolute;
+       left: 50%;
+       top: 50%; 
+       margin-left: -191px;
+       margin-top: -408px;
+       z-index: -100;
+    }
 
-.center {
-   width: 320px;
-   height: 568px;
-   position: absolute;
-   left: 50%;
-   top: 50%; 
-   margin-left: -163px;
-   margin-top: -263px;
-}
+    .center {
+       width: 320px;
+       height: 568px;
+       position: absolute;
+       left: 50%;
+       top: 50%; 
+       margin-left: -163px;
+       margin-top: -263px;
+    }
 }
 
 .topcoat-icon,
