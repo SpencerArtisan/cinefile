@@ -7,21 +7,28 @@
   </header>
 
   <div id="content" class="scroller">
-    <p ng-if="film.rating == null" class="norating">rating unavailable
-    </p>
-    <p ng-if="film.rating" class="rating">rated
-      <span class="value">{{film.rating}}%</span>
-    </p>
-    <p ng-if="film.review != null && film.review != ''" class="review">{{film.review}}</p>
+    <div bindonce="film">
+      <p bo-if="film.rating == null" class="norating">rating unavailable
+      </p>
+      <p bo-show="film.rating" class="rating">rated
+        <span class="value" bo-text="film.rating"></span>
+        <span class="value">%</span>
+      </p>
+    <p bo-show="film.review != null && film.review != ''" class="review" bo-text="film.review"></p>
+  </div>
 
     <ul class="list">
-      <li ng-repeat="date in filmDates()" class="day">
-        <p>{{when_formatted(date)}}</p>
+      <li bindonce="date" ng-repeat="date in filmDates()" class="day">
+        <p bo-text="when_formatted(date)"></p>
         <ul class="list">
-          <li ng-repeat="showing in showingsOn(date)">
+          <li bindonce="showing" ng-repeat="showing in showingsOn(date)">
             <span class="film" ng-click='goForward("/films/{{film.id}}/showings/{{showing.id}}")'>
               <span style="float:right" class="chevron"></span>
-              <span class="title">{{showing.cinema}} - {{showing.times_on}}</span>
+              <span class="title">
+                <span bo-text="showing.cinema"></span>
+                <span>&nbsp;&mdash;&nbsp;</span>
+                <span bo-text="showing.times_on"></span>
+              </span>
             </span>
           </li>
         </ul>
