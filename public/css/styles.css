@@ -8,6 +8,9 @@ body {
   width: 320px;
 }
 
+@media only screen 
+and (min-width : 1224px) {
+    /* Styles */
 .frame {
   background: url("/images/iphone.jpg") no-repeat;
    width: 388px;
@@ -28,6 +31,7 @@ body {
    top: 50%; 
    margin-left: -163px;
    margin-top: -263px;
+}
 }
 
 .topcoat-icon,
