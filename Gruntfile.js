@@ -14,15 +14,12 @@ grunt.initConfig({
   },
 
   uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      },
-      build: {
-        src: 'src/<%= pkg.name %>.js',
-        dest: 'build/<%= pkg.name %>.min.js'
-      }
+    my_target: {
+    files: {
+      'public/js/films.min.js': ['public/js/films.js']
     }
-  });
+    }
+  }});
 
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
