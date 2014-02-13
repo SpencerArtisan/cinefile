@@ -1,0 +1,93 @@
+<!doctype html>
+
+<html ng-app="app">
+  <head>
+    <title>Cinefile - Classic Movies in London</title>
+    <meta http-equiv="cleartype" content="on">
+    <link href="/css/styles.css" rel="stylesheet">
+    <style>
+      .center {
+         width: 320px;
+         height: 568px;
+         position: absolute;
+         left: 50%;
+         top: 50%; 
+         margin-left: -162px;
+         margin-top: -263px;
+      }
+      .frame {
+         background: url("/images/iphone.jpg") no-repeat;
+         width: 388px;
+         height: 800px;
+         position: absolute;
+         left: 50%;
+         top: 50%; 
+         margin-left: -191px;
+         margin-top: -408px;
+         z-index: -100;
+      }
+
+      div.message {
+          margin-top: 200px;
+          width: 30%;
+          position: absolute;
+      }
+
+      .left.message h2,.left.message h3 {
+          margin-left:40px;
+      }
+
+      div.right.message {
+          right: 40px;
+      }
+
+      .right.message h2,.right.message h3 {
+          text-align: right;
+      }
+
+      body {
+          width: 100%;
+      }
+
+      .link {
+          color: #111188;
+      }
+
+        .frame {
+         top: 180px; 
+         margin-top:0px;
+       }
+
+        div.message {
+          padding: 5px;
+          background-color: #0d9195;
+          color: white;
+          margin-top: 0px;
+          position: relative;
+          width: 100%;
+        }
+        .right h2,.right h3, .left h2,.left h3 {
+          text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="frame">
+        <div class="center">
+          <iframe width="320px" height="548px" src="/"></iframe>
+        </div>
+      </div>
+
+      <div class="message">
+        <div class="left">
+          <h2>Why not install Cinephile on your iPhone today? &mdash; Go to <span class="link">cinefile.herokuapp.com</span> in Mobile Safari and follow the instructions</h2>
+        </div>
+        <div class="right">
+          <h2>Tell us what you think about Cinephile &mdash; Win <a class="link" href="http://www.cinephile.me">2 free tickets</a> to a film of your choosing</h2>
+        </div>
+    </div>
+    </div>
+  </body>
+</html>
+

@@ -8,29 +8,6 @@ body {
   width: 320px;
 }
 
-@media only screen {
-    .frame {
-       background: url("/images/iphone.jpg") no-repeat;
-       width: 388px;
-       height: 800px;
-       position: absolute;
-       left: 50%;
-       top: 50%; 
-       margin-left: -191px;
-       margin-top: -408px;
-       z-index: -100;
-    }
-
-    .center {
-       width: 320px;
-       height: 568px;
-       position: absolute;
-       left: 50%;
-       top: 50%; 
-       margin-left: -162px;
-       margin-top: -263px;
-    }
-}
 
 .topcoat-icon,
 .topcoat-icon--large {
@@ -49,11 +26,6 @@ body {
   height: 2.499999998125rem;
   top: -2px;
 }
-
-div {
-  width: 320px;
-}
-  
 
 a {
   text-decoration: none;
