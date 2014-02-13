@@ -184,6 +184,10 @@ li {
   border-bottom: none;
 }
 
+.link {
+  cursor: pointer;
+}
+
 .cinema {
   margin-left: 10px
 }

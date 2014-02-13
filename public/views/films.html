@@ -1,20 +1,20 @@
 <div id="template" ng-init="loadFilms()">
   <header>
-    <span ng-class="filterStyle()" ng-click='toggleRatingFilter()'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <span class="previous" ng-click="previousCategory()">&nbsp;&nbsp;&nbsp;</span>
+    <span ng-class="filterStyle() + ' link'" ng-click='toggleRatingFilter()'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <span class="link previous" ng-click="previousCategory()">&nbsp;&nbsp;&nbsp;</span>
     <div>
       <h1>{{category()}}</h1>
     </div>
-    <span class="next" ng-click="nextCategory()">&nbsp;&nbsp;&nbsp;</span>
+    <span class="link next" ng-click="nextCategory()">&nbsp;&nbsp;&nbsp;</span>
     <span id="by-date" ng-click='toggleMode()'>
-      <span ng-class="modeStyle() + ' topcoat-icon icon'"></span>
+      <span ng-class="modeStyle() + ' topcoat-icon icon link'"></span>
     </span>
   </header>
 
   <div class="scroller" >
     <ul class="list">
       <li bindonce="film" ng-repeat="film in allFilms()" ng-show="!byDate">
-        <span class="film" ng-click='goForward("/films/{{film.id}}")'>
+        <span class="link film" ng-click='goForward("/films/{{film.id}}")'>
           <span style="float:right" class="chevron"></span>
           <span class="title" bo-text="film.title.trim()"></span>
           <span bo-if="great(film) && !superb(film)" class="icon-great">&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -26,7 +26,7 @@
         <p bo-text="when_formatted(date)"></p>
         <ul class="list">
           <li bindonce="film" ng-repeat="film in filmsOn(date)">
-            <span class="film" ng-click='goForward("/films/{{film.id}}")'>
+            <span class="link film" ng-click='goForward("/films/{{film.id}}")'>
               <span style="float:right" class="chevron"></span>
               <span class="title" bo-text="film.title.trim()"></span>
               <span bo-if="great(film) && !superb(film)" class="icon-great">&nbsp;&nbsp;&nbsp;&nbsp;</span>
