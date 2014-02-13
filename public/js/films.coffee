@@ -3,7 +3,7 @@
 angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location", "$cookieStore",
   (scope, routeParams, resource, location, cookies) ->
     scope.animateStyle = ""
-    scope.categories = ["All Movies", "Classic Movies", "Latest Releases"]
+    scope.categories = ["All Films", "Classic Films", "Latest Releases"]
     scope.categoryIndex = if cookies.get('categoryIndex')? then cookies.get('categoryIndex') else 1
     scope.ratingFilter = if cookies.get('ratingFilter')? then cookies.get('ratingFilter') else 0
     scope.byDate = if cookies.get('byDate')? then cookies.get('byDate') else false
