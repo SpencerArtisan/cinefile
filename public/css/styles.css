@@ -8,6 +8,9 @@ body {
   width: 320px;
 }
 
+.content {
+  width: 320px
+}
 
 .topcoat-icon,
 .topcoat-icon--large {
