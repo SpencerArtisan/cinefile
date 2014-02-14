@@ -5,9 +5,10 @@
   angular.module("app").controller("FilmsController", [
     "$scope", "$routeParams", "$resource", "$location", "$cookieStore", function(scope, routeParams, resource, location, cookies) {
       var _this = this;
+      scope.loading = false;
       scope.animateStyle = "";
-      scope.categories = ["All Movies", "Classic Movies", "Latest Releases"];
-      scope.categoryIndex = cookies.get('categoryIndex') != null ? cookies.get('categoryIndex') : 0;
+      scope.categories = ["All Films", "Classic Films", "Latest Releases"];
+      scope.categoryIndex = cookies.get('categoryIndex') != null ? cookies.get('categoryIndex') : 1;
       scope.ratingFilter = cookies.get('ratingFilter') != null ? cookies.get('ratingFilter') : 0;
       scope.byDate = cookies.get('byDate') != null ? cookies.get('byDate') : false;
       scope.backgroundImage = "batman";
@@ -119,7 +120,9 @@
         if (extra_success == null) {
           extra_success = null;
         }
+        scope.loading = true;
         success = function(response) {
+          scope.loading = false;
           scope.films = response.films;
           if (routeParams.id) {
             scope.film = response.films[parseInt(routeParams.id)];
@@ -138,6 +141,7 @@
           }
         };
         failure = function(response) {
+          scope.loading = false;
           return console.log("films failed with " + response.status);
         };
         return resource('/films', {}, {

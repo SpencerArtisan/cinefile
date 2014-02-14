@@ -2,6 +2,7 @@
 
 angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location", "$cookieStore",
   (scope, routeParams, resource, location, cookies) ->
+    scope.loading = false
     scope.animateStyle = ""
     scope.categories = ["All Films", "Classic Films", "Latest Releases"]
     scope.categoryIndex = if cookies.get('categoryIndex')? then cookies.get('categoryIndex') else 1
@@ -84,7 +85,9 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
         $('#maparea').append(map)
 
     scope.loadFilmsFromBackend = (extra_success = null) ->
+      scope.loading = true
       success = (response) ->
+        scope.loading = false
         scope.films = response.films
         scope.film = response.films[parseInt(routeParams.id)] if routeParams.id
         scope.showing = scope.film.showings[parseInt(routeParams.showing_id)] if routeParams.showing_id
@@ -94,6 +97,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
                 showing.id = showing_index))
         extra_success() if extra_success
       failure = (response) ->
+        scope.loading = false
         console.log("films failed with " + response.status)
       resource('/films', {}, {get: {method: 'GET', cache: true}}).get(success, failure)
 
