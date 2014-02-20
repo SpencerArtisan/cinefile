@@ -88,6 +88,15 @@
         </div>
     </div>
     </div>
+    <script>
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        console.log("on mobile");
+        console.log("Redirecting to " + window.location.origin);
+        window.location.href = window.location.origin;
+      } else {
+        console.log("on desktop");
+      }
+    </script>
   </body>
 </html>
 
