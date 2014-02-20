@@ -280,7 +280,7 @@ li {
 }
 
 .icon-superb {
-  background: url("/images/filled-star.png") repeat-x;
+  background: url("/images/filled-two-stars.png") no-repeat;
   background-size: contain;
   margin-left: 0px;
   padding-left:23px;
