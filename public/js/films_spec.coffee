@@ -33,28 +33,28 @@ describe "FilmsController", ->
       expect(scope.byDate).toBeFalsy()
 
   describe "Categories", ->
-    it "should have an initial category of All Movies", ->
-      expect(scope.category()).toEqual("All Movies")
+    it "should have an initial category of Classic Films", ->
+      expect(scope.category()).toEqual("Classic Films")
 
     it "should be able to go to the previous category", ->
       scope.previousCategory()
-      expect(scope.category()).toEqual("Latest Releases")
+      expect(scope.category()).toEqual("All Films")
 
     it "should be able to cycle round the categories backwards", ->
       scope.previousCategory()
       scope.previousCategory()
       scope.previousCategory()
-      expect(scope.category()).toEqual("All Movies")
+      expect(scope.category()).toEqual("Classic Films")
 
     it "should be able to cycle round the categories forwards", ->
       scope.nextCategory()
       scope.nextCategory()
       scope.nextCategory()
-      expect(scope.category()).toEqual("All Movies")
+      expect(scope.category()).toEqual("Classic Films")
 
     it "should be able to go to the next category", ->
       scope.nextCategory()
-      expect(scope.category()).toEqual("Classic Movies")
+      expect(scope.category()).toEqual("Latest Releases")
 
     describe "Filtering", ->
       beforeEach ->

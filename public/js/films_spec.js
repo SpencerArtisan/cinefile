@@ -37,28 +37,28 @@
       });
     });
     describe("Categories", function() {
-      it("should have an initial category of All Movies", function() {
-        return expect(scope.category()).toEqual("All Movies");
+      it("should have an initial category of Classic Films", function() {
+        return expect(scope.category()).toEqual("Classic Films");
       });
       it("should be able to go to the previous category", function() {
         scope.previousCategory();
-        return expect(scope.category()).toEqual("Latest Releases");
+        return expect(scope.category()).toEqual("All Films");
       });
       it("should be able to cycle round the categories backwards", function() {
         scope.previousCategory();
         scope.previousCategory();
         scope.previousCategory();
-        return expect(scope.category()).toEqual("All Movies");
+        return expect(scope.category()).toEqual("Classic Films");
       });
       it("should be able to cycle round the categories forwards", function() {
         scope.nextCategory();
         scope.nextCategory();
         scope.nextCategory();
-        return expect(scope.category()).toEqual("All Movies");
+        return expect(scope.category()).toEqual("Classic Films");
       });
       it("should be able to go to the next category", function() {
         scope.nextCategory();
-        return expect(scope.category()).toEqual("Classic Movies");
+        return expect(scope.category()).toEqual("Latest Releases");
       });
       return describe("Filtering", function() {
         beforeEach(function() {
