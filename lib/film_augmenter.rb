@@ -3,7 +3,7 @@ require 'rottentomatoes'
 require 'unreliable_object_delegate'
 
 include RottenTomatoes
-Rotten.api_key = 'khyrfh8p43auq75j5eh66gae'
+Rotten.api_key = 'sgsu5gxxbu29q5nh6hhdsecc'
 
 class FilmAugmenter
   def initialize data_source
