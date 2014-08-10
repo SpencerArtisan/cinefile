@@ -45,7 +45,7 @@ class FilmAugmenter
     film.rating = rotten_movie.ratings.audience_score unless film.rating && film.rating != -1
     film.rating = nil if film.rating == -1
     film.language = "EN"
-    puts "Decent match found.  Augmented film is #{film}"
+    puts "Decent match found.  Augmented film is #{film.inspect}"
   end
 
   def best_match film, matches
