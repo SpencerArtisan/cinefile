@@ -1,7 +1,9 @@
 'use strict'
 
-angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location", "$cookieStore",
-  (scope, routeParams, resource, location, cookies) ->
+angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "$resource", "$location", "$cookieStore", "Analytics",
+  (scope, routeParams, resource, location, cookies, Analytics) ->
+    Analytics.trackPage('/video/detail/XXX')
+
     scope.loading = false
     scope.animateStyle = ""
     scope.categories = ["All Films", "Classic Films", "Latest Releases"]

@@ -61,6 +61,9 @@ describe FindAnyFilm do
     before do
       cinemas = File.read 'cinemas_sample.html'
       allow(datasource).to receive(:read_cinemas).with('a postcode').and_return cinemas
+      cinema_details = File.read 'cinemas_details_sample.html'
+      allow(datasource).to receive(:read_cinema_details).and_return cinema_details
+
       @cinemas = datasource.find_cinemas('a postcode')
     end
 
@@ -74,6 +77,10 @@ describe FindAnyFilm do
 
     it 'should get the cinema name' do
       expect(@cinemas[0].name).to eq 'Renoir'
+    end
+
+    it 'should get the cinema postcode' do
+      expect(@cinemas[0].postcode).to eq 'Renoir'
     end
   end
 end

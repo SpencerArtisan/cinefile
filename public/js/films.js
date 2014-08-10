@@ -3,8 +3,9 @@
   'use strict';
 
   angular.module("app").controller("FilmsController", [
-    "$scope", "$routeParams", "$resource", "$location", "$cookieStore", function(scope, routeParams, resource, location, cookies) {
+    "$scope", "$routeParams", "$resource", "$location", "$cookieStore", "Analytics", function(scope, routeParams, resource, location, cookies, Analytics) {
       var _this = this;
+      Analytics.trackPage('/video/detail/XXX');
       scope.loading = false;
       scope.animateStyle = "";
       scope.categories = ["All Films", "Classic Films", "Latest Releases"];
