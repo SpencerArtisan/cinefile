@@ -23,7 +23,7 @@ describe FindAnyFilm do
     end
 
     it 'should get the film year' do
-      expect(@films[0].year).to eq '2015'
+      expect(@films[0].year).to eq 2015
     end
 
     it 'should get the film cinema' do

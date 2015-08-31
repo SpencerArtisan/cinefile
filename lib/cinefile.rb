@@ -3,8 +3,10 @@ require 'cache'
 
 set :root, File.join(File.dirname(__FILE__), '..')
 set :postcode, 'WC1N'
-set :lookahead, 21
+set :lookahead, 10
 set :max_cinemas, 35
+$stdout.sync = true
+
 
 #class FindAnyFilm
   #def read_films cinema, day

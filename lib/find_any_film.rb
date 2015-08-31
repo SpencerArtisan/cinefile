@@ -13,12 +13,11 @@ class FindAnyFilm
 
   def film_nodes cinema, day
     json = films_json cinema, day
-    json[cinema.id]['films']
+    json == 'false' ? [] :JSON.parse(json)[cinema.id]['films']
   end
 
   def films_json cinema, day
-    response = read_films cinema, day
-    json = JSON.parse(response)
+    read_films cinema, day
   end
 
   def read_films cinema, day
@@ -41,7 +40,7 @@ class FindAnyFilm
   def extract_title_and_year json
     film_data = json['film_data']
     title = film_data['film_title']
-    year = film_data['release_year']
+    year = film_data['release_year'].to_i
     [title, year]
   end
 
