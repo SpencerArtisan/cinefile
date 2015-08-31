@@ -5,11 +5,11 @@ body {
   font: 16px "Source Sans", helvetica, arial, sans-serif;
   font-weight: 400;
   background-color: rgba(255,255,255,0.7);
-  width: 320px;
+  width: 375px;
 }
 
 .content {
-  width: 320px
+  width: 375px
 }
 
 .topcoat-icon,
@@ -37,17 +37,17 @@ a {
 
 .main {
   margin-top: 0px;
-  height: 550px;
+  height: 650px;
   position: absolute;
-  width: 320px;
+  width: 375px;
   z-index:-2;
   top: 0px;
 }
 
 .filler {
   background-color: rgba(255,255,255,0.85);
-  height: 550px;
-  width: 320px;
+  height: 650px;
+  width: 375px;
 }
 
 .review {
@@ -96,7 +96,7 @@ header {
   position: absolute;
   top:0;
   height: 44px;
-  width: 320px;
+  width: 375px;
   padding-top: 0;
   border-bottom: 1px solid rgba(50, 50, 50, 0.5);
   background-color: rgba(248, 248, 248, 0.7);
@@ -203,7 +203,7 @@ li {
   bottom: 0px;
   left: 0px;
   right: 0px;
-  height: 505px;
+  height: 605px;
 }
 
 #by-date {
@@ -247,19 +247,19 @@ li {
 
 .background-0 {
   background: url("/images/batman.min.jpg");
-  background-size:320px 550px;
+  background-size:375px 650px;
   background-repeat: no-repeat
 }
 
 .background-1 {
   background: url("/images/Frankenstein3.min.jpg");
-  background-size:320px 550px;
+  background-size:375px 650px;
   background-repeat: no-repeat
 }
 
 .background-2 {
   background: url("/images/slave.min.jpg");
-  background-size:320px 550px;
+  background-size:375px 650px;
   background-repeat: no-repeat
 }
 
