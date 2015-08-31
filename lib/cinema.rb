@@ -1,4 +1,4 @@
-Cinema = Struct.new(:id, :name) do
+Cinema = Struct.new(:id, :name, :postcode) do
   def self.all datasource, postcode
     datasource.find_cinemas postcode
   end

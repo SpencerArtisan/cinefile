@@ -5,7 +5,7 @@ describe FindAnyFilm do
   let (:datasource) { FindAnyFilm.new }
 
   context 'Reading the films for today' do
-    let (:cinema) { Cinema.new 1, 'a cinema' }
+    let (:cinema) { Cinema.new '3471', 'a cinema' }
 
     before do
       Timecop.freeze 2013, 12, 25
@@ -15,15 +15,15 @@ describe FindAnyFilm do
     end
 
     it 'should get all the films' do
-      expect(@films.size).to eq 6
+      expect(@films.size).to eq 4
     end
 
     it 'should get the film title' do
-      expect(@films[0].title).to eq 'Gone With The Wind (1939)'
+      expect(@films[0].title).to eq 'Dope'
     end
 
     it 'should get the film year' do
-      expect(@films[0].year).to eq 1939
+      expect(@films[0].year).to eq '2015'
     end
 
     it 'should get the film cinema' do
@@ -35,16 +35,16 @@ describe FindAnyFilm do
     end
 
     it 'should get the film showing times' do
-      expect(@films[0].showings[0].times_on).to eq '13:30 18:20'
+      expect(@films[0].showings[0].times_on).to eq '18:20'
     end
 
     it 'should get all the showings' do
-      expect(@films[0]).to have(1).showings
+      expect(@films[0].showings.size).to eq(1)
     end
   end
 
   context 'Reading the films for tomorrow' do
-    let (:cinema) { Cinema.new 1, 'a cinema' }
+    let (:cinema) { Cinema.new '3471', 'a cinema' }
 
     before do
       find_any_film_sample = File.read 'find_any_film_sample.json'
@@ -61,26 +61,23 @@ describe FindAnyFilm do
     before do
       cinemas = File.read 'cinemas_sample.html'
       allow(datasource).to receive(:read_cinemas).with('a postcode').and_return cinemas
-      cinema_details = File.read 'cinemas_details_sample.html'
-      allow(datasource).to receive(:read_cinema_details).and_return cinema_details
-
       @cinemas = datasource.find_cinemas('a postcode')
     end
 
     it 'should get all the cinemas' do
-      expect(@cinemas.size).to eq 172
+      expect(@cinemas.size).to eq 162
     end
 
     it 'should get the cinema id' do
-      expect(@cinemas[0].id).to eq '1574'
+      expect(@cinemas[0].id).to eq '3471'
     end
 
     it 'should get the cinema name' do
-      expect(@cinemas[0].name).to eq 'Renoir'
+      expect(@cinemas[0].name).to eq 'BFI Southbank'
     end
 
     it 'should get the cinema postcode' do
-      expect(@cinemas[0].postcode).to eq 'Renoir'
+      expect(@cinemas[0].postcode).to eq 'dummy'
     end
   end
 end

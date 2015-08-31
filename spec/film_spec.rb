@@ -7,7 +7,7 @@ describe Film do
   let (:film) { Film.new 'a film (1934) (U)', 1979, cinema, Date.new(2001, 12, 25), 'some times' }
 
   it 'should have a showing' do
-    expect(film).to have(1).showings
+    expect(film.showings.size).to eq(1)
   end
 
   it 'should strip off the rating from the title' do

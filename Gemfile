@@ -11,6 +11,9 @@ gem 'rottentomatoes'
 
 group :test, :development do
   gem 'rspec'
+  gem 'rspec-collection_matchers'
+  gem 'guard'
+  gem 'guard-rspec'
   gem 'rack-test'
   gem 'watir-webdriver'
   gem 'capybara'

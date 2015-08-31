@@ -39,11 +39,11 @@ describe FilmGrouper do
     end
 
     it 'should be grouped into one film' do
-      expect(@films).to have(1).item
+      expect(@films.size).to eq(1)
     end
 
     it 'should have all their showings' do
-      expect(@films[0]).to have(2).showings
+      expect(@films[0].showings.size).to eq(2)
     end
 
     it 'should order showings by date' do
