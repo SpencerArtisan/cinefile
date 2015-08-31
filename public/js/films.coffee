@@ -74,7 +74,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
     scope.loadFilm = ->
       scope.loadFilmsFromBackend ->
         scope.film.image = '/images/startup-frankenstein.png' unless scope.film.image
-        background = "<div class='main' style=\"background: url(\'#{scope.film.image}\');background-size:320px 550px;background-repeat: no-repeat\"/>"
+        background = "<div class='main' style=\"background: url(\'#{scope.film.image}\');background-size:375px 650px;background-repeat: no-repeat\"/>"
         $('#film-template').append(background)
 
     scope.loadShowing = ->
@@ -82,7 +82,7 @@ angular.module("app").controller "FilmsController", ["$scope", "$routeParams", "
 
     scope.loadCinema = ->
       scope.loadFilmsFromBackend ->
-        map = "<iframe width='320' height='500' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.co.uk/maps?q=#{scope.showing.cinema}+cinema+london&amp;spn=0.028411,0.007193&amp;t=m&amp;output=embed'></iframe>"
+        map = "<iframe width='375' height='600' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.co.uk/maps?q=#{scope.showing.cinema}+cinema+london&amp;spn=0.028411,0.007193&amp;t=m&amp;output=embed'></iframe>"
         console.log "Appending map element: #{map}"
         $('#maparea').append(map)
 
