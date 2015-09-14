@@ -22,7 +22,8 @@ class FindAnyFilm
 
   def read_films cinema, day
     day_s = (Date.today + day).to_s
-    url = "http://www.findanyfilm.com/api/screenings/venue_id/%s/date_from/%s" % [cinema.id, day_s]
+    url = "http://www.findanyfilm.com/api/screenings/by_venue_id/venue_id/%s/date_from/%s" % [cinema.id, day_s]
+    puts url
     RestClient.get url
   end
 
@@ -60,6 +61,7 @@ class FindAnyFilm
   def cinema_nodes postcode
     doc = Nokogiri::HTML(read_cinemas(postcode))
     cinemas = doc.xpath("/html/body//div[@id='wrapper']/section/ul/li[@class='cinemaResult show_hide']")
+    cinemas
   end
 
   def read_cinemas postcode
